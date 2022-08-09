@@ -259,6 +259,7 @@ public class LabyrinthGUI extends JFrame {
 			String farbe = spielerFarbeAuswahl.getItemAt(indexFarbe);
 			daten.getSpielerliste().add(new Spieler(name, farbe));
 			
+			//aenderungs
 			if(daten.getSpielerliste().size() < daten.getSpieleranzahl()) {
 				String[] neueFarbauswahl = new String[farben.length - 1];
 				int j = 0;
