@@ -8,7 +8,7 @@ import java.util.List;
 public class LabyrinthDaten {
 
 	private int spieleranzahl; 
-	private static List<Spieler> spielerliste = new ArrayList<Spieler>();
+	private List<Spieler> spielerliste = new ArrayList<Spieler>();
 	private List<Karte> kartendeck;
 	
 	public LabyrinthDaten() {
@@ -24,12 +24,12 @@ public class LabyrinthDaten {
 		System.out.println("Spieleranzahl: " + spieleranzahl);
 	}
 
-	public static List<Spieler> getSpielerliste() {
+	public List<Spieler> getSpielerliste() {
 		return spielerliste;
 	}
 
-	public static void setSpielerliste(List<Spieler> spielerliste) {
-		LabyrinthDaten.spielerliste = spielerliste;
+	public void setSpielerliste(List<Spieler> spielerlisteEingabe) {
+		spielerliste = spielerlisteEingabe;
 	}
 
 	public List<Karte> getKartendeck() {
