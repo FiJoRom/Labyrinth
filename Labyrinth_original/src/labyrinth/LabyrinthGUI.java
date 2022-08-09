@@ -274,11 +274,15 @@ public class LabyrinthGUI extends JFrame {
 				repaint();
 				spielerEigenschaftenSetzen(spielerNummer + 1);
 			} else {
-				this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+				willkommenSchlieﬂen();
 			}
 		}
 		
 		
+	}
+	
+	private void willkommenSchlieﬂen() {
+		this.willkommen.setVisible(false);
 	}
 	
 	private void beenden() {
