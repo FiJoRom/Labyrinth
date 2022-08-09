@@ -16,6 +16,6 @@ public class WillkommenGUI extends JFrame {
 		this.setLocation(200, 20);
 	}
 
-	//Test
+	//HELP
 	
 }
