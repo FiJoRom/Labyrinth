@@ -290,7 +290,7 @@ public class LabyrinthGUI extends JFrame {
 	private void spielGenerieren() {
 		daten.setKartendeck(Karte.erstelleKartenDeck()); 
 		Karte.shuffleKartenDeck(daten.getKartendeck());
-		System.out.println(daten.getKartendeck());
+		
 	}
 	
 	private void beenden() {
