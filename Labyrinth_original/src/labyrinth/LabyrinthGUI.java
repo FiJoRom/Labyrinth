@@ -49,7 +49,7 @@ public class LabyrinthGUI extends JFrame {
 	
 	public LabyrinthGUI(LabyrinthDaten model) {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
-		this.setTitle("Das Verrückte Labyrinth");
+		this.setTitle("Das Verrï¿½ckte Labyrinth");
 		this.daten = model;
 		
 		// JFrame-Konfiguration
@@ -171,13 +171,13 @@ public class LabyrinthGUI extends JFrame {
 		private JLabel spielerFarbe;
 		private JTextArea spielerNametext;
 		private JComboBox<String> spielerFarbeAuswahl;
-		private String[] farben = {"Rot","Blau","Grün","Gelb"};
+		private String[] farben = {"Rot","Blau","Grï¿½n","Gelb"};
 		private JButton fertig;
 		
 		
 		Willkommen(){
 			this.setDefaultCloseOperation(HIDE_ON_CLOSE);
-			this.setTitle("Das Verrückte LabyrINTh");
+			this.setTitle("Das Verrï¿½ckte LabyrINTh");
 			
 			// JFrame-Konfiguration
 			this.setSize(1200, 800);
@@ -231,7 +231,7 @@ public class LabyrinthGUI extends JFrame {
 		
 		private void spielerEigenschaftenSetzen(int spielerNummer) {
 						
-			spielerNamelabel = new JLabel ("Wie heißt Spieler " + spielerNummer + "?");
+			spielerNamelabel = new JLabel ("Wie heiï¿½t Spieler " + spielerNummer + "?");
 			spielerFarbe = new JLabel ("Farbe:");
 			spielerNametext = new JTextArea();
 			spielerFarbeAuswahl = new JComboBox<String>(farben);
@@ -259,7 +259,7 @@ public class LabyrinthGUI extends JFrame {
 			String farbe = spielerFarbeAuswahl.getItemAt(indexFarbe);
 			daten.getSpielerliste().add(new Spieler(name, farbe));
 			
-			if(spielerNummer < daten.getSpieleranzahl()) {
+			if(daten.getSpielerliste().size() < daten.getSpieleranzahl()) {
 				String[] neueFarbauswahl = new String[farben.length - 1];
 				int j = 0;
 				for(int i = 0; i < farben.length; i++) {
@@ -274,15 +274,23 @@ public class LabyrinthGUI extends JFrame {
 				repaint();
 				spielerEigenschaftenSetzen(spielerNummer + 1);
 			} else {
-				willkommenSchließen();
+				willkommenSchliessen();
+				System.out.println(daten.getSpielerliste());
 			}
 		}
 		
 		
 	}
 	
-	private void willkommenSchließen() {
+	private void willkommenSchliessen() {
 		this.willkommen.setVisible(false);
+		spielGenerieren();
+	}
+	
+	private void spielGenerieren() {
+		daten.setKartendeck(Karte.erstelleKartenDeck()); 
+		Karte.shuffleKartenDeck(daten.getKartendeck());
+		System.out.println(daten.getKartendeck());
 	}
 	
 	private void beenden() {
