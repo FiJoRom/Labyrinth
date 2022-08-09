@@ -3,7 +3,7 @@ package labyrinth;
 import java.util.ArrayList;
 import java.util.List;
 
-import projekt.Karte;
+//import labyrinth.Karte;
 
 public class LabyrinthDaten {
 
