@@ -8,7 +8,7 @@ public class WillkommenGUI extends JFrame {
 
 	public WillkommenGUI(LabyrinthDaten model) {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
-		this.setTitle("Willkommen beim Verrückten Labyrinth");
+		this.setTitle("Willkommen beim Verrï¿½ckten Labyrinth");
 		this.daten = model;
 		
 		// JFrame-Konfiguration
@@ -16,4 +16,6 @@ public class WillkommenGUI extends JFrame {
 		this.setLocation(200, 20);
 	}
 
+	//Test
+	
 }
