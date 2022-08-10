@@ -56,22 +56,22 @@ public class Spieler {
 		this.name = NameEingabe;
 		this.farbe = FarbeEingabe;
 		
-		if(this.farbe == "Rot"){
+		if(this.farbe == "Gruen"){
 			this.positionX = 0; 
-			this.positionY = 0;
-		}
-		
-		if(this.farbe == "Blau"){
-			this.positionX = 6; 
 			this.positionY = 0;
 		}
 		
 		if(this.farbe == "Gelb"){
+			this.positionX = 6; 
+			this.positionY = 0;
+		}
+		
+		if(this.farbe == "Blau"){
 			this.positionX = 0; 
 			this.positionY = 6;
 		}
 		
-		if(this.farbe == "Gruen"){
+		if(this.farbe == "Rot"){
 			this.positionX = 6; 
 			this.positionY = 6;
 		}

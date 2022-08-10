@@ -79,48 +79,76 @@ public class LabyrinthGUI extends JFrame {
 		
 		//Spieler 1
 		JLabel spielernummer1 = new JLabel("Spieler 1");	
-		spielernummer1.setBounds(20, 20, 200, 30);
-		spielernummer1.setBackground(Color.white);
+		spielernummer1.setBounds(20, 35, 200, 30);
 		spielernummer1.setFont(spielernummer1.getFont().deriveFont((float) 22));
-
 		p1.add(spielernummer1);	
-		JLabel kartenuebrig1 = new JLabel("6 Karten übrig");	
-		kartenuebrig1.setBounds(230, 20, 50, 20);
-		kartenuebrig1.setBackground(Color.white);
+		JPanel kartenuebrig1 = new JPanel();
+		String imagePathRueckseite = "Bilder/rueckseite_k.png";
+		generiereGangbilder(kartenuebrig1, imagePathRueckseite);
+		kartenuebrig1.setBounds(180, 10, 63, 110);
 		p1.add(kartenuebrig1); 
 		JLabel spielername1 = new JLabel("Spielername 1");
-		spielername1.setBounds(20, 70, 200, 25);
-		spielername1.setBackground(Color.white);
-		p1.add(spielername1); 
+		spielername1.setBounds(20, 65, 200, 25);
 		spielername1.setFont(spielernummer1.getFont().deriveFont((float) 15));
+		p1.add(spielername1); 
 		
 		//Spieler2
-		JLabel spielernummer2 = new JLabel("Spieler 2");		
+		JLabel spielernummer2 = new JLabel("Spieler 2");	
+		spielernummer2.setBounds(20, 160, 200, 30);
+		spielernummer2.setFont(spielernummer2.getFont().deriveFont((float) 22));
 		p1.add(spielernummer2);	
-		JLabel kartenuebrig2 = new JLabel("6 Karten übrig");		
+		JPanel kartenuebrig2 = new JPanel();
+		generiereGangbilder(kartenuebrig2, imagePathRueckseite);
+		kartenuebrig2.setBounds(180, 135, 63, 110);
 		p1.add(kartenuebrig2); 
 		JLabel spielername2 = new JLabel("Spielername 2");
+		spielername2.setBounds(20, 190, 200, 25);
+		spielername2.setFont(spielernummer2.getFont().deriveFont((float) 15));
 		p1.add(spielername2); 		
 		
 		//Spieler3
-		JLabel spielernummer3 = new JLabel("Spieler 3");		
+		JLabel spielernummer3 = new JLabel("Spieler 3");	
+		spielernummer3.setBounds(20, 285, 200, 30);
+		spielernummer3.setFont(spielernummer3.getFont().deriveFont((float) 22));
 		p1.add(spielernummer3);	
-		JLabel kartenuebrig3 = new JLabel("6 Karten übrig");		
+		JPanel kartenuebrig3 = new JPanel();
+		generiereGangbilder(kartenuebrig3, imagePathRueckseite);	
+		kartenuebrig3.setBounds(180, 260, 63, 110);
 		p1.add(kartenuebrig3); 
 		JLabel spielername3 = new JLabel("Spielername 3");
+		spielername3.setBounds(20, 315, 200, 25);
+		spielername3.setFont(spielernummer3.getFont().deriveFont((float) 15));
 		p1.add(spielername3); 	
 		
 		
 		//Spieler4
-		JLabel spielernummer4 = new JLabel("Spieler 4");		
+		JLabel spielernummer4 = new JLabel("Spieler 4");
+		spielernummer4.setBounds(20, 410, 200, 30);
+		spielernummer4.setFont(spielernummer4.getFont().deriveFont((float) 22));
 		p1.add(spielernummer4);	
-		JLabel kartenuebrig4 = new JLabel("6 Karten übrig");		
+		JPanel kartenuebrig4 = new JPanel();
+		generiereGangbilder(kartenuebrig4, imagePathRueckseite);
+		kartenuebrig4.setBounds(180, 385, 63, 110);
 		p1.add(kartenuebrig4); 
 		JLabel spielername4 = new JLabel("Spielername 4");
+		spielername4.setBounds(20, 440, 200, 25);
+		spielername4.setFont(spielernummer4.getFont().deriveFont((float) 15));
 		p1.add(spielername4); 
 		
 		
 		//Spielfeld
+		JPanel gang00 = new JPanel();
+		String imagePath00 = "Bilder/gruen_g.png";
+		generiereGangbilder(gang00, imagePath00);
+		gang00.setBounds(470, 30, 80, 85);
+		p1.add(gang00); 
+		
+		
+		JPanel gang06 = new JPanel();
+		String imagePath06 = "Bilder/blau_g.png";
+		generiereGangbilder(gang06, imagePath06);
+		gang06.setBounds(470, 510, 80, 85);
+		p1.add(gang06);
 		
 		
 		
@@ -496,6 +524,18 @@ public class LabyrinthGUI extends JFrame {
 		this.constraintsSpielerKartenUebersicht.gridy = y;
 		this.constraintsSpielerKartenUebersicht.gridwidth = width;
 		this.constraintsSpielerKartenUebersicht.gridheight = height;
+	}
+	
+	//Spielfeld
+	private void generiereGangbilder(JPanel gangpanel, String gangpath) {
+		try {
+			BufferedImage logo = ImageIO.read(new File(gangpath));
+			JLabel picLabel = new JLabel(new ImageIcon(logo));
+			p1.add(gangpanel);
+			gangpanel.add(picLabel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
 	}
 	
 	private void beenden() {
