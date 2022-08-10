@@ -47,17 +47,75 @@ public class LabyrinthGUI extends JFrame {
 	private JButton rechts;
 	private JButton fertig;
 	private JPanel p1;
+	private JPanel spielerKartenUebersicht;
+	private JPanel spielfeldPanel;
+	private JPanel einschiebeGangPanel;
+	private JPanel aktuellerSpielerPanel;
+	private JPanel joysticksPanel;
+	
+	private GridBagLayout gridHauptfenster;
+	private GridBagConstraints constraintsHauptfenster;
 	
 	private Willkommen willkommen;
 	
+	
 	public LabyrinthGUI(LabyrinthDaten model) {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
-		this.setTitle("Das Verr�ckte Labyrinth");
+		this.setTitle("Das Verrueckte Labyrinth");
 		this.daten = model;
 		
 		// JFrame-Konfiguration
 		this.setSize(1500, 1000);
 		this.setLocation(200, 20);
+		
+		gridHauptfenster = new GridBagLayout();
+		
+		//BackgroundPanel
+		p1 = new JPanel();
+		p1.setLayout(null);
+		this.add(p1);
+		//p1.setBackground(Color.lightGray);
+		p1.setLayout(gridHauptfenster);
+		
+		constraintsHauptfenster = new GridBagConstraints();
+		constraintsHauptfenster.fill = GridBagConstraints.HORIZONTAL;
+		//Padding (top, left, bottom, right)
+		constraintsHauptfenster.insets = new Insets(5,5,5,5);
+		
+		//SpielerKartenUebersicht Panel
+		constraintsHauptfensterEigenschaftenSetzen(0,0,1,1);
+		spielerKartenUebersicht = new JPanel();
+		spielerKartenUebersicht.setBackground(Color.black);
+		gridHauptfenster.setConstraints(spielerKartenUebersicht, constraintsHauptfenster);
+		this.add(spielerKartenUebersicht);
+		
+		//Spielfeld
+		constraintsHauptfensterEigenschaftenSetzen(1,0,1,1);
+		spielfeldPanel = new JPanel();
+		spielfeldPanel.setBackground(Color.blue);
+		gridHauptfenster.setConstraints(spielfeldPanel, constraintsHauptfenster);
+		this.add(spielfeldPanel);
+		
+		//EinschiebeGang
+		constraintsHauptfensterEigenschaftenSetzen(2,0,1,1);
+		einschiebeGangPanel = new JPanel();
+		einschiebeGangPanel.setBackground(Color.CYAN);
+		gridHauptfenster.setConstraints(einschiebeGangPanel, constraintsHauptfenster);
+		this.add(einschiebeGangPanel);
+		
+		//AktuellerSpielerPanel
+		constraintsHauptfensterEigenschaftenSetzen(1,1,1,1);
+		aktuellerSpielerPanel = new JPanel();
+		aktuellerSpielerPanel.setBackground(Color.yellow);
+		gridHauptfenster.setConstraints(aktuellerSpielerPanel, constraintsHauptfenster);
+		this.add(aktuellerSpielerPanel);
+		
+		//Joysticks Panel
+		constraintsHauptfensterEigenschaftenSetzen(2,2,1,1);
+		joysticksPanel = new JPanel();
+		joysticksPanel.setBackground(Color.red);
+		gridHauptfenster.setConstraints(joysticksPanel, constraintsHauptfenster);
+		this.add(joysticksPanel);
 		
 		//Icons
 		ImageIcon obenIcon = new ImageIcon("iconOben.png");
@@ -79,11 +137,6 @@ public class LabyrinthGUI extends JFrame {
 		links = new JButton(linksIcon);
 		fertig = new JButton(fertigIcon);
 		
-		//Panel
-		p1 = new JPanel();
-		p1.setLayout(null);
-		this.add(p1);
-		p1.setBackground(Color.lightGray);
 		
 		//Joystick
 		oben.setBounds(1250, 690, 52, 52);
@@ -176,8 +229,9 @@ public class LabyrinthGUI extends JFrame {
 		private String[] farben = {"Rot","Blau","Gruen","Gelb"};
 		private JButton fertig;
 		private GridBagLayout gbl;
-		private GridBagConstraints gbc;
 		
+		
+		private GridBagConstraints gbc;
 		private GridBagConstraints gbcZwei;
 		
 		Willkommen(){
@@ -194,10 +248,11 @@ public class LabyrinthGUI extends JFrame {
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			gbc.insets = new Insets(5,5,5,5);
 			
-			gbc.gridx = 0;
-			gbc.gridy = 0;
-			gbc.gridwidth = 3;
-			gbc.gridheight = 1;
+			gbcEigenschaftenSetzen(0,0,3,1);
+			//gbc.gridx = 0;
+			//gbc.gridy = 0;
+			//gbc.gridwidth = 3;
+			//gbc.gridheight = 1;
 			String imagePath = "Labyrinth_Logo.png";
 			try {
 				BufferedImage logo = ImageIO.read(new File(imagePath));
@@ -378,6 +433,22 @@ public class LabyrinthGUI extends JFrame {
 				System.out.println(daten.getSpielerliste());
 			}
 		}
+		
+		private void gbcEigenschaftenSetzen(int x, int y, int width, int height) {
+			this.gbc.gridx = x;
+			this.gbc.gridy = y;
+			this.gbc.gridwidth = width;
+			this.gbc.gridheight = height;
+		}
+		
+		private void gbcZweiEigenschaftenSetzen(int x, int y, int width, int height) {
+			this.gbcZwei.gridx = x;
+			this.gbcZwei.gridy = y;
+			this.gbcZwei.gridwidth = width;
+			this.gbcZwei.gridheight = height;
+		}
+		
+		
 	}
 	
 	private void willkommenSchliessen() {
@@ -393,9 +464,15 @@ public class LabyrinthGUI extends JFrame {
 		System.out.println(daten.getSpielerliste());
 	}
 	
+	private void constraintsHauptfensterEigenschaftenSetzen(int x, int y, int width, int height) {
+		this.constraintsHauptfenster.gridx = x;
+		this.constraintsHauptfenster.gridy = y;
+		this.constraintsHauptfenster.gridwidth = width;
+		this.constraintsHauptfenster.gridheight = height;
+	}
+	
 	private void beenden() {
 		System.exit(0);		
 	}
 	
-	//TODO: Abbruch Abfrage Spielereigenschaften und Spielbeginn, wenn Spieleranzahl erreicht
 }
