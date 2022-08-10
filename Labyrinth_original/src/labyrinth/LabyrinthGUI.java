@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,7 +34,7 @@ public class LabyrinthGUI extends JFrame {
 
 	private LabyrinthDaten daten;
 
-	// Menueleiste
+	//Attribute Hauptfenster
 	private JMenuBar menueLeiste;
 	private JMenu spielMenue;
 	private JMenuItem beenden;
@@ -53,8 +52,12 @@ public class LabyrinthGUI extends JFrame {
 	private JPanel aktuellerSpielerPanel;
 	private JPanel joysticksPanel;
 	
+	
 	private GridBagLayout gridHauptfenster;
 	private GridBagConstraints constraintsHauptfenster;
+	
+	private GridBagLayout gridSpielerKartenUebersicht;
+	private GridBagConstraints constraintsSpielerKartenUebersicht;
 	
 	private Willkommen willkommen;
 	
@@ -68,61 +71,77 @@ public class LabyrinthGUI extends JFrame {
 		this.setSize(1500, 1000);
 		this.setLocation(200, 20);
 		
-		gridHauptfenster = new GridBagLayout();
-		
 		//BackgroundPanel
 		p1 = new JPanel();
 		p1.setLayout(null);
 		this.add(p1);
 		//p1.setBackground(Color.lightGray);
-		p1.setLayout(gridHauptfenster);
 		
-		constraintsHauptfenster = new GridBagConstraints();
-		constraintsHauptfenster.fill = GridBagConstraints.HORIZONTAL;
-		//Padding (top, left, bottom, right)
-		constraintsHauptfenster.insets = new Insets(5,5,5,5);
+		//Spieler 1
+		JLabel spielernummer1 = new JLabel("Spieler 1");	
+		spielernummer1.setBounds(20, 20, 200, 30);
+		spielernummer1.setBackground(Color.white);
+		spielernummer1.setFont(spielernummer1.getFont().deriveFont((float) 22));
+
+		p1.add(spielernummer1);	
+		JLabel kartenuebrig1 = new JLabel("6 Karten übrig");	
+		kartenuebrig1.setBounds(230, 20, 50, 20);
+		kartenuebrig1.setBackground(Color.white);
+		p1.add(kartenuebrig1); 
+		JLabel spielername1 = new JLabel("Spielername 1");
+		spielername1.setBounds(20, 70, 200, 25);
+		spielername1.setBackground(Color.white);
+		p1.add(spielername1); 
+		spielername1.setFont(spielernummer1.getFont().deriveFont((float) 15));
 		
-		//SpielerKartenUebersicht Panel
-		constraintsHauptfensterEigenschaftenSetzen(0,0,1,1);
-		spielerKartenUebersicht = new JPanel();
-		spielerKartenUebersicht.setBackground(Color.black);
-		gridHauptfenster.setConstraints(spielerKartenUebersicht, constraintsHauptfenster);
-		this.add(spielerKartenUebersicht);
+		//Spieler2
+		JLabel spielernummer2 = new JLabel("Spieler 2");		
+		p1.add(spielernummer2);	
+		JLabel kartenuebrig2 = new JLabel("6 Karten übrig");		
+		p1.add(kartenuebrig2); 
+		JLabel spielername2 = new JLabel("Spielername 2");
+		p1.add(spielername2); 		
+		
+		//Spieler3
+		JLabel spielernummer3 = new JLabel("Spieler 3");		
+		p1.add(spielernummer3);	
+		JLabel kartenuebrig3 = new JLabel("6 Karten übrig");		
+		p1.add(kartenuebrig3); 
+		JLabel spielername3 = new JLabel("Spielername 3");
+		p1.add(spielername3); 	
+		
+		
+		//Spieler4
+		JLabel spielernummer4 = new JLabel("Spieler 4");		
+		p1.add(spielernummer4);	
+		JLabel kartenuebrig4 = new JLabel("6 Karten übrig");		
+		p1.add(kartenuebrig4); 
+		JLabel spielername4 = new JLabel("Spielername 4");
+		p1.add(spielername4); 
+		
 		
 		//Spielfeld
-		constraintsHauptfensterEigenschaftenSetzen(1,0,1,1);
-		spielfeldPanel = new JPanel();
-		spielfeldPanel.setBackground(Color.blue);
-		gridHauptfenster.setConstraints(spielfeldPanel, constraintsHauptfenster);
-		this.add(spielfeldPanel);
+		
+		
 		
 		//EinschiebeGang
-		constraintsHauptfensterEigenschaftenSetzen(2,0,1,1);
-		einschiebeGangPanel = new JPanel();
-		einschiebeGangPanel.setBackground(Color.CYAN);
-		gridHauptfenster.setConstraints(einschiebeGangPanel, constraintsHauptfenster);
-		this.add(einschiebeGangPanel);
+		
+		
+		
 		
 		//AktuellerSpielerPanel
-		constraintsHauptfensterEigenschaftenSetzen(1,1,1,1);
-		aktuellerSpielerPanel = new JPanel();
-		aktuellerSpielerPanel.setBackground(Color.yellow);
-		gridHauptfenster.setConstraints(aktuellerSpielerPanel, constraintsHauptfenster);
-		this.add(aktuellerSpielerPanel);
+		
 		
 		//Joysticks Panel
-		constraintsHauptfensterEigenschaftenSetzen(2,2,1,1);
-		joysticksPanel = new JPanel();
-		joysticksPanel.setBackground(Color.red);
-		gridHauptfenster.setConstraints(joysticksPanel, constraintsHauptfenster);
-		this.add(joysticksPanel);
+		
+		
 		
 		//Icons
-		ImageIcon obenIcon = new ImageIcon("iconOben.png");
-		ImageIcon untenIcon = new ImageIcon("iconUnten.png");
-		ImageIcon linksIcon = new ImageIcon("iconLinks.png");
-		ImageIcon rechtsIcon = new ImageIcon("iconRechts.png");
-		ImageIcon fertigIcon = new ImageIcon("iconFertig.png");
+		ImageIcon obenIcon = new ImageIcon("Bilder/iconoben.png");
+		ImageIcon untenIcon = new ImageIcon("Bilder/iconunten.png");
+		ImageIcon linksIcon = new ImageIcon("Bilder/iconlinks.png");
+		ImageIcon rechtsIcon = new ImageIcon("Bilder/iconrechts.png");
+		ImageIcon fertigIcon = new ImageIcon("Bilder/iconfertig.png");
 		
 		// Menue
 		menueLeiste = new JMenuBar();
@@ -190,7 +209,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(unten);
 		p1.add(rechts);
 		p1.add(links);
-		p1.add(fertig);
+		p1.add(fertig);	
 		
 		// zum Fenster hinzufuegen
 		this.setJMenuBar(menueLeiste);
@@ -253,7 +272,7 @@ public class LabyrinthGUI extends JFrame {
 			//gbc.gridy = 0;
 			//gbc.gridwidth = 3;
 			//gbc.gridheight = 1;
-			String imagePath = "Labyrinth_Logo.png";
+			String imagePath = "Bilder/Labyrinth_Logo.png";
 			try {
 				BufferedImage logo = ImageIO.read(new File(imagePath));
 				JLabel picLabel = new JLabel(new ImageIcon(logo));
@@ -469,6 +488,14 @@ public class LabyrinthGUI extends JFrame {
 		this.constraintsHauptfenster.gridy = y;
 		this.constraintsHauptfenster.gridwidth = width;
 		this.constraintsHauptfenster.gridheight = height;
+	}
+	
+	//Für SpielerKartenUebersicht
+	private void constraintsSpielerKartenUebersichtSetzen(int x, int y, int width, int height) {
+		this.constraintsSpielerKartenUebersicht.gridx = x;
+		this.constraintsSpielerKartenUebersicht.gridy = y;
+		this.constraintsSpielerKartenUebersicht.gridwidth = width;
+		this.constraintsSpielerKartenUebersicht.gridheight = height;
 	}
 	
 	private void beenden() {
