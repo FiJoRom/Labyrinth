@@ -2,8 +2,11 @@ package labyrinth;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -154,7 +157,6 @@ public class LabyrinthGUI extends JFrame {
 	}
 	
 	
-	
 	private class Willkommen extends JDialog{
 		
 		private JPanel bildpanel;
@@ -173,7 +175,10 @@ public class LabyrinthGUI extends JFrame {
 		private JComboBox<String> spielerFarbeAuswahl;
 		private String[] farben = {"Rot","Blau","Gruen","Gelb"};
 		private JButton fertig;
+		private GridBagLayout gbl;
+		private GridBagConstraints gbc;
 		
+		private GridBagConstraints gbcZwei;
 		
 		Willkommen(){
 			this.setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -182,74 +187,156 @@ public class LabyrinthGUI extends JFrame {
 			// JFrame-Konfiguration
 			this.setSize(1200, 800);
 			this.setLocation(400, 100);
-			this.setLayout(new GridLayout(2, 1));
+			gbl = new GridBagLayout();
+			this.setLayout(gbl);
+						
+			gbc = new GridBagConstraints();
+			gbc.fill = GridBagConstraints.HORIZONTAL;
+			gbc.insets = new Insets(5,5,5,5);
 			
+			gbc.gridx = 0;
+			gbc.gridy = 0;
+			gbc.gridwidth = 3;
+			gbc.gridheight = 1;
 			String imagePath = "Labyrinth_Logo.png";
 			try {
 				BufferedImage logo = ImageIO.read(new File(imagePath));
 				JLabel picLabel = new JLabel(new ImageIcon(logo));
 				bildpanel = new JPanel();
+				gbl.setConstraints(bildpanel, gbc);
 				this.add(bildpanel);
 				bildpanel.add(picLabel);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-			spielerAnzahl = new JLabel ("Wie viele Spieler seid ihr?");
-			zweiSpieler = new JButton("Zwei Spieler");
-			dreiSpieler = new JButton("Drei Spieler");
-			vierSpieler = new JButton("Vier Spieler");
-			
-			spielerAnzahl.setBounds(530, 5, 300, 30);
-			zweiSpieler.setBounds(400, 100, 110, 20);
-			dreiSpieler.setBounds(550, 100, 110, 20);
-			vierSpieler.setBounds(700, 100, 110, 20);
-			
-			abfragepanel = new JPanel();
-			abfragepanel.setLayout(null);
-			this.add(abfragepanel);
-			
-			abfragepanel.add(spielerAnzahl);
-			abfragepanel.add(zweiSpieler);
-			abfragepanel.add(dreiSpieler);
-			abfragepanel.add(vierSpieler);
-			
-			zweiSpieler.addActionListener(e -> spielerAnzahlSetzen(2));
-			dreiSpieler.addActionListener(e -> spielerAnzahlSetzen(3));
-			vierSpieler.addActionListener(e -> spielerAnzahlSetzen(4));
-			
-			
 						
+			gbc.gridx = 0;
+			gbc.gridy = 1;
+			gbc.gridwidth = 3;
+			gbc.gridheight = 1;
+			gbc.insets = new Insets(5,30,5,5);
+			spielerAnzahl = new JLabel ("Wie viele Spieler seid ihr?");
+			spielerAnzahl.setSize(300, 30);
+			gbl.setConstraints(spielerAnzahl, gbc);
+			this.add(spielerAnzahl);
+						
+			gbc.gridx = 0;
+			gbc.gridy = 2;
+			gbc.gridwidth = 1;
+			gbc.gridheight = 1;
+			gbc.insets = new Insets(15,30,30,15);
+			zweiSpieler = new JButton("Zwei Spieler");
+			zweiSpieler.setSize(200, 20);
+			zweiSpieler.addActionListener(e -> spielerAnzahlSetzen(2));
+			gbl.setConstraints(zweiSpieler, gbc);
+			this.add(zweiSpieler);
+					
+			gbc.gridx = 1;
+			gbc.gridy = 2;
+			gbc.gridwidth = 1;
+			gbc.gridheight = 1;
+			gbc.insets = new Insets(15,15,30,15);
+			dreiSpieler = new JButton("Drei Spieler");
+			dreiSpieler.setSize(200, 20);
+			dreiSpieler.addActionListener(e -> spielerAnzahlSetzen(3));
+			gbl.setConstraints(dreiSpieler, gbc);
+			this.add(dreiSpieler);
+			
+			gbc.gridx = 2;
+			gbc.gridy = 2;
+			gbc.gridwidth = 1;
+			gbc.gridheight = 1;
+			gbc.insets = new Insets(15,15,30,30);
+			vierSpieler = new JButton("Vier Spieler");
+			vierSpieler.setSize(200, 20);
+			vierSpieler.addActionListener(e -> spielerAnzahlSetzen(4));
+			gbl.setConstraints(vierSpieler, gbc);
+			this.add(vierSpieler);
+			
+			pack();			
 		}
 		
 		private void spielerAnzahlSetzen(int spAnzahl){
 			daten.setSpieleranzahl(spAnzahl);
-			abfragepanel.removeAll();
-			repaint();
+			
+			gbl.removeLayoutComponent(bildpanel);
+			this.remove(bildpanel);
+			gbl.removeLayoutComponent(spielerAnzahl);
+			this.remove(spielerAnzahl);
+			gbl.removeLayoutComponent(zweiSpieler);
+			this.remove(zweiSpieler);
+			gbl.removeLayoutComponent(dreiSpieler);
+			this.remove(dreiSpieler);
+			gbl.removeLayoutComponent(vierSpieler);
+			this.remove(vierSpieler);
+			
+			//repaint();
 			spielerEigenschaftenSetzen(1);
 		}
 		
 		private void spielerEigenschaftenSetzen(int spielerNummer) {
-						
+				
+			gbcZwei = new GridBagConstraints();
+			gbcZwei.fill = GridBagConstraints.HORIZONTAL;
+			gbcZwei.insets = new Insets(5,5,5,5);
+			
+			gbcZwei.gridx = 0;
+			gbcZwei.gridy = 0;
+			gbcZwei.gridwidth = 4;
+			gbcZwei.gridheight = 1;
+			gbl.setConstraints(bildpanel, gbcZwei);
+			this.add(bildpanel);
+			
+			gbcZwei.gridx = 0;
+			gbcZwei.gridy = 1;
+			gbcZwei.gridwidth = 2;
+			gbcZwei.gridheight = 1;
 			spielerNamelabel = new JLabel ("Wie heisst Spieler " + spielerNummer + "?");
+			//spielerNamelabel.setSize(300, 30);
+			gbl.setConstraints(spielerNamelabel, gbcZwei);
+			this.add(spielerNamelabel);
+			
+			gbcZwei.gridx = 2;
+			gbcZwei.gridy = 1;
+			gbcZwei.gridwidth = 2;
+			gbcZwei.gridheight = 1;
 			spielerFarbe = new JLabel ("Farbe:");
+			//spielerFarbe.setSize(300, 30);
+			gbl.setConstraints(spielerFarbe, gbcZwei);
+			this.add(spielerFarbe);
+			
+			gbcZwei.gridx = 0;
+			gbcZwei.gridy = 2;
+			gbcZwei.gridwidth = 2;
+			gbcZwei.gridheight = 1;
 			spielerNametext = new JTextArea();
+			//spielerNametext.setSize(400, 30);
+			gbl.setConstraints(spielerNametext, gbcZwei);
+			this.add(spielerNametext);
+			
+			gbcZwei.gridx = 2;
+			gbcZwei.gridy = 2;
+			gbcZwei.gridwidth = 2;
+			gbcZwei.gridheight = 1;
 			spielerFarbeAuswahl = new JComboBox<String>(farben);
+			//spielerFarbeAuswahl.setSize(300, 30);
+			gbl.setConstraints(spielerFarbeAuswahl, gbcZwei);
+			this.add(spielerFarbeAuswahl);
+			
+			
+			gbcZwei.gridx = 3;
+			gbcZwei.gridy = 3;
+			gbcZwei.gridwidth = 1;
+			gbcZwei.gridheight = 1;
+			gbcZwei.insets = new Insets(5,130,15,30);
 			fertig = new JButton("Fertig");
+			//fertig.setSize(100, 30);
+			fertig.addActionListener(e -> spielerEigenschaftenSpeichern(spielerNummer));
+			gbl.setConstraints(fertig, gbcZwei);
+			this.add(fertig);
 			
-			spielerNamelabel.setBounds(330, 5, 300, 30);
-			spielerFarbe.setBounds(750, 5, 300, 30);
-			spielerNametext.setBounds(330, 45, 400, 30);
-			spielerFarbeAuswahl.setBounds(750, 45, 300, 30);
-			fertig.setBounds(500, 100, 100, 30);
-			
-			abfragepanel.add(spielerNamelabel);
-			abfragepanel.add(spielerFarbe);
-			abfragepanel.add(spielerNametext);
-			abfragepanel.add(spielerFarbeAuswahl);
-			abfragepanel.add(fertig);
-						
-			fertig.addActionListener(e -> spielerEigenschaftenSpeichern(spielerNummer));			
+			pack();
+		
 		}
 		
 		private void spielerEigenschaftenSpeichern(int spielerNummer) {
@@ -259,6 +346,7 @@ public class LabyrinthGUI extends JFrame {
 			String farbe = spielerFarbeAuswahl.getItemAt(indexFarbe);
 			daten.getSpielerliste().add(new Spieler(name, farbe));
 	
+
 			if(daten.getSpielerliste().size() < daten.getSpieleranzahl()) {
 				String[] neueFarbauswahl = new String[farben.length - 1];
 				int j = 0;
@@ -270,15 +358,26 @@ public class LabyrinthGUI extends JFrame {
 				}
 				farben = neueFarbauswahl;
 				spielerNametext.setText("");
-				abfragepanel.removeAll();
-				repaint();
+				gbl.removeLayoutComponent(bildpanel);
+				this.remove(bildpanel);
+				gbl.removeLayoutComponent(spielerNamelabel);
+				this.remove(spielerNamelabel);
+				gbl.removeLayoutComponent(spielerFarbe);
+				this.remove(spielerFarbe);
+				gbl.removeLayoutComponent(spielerNametext);
+				this.remove(spielerNametext);
+				gbl.removeLayoutComponent(spielerFarbeAuswahl);
+				this.remove(spielerFarbeAuswahl);
+				gbl.removeLayoutComponent(fertig);
+				this.remove(fertig);
+				
+				//repaint();
 				spielerEigenschaftenSetzen(spielerNummer + 1);
 			} else {
 				willkommenSchliessen();
+				System.out.println(daten.getSpielerliste());
 			}
 		}
-		
-		
 	}
 	
 	private void willkommenSchliessen() {
