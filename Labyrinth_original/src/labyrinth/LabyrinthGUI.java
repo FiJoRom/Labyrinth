@@ -224,7 +224,7 @@ public class LabyrinthGUI extends JFrame {
 		organisationGaenge = new GangPanel[7][7];
       	organisationGaenge[0][0] = gang00;
 		
-      	GangPanel gang01 = new GangPanel(460,55,"Bilder/gruen_g.png");
+      	GangPanel gang01 = new GangPanel(460,55,"Bilder/rueckeite_g.png");
       	/*
 		String imagePath10 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang01, imagePath10);
@@ -245,7 +245,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang02); 
 		organisationGaenge[0][2] = gang02;
 		
-		GangPanel gang03 = new GangPanel(640,55,"Bilder/gruen_g.png");
+		GangPanel gang03 = new GangPanel(640,55,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath30 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang03, imagePath30);
@@ -266,7 +266,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang04); 
 		organisationGaenge[0][4] = gang04;
 		
-		GangPanel gang05 = new GangPanel(820,55,"Bilder/gruen_g.png");
+		GangPanel gang05 = new GangPanel(820,55,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath50 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang05, imagePath50);
@@ -288,7 +288,7 @@ public class LabyrinthGUI extends JFrame {
 		organisationGaenge[0][6] = gang06;
 		
 		//Zweite Zeile
-		GangPanel gang10 = new GangPanel(370,145,"Bilder/gruen_g.png");
+		GangPanel gang10 = new GangPanel(370,145,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath01 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang10, imagePath01);
@@ -298,7 +298,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang10); 
 		organisationGaenge[1][0] = gang10;
 		
-		GangPanel gang11 = new GangPanel(460,145,"Bilder/gruen_g.png");
+		GangPanel gang11 = new GangPanel(460,145,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath11 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang11, imagePath11);
@@ -308,7 +308,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang11); 
 		organisationGaenge[1][1] = gang11;
 		
-		GangPanel gang12 = new GangPanel(550,145,"Bilder/gruen_g.png");
+		GangPanel gang12 = new GangPanel(550,145,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath21 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang12, imagePath21);
@@ -318,7 +318,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang12); 
 		organisationGaenge[1][2] = gang12;
 		
-		GangPanel gang13 = new GangPanel(640,145,"Bilder/gruen_g.png");
+		GangPanel gang13 = new GangPanel(640,145,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath31 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang13, imagePath31);
@@ -328,7 +328,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang13); 
 		organisationGaenge[1][3] = gang13;
 		
-		GangPanel gang14 = new GangPanel(730,145,"Bilder/gruen_g.png");
+		GangPanel gang14 = new GangPanel(730,145,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath41 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang14, imagePath41);
@@ -338,7 +338,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang14); 
 		organisationGaenge[1][4] = gang14;
 		
-		GangPanel gang15 = new GangPanel(820,145,"Bilder/gruen_g.png");
+		GangPanel gang15 = new GangPanel(820,145,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath51 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang15, imagePath51);
@@ -348,7 +348,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang15); 
 		organisationGaenge[1][5] = gang15;
 		
-		GangPanel gang16 = new GangPanel(910,145,"Bilder/gruen_g.png");
+		GangPanel gang16 = new GangPanel(910,145,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath61 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang16, imagePath61);
@@ -370,7 +370,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang20); 
 		organisationGaenge[2][0] = gang20;
 		
-		GangPanel gang21 = new GangPanel(460,235,"Bilder/gruen_g.png");
+		GangPanel gang21 = new GangPanel(460,235,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath12 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang21, imagePath12);
@@ -391,7 +391,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang22); 
 		organisationGaenge[2][2] = gang22;
 		
-		GangPanel gang23 = new GangPanel(640,235,"Bilder/gruen_g.png");
+		GangPanel gang23 = new GangPanel(640,235,"Bilder/rueckeite_g.png");
 		/*
 		String imagePath32 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang23, imagePath32);
@@ -412,7 +412,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang24); 
 		organisationGaenge[2][4] = gang24;
 		
-		GangPanel gang25 = new GangPanel(820,235,"Bilder/gruen_g.png");
+		GangPanel gang25 = new GangPanel(820,235,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang25 = new JPanel();
 		String imagePath52 = "Bilder/gruen_g.png";
@@ -436,7 +436,7 @@ public class LabyrinthGUI extends JFrame {
 		organisationGaenge[2][6] = gang26;
 		
 		//Vierte Zeile
-		GangPanel gang30 = new GangPanel(370,325,"Bilder/gruen_g.png");
+		GangPanel gang30 = new GangPanel(370,325,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang30 = new JPanel();
 		String imagePath03 = "Bilder/gruen_g.png";
@@ -447,7 +447,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang30); 
 		organisationGaenge[3][0] = gang30;
 		
-		GangPanel gang31 = new GangPanel(460,325,"Bilder/gruen_g.png");
+		GangPanel gang31 = new GangPanel(460,325,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang31 = new JPanel();
 		String imagePath13 = "Bilder/gruen_g.png";
@@ -458,7 +458,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang31); 
 		organisationGaenge[3][1] = gang31;
 		
-		GangPanel gang32 = new GangPanel(550,325,"Bilder/gruen_g.png");
+		GangPanel gang32 = new GangPanel(550,325,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang32 = new JPanel();
 		String imagePath23 = "Bilder/gruen_g.png";
@@ -469,7 +469,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang32); 
 		organisationGaenge[3][2] = gang32;
 		
-		GangPanel gang33 = new GangPanel(640,325,"Bilder/gruen_g.png");
+		GangPanel gang33 = new GangPanel(640,325,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang33 = new JPanel();
 		String imagePath33 = "Bilder/gruen_g.png";
@@ -480,7 +480,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang33); 
 		organisationGaenge[3][3] = gang33;
 		
-		GangPanel gang34 = new GangPanel(730,325,"Bilder/gruen_g.png");
+		GangPanel gang34 = new GangPanel(730,325,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang34 = new JPanel();
 		String imagePath43 = "Bilder/gruen_g.png";
@@ -491,7 +491,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang34); 
 		organisationGaenge[3][4] = gang34;
 		
-		GangPanel gang35 = new GangPanel(820,325,"Bilder/gruen_g.png");
+		GangPanel gang35 = new GangPanel(820,325,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang35 = new JPanel();
 		String imagePath53 = "Bilder/gruen_g.png";
@@ -502,7 +502,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang35); 
 		organisationGaenge[3][5] = gang35;
 		
-		GangPanel gang36 = new GangPanel(910,325,"Bilder/gruen_g.png");
+		GangPanel gang36 = new GangPanel(910,325,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang36 = new JPanel();
 		String imagePath63 = "Bilder/gruen_g.png";
@@ -526,7 +526,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang40); 
 		organisationGaenge[4][0] = gang40;
 		
-		GangPanel gang41 = new GangPanel(460,415,"Bilder/gruen_g.png");
+		GangPanel gang41 = new GangPanel(460,415,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang41 = new JPanel();
 		String imagePath14 = "Bilder/gruen_g.png";
@@ -549,7 +549,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang42); 
 		organisationGaenge[4][2] = gang42;
 		
-		GangPanel gang43 = new GangPanel(640,415,"Bilder/gruen_g.png");
+		GangPanel gang43 = new GangPanel(640,415,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang43 = new JPanel();
 		String imagePath34 = "Bilder/gruen_g.png";
@@ -572,7 +572,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang44); 
 		organisationGaenge[4][4] = gang44;
 		
-		GangPanel gang45 = new GangPanel(820,415,"Bilder/gruen_g.png");
+		GangPanel gang45 = new GangPanel(820,415,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang45 = new JPanel();
 		String imagePath54 = "Bilder/gruen_g.png";
@@ -596,7 +596,7 @@ public class LabyrinthGUI extends JFrame {
 		organisationGaenge[4][6] = gang46;
 		
 		//Sechste Zeile
-		GangPanel gang50 = new GangPanel(370,505,"Bilder/gruen_g.png");
+		GangPanel gang50 = new GangPanel(370,505,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang50 = new JPanel();
 		String imagePath05 = "Bilder/gruen_g.png";
@@ -607,7 +607,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang50); 
 		organisationGaenge[5][0] = gang50;
 		
-		GangPanel gang51 = new GangPanel(460,505,"Bilder/gruen_g.png");
+		GangPanel gang51 = new GangPanel(460,505,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang51 = new JPanel();
 		String imagePath15 = "Bilder/gruen_g.png";
@@ -618,7 +618,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang51); 
 		organisationGaenge[5][1] = gang51;
 		
-		GangPanel gang52 = new GangPanel(550,505,"Bilder/gruen_g.png");
+		GangPanel gang52 = new GangPanel(550,505,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang52 = new JPanel();
 		String imagePath25 = "Bilder/gruen_g.png";
@@ -629,7 +629,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang52); 
 		organisationGaenge[5][2] = gang52;
 		
-		GangPanel gang53 = new GangPanel(640,505,"Bilder/gruen_g.png");
+		GangPanel gang53 = new GangPanel(640,505,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang53 = new JPanel();
 		String imagePath35 = "Bilder/gruen_g.png";
@@ -640,7 +640,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang53);
 		organisationGaenge[5][3] = gang53;
 		
-		GangPanel gang54 = new GangPanel(730,505,"Bilder/gruen_g.png");
+		GangPanel gang54 = new GangPanel(730,505,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang54 = new JPanel();
 		String imagePath45 = "Bilder/gruen_g.png";
@@ -651,7 +651,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang54); 
 		organisationGaenge[5][4] = gang54;
 		
-		GangPanel gang55 = new GangPanel(820,505,"Bilder/gruen_g.png");
+		GangPanel gang55 = new GangPanel(820,505,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang55 = new JPanel();
 		String imagePath55 = "Bilder/gruen_g.png";
@@ -662,7 +662,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang55); 
 		organisationGaenge[5][5] = gang55;
 		
-		GangPanel gang56 = new GangPanel(910,505,"Bilder/gruen_g.png");
+		GangPanel gang56 = new GangPanel(910,505,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang56 = new JPanel();
 		String imagePath65 = "Bilder/gruen_g.png";
@@ -686,7 +686,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang60);
 		organisationGaenge[6][0] = gang60;
 		
-		GangPanel gang61 = new GangPanel(460,595,"Bilder/gruen_g.png");
+		GangPanel gang61 = new GangPanel(460,595,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang61 = new JPanel();
 		String imagePath16 = "Bilder/gruen_g.png";
@@ -709,7 +709,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang62); 
 		organisationGaenge[6][2] = gang62;
 		
-		GangPanel gang63 = new GangPanel(640,595,"Bilder/gruen_g.png");
+		GangPanel gang63 = new GangPanel(640,595,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang63 = new JPanel();
 		String imagePath36 = "Bilder/gruen_g.png";
@@ -732,7 +732,7 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(gang64); 
 		organisationGaenge[6][4] = gang64;
 		
-		GangPanel gang65 = new GangPanel(820,595,"Bilder/gruen_g.png");
+		GangPanel gang65 = new GangPanel(820,595,"Bilder/rueckeite_g.png");
 		/*
 		JPanel gang65 = new JPanel();
 		String imagePath56 = "Bilder/gruen_g.png";
