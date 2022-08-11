@@ -2,7 +2,7 @@ package labyrinth;
 
 public class Ecke extends Gangkarte {
 	
-	private static String[] schatznamenEcke = {"Spinne","Kater","Maus", "Eule", "Kaefer", "Salamander"};
+	private static String[] schatznamenEcke = {"spinne","kater","maus", "eule", "kaefer", "salamander"};
 	
 	public Ecke() {
 		nordausgang = true;

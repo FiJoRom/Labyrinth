@@ -10,9 +10,18 @@ public class LabyrinthDaten {
 	private int spieleranzahl; 
 	private List<Spieler> spielerliste = new ArrayList<Spieler>();
 	private List<Karte> kartendeck;
+	private Spielfeld spielfeld = new Spielfeld();
 	
 	public LabyrinthDaten() {
-		// TODO Auto-generated constructor stub
+		spielfeld.gaengekartenAuslegen();
+	}
+
+	public Spielfeld getSpielfeld() {
+		return spielfeld;
+	}
+
+	public void setSpielfeld(Spielfeld spielfeld) {
+		this.spielfeld = spielfeld;
 	}
 
 	public int getSpieleranzahl() {
