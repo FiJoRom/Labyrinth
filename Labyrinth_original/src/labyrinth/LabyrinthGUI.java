@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -70,6 +72,7 @@ public class LabyrinthGUI extends JFrame {
 	
 	//neu
 	private GangPanel[][] organisationGaenge;
+	private AktuelleKarte aktuelleKarte;
 	
 	private JButton dreieckOben1;
 	private JButton dreieckOben2;
@@ -770,11 +773,48 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(aktuellerSpieler);
 		p1.add(aktuellerspielername);
 		
-		JPanel aktuelleSchatzkarte = new JPanel();
-		String imagePathSchatzkarte = "Bilder/rueckseite2_k.png";
-		generiereGangbilder(aktuelleSchatzkarte, imagePathSchatzkarte);
-		aktuelleSchatzkarte.setBounds(713, 740, 127, 205);
-		p1.add(aktuelleSchatzkarte);
+		aktuelleKarte = new AktuelleKarte("Bilder/rueckseite2_k.png");
+        p1.add(aktuelleKarte);
+
+        aktuelleKarte.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+                Spieler aktuellerSpielerAmZug = daten.getSpielerliste().get(0);
+                System.out.println("mouse entered!");
+                String gesuchterSchatzName = aktuellerSpielerAmZug.getKartenblatt().get(0).getSchatz();
+                String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
+
+                System.out.println(URI);
+
+                aktuelleKarte.bildaendern(URI);
+            } 
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                System.out.println("mouse exited!");
+                //aktuelleSchatzkarte.bildaendern("Bilder/rueckseite2_k.png");
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+            
+        });
 		
 		
 		//Joysticks Panel
