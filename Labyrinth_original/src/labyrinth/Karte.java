@@ -8,10 +8,10 @@ public class Karte {
 
 	private String schatz;
 	private String[] schatznamen = {
-			"Schatztruhe", "Zwerg" , "Drache", "Einhorn", "Geist", "Kerzenstaender", 
-			"Ritterhelm", "Zaubertrank", "Buch", "Spinne", "Krone", "Dolch", "Kelch", 
-			"Maus", "Kater", "Ring", "Muenzbeutel", "Schluessel", "Kaefer", "Eule", 
-			"Rubin", "Flaschengeist", "Fledermaus", "Salamander" 
+			"schatztruhe", "zwerg" , "drache", "einhorn", "geist", "kerzenstaender", 
+			"ritterhelm", "zaubertrank", "buch", "spinne", "krone", "dolch", "kelch", 
+			"maus", "kater", "ring", "muenzbeutel", "schluessel", "kaefer", "eule", 
+			"rubin", "flaschengeist", "fledermaus", "salamander" 
 	};
 	private int schatznamenstelle;
 	
