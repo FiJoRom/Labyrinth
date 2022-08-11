@@ -1,5 +1,6 @@
 package labyrinth;
 
+import java.util.List;
 import java.util.Random;
 
 public class Spielfeld {
@@ -45,14 +46,14 @@ public class Spielfeld {
 		this.setRest(this.gaengeLose[33]);
 	}
 
+		
 	public void gaengekartenMischen() {
 		Random zufall = new Random();
-		for(int i = 0; i < 30; i++) {
-			int tauschA = zufall.nextInt(34);
-			int tauschB = zufall.nextInt(34);
-			Gangkarte ablage = this.gaengeLose[tauschA];
-			this.gaengeLose[tauschA] = this.gaengeLose[tauschB];
-			this.gaengeLose[tauschB] = ablage;
+		for(int i = this.gaengeLose.length - 1; i >= 0; i--) {
+			int j = zufall.nextInt(i+1);
+			Gangkarte tmp = this.gaengeLose[i];
+			this.gaengeLose[i] = this.gaengeLose[j];
+			this.gaengeLose[j] = tmp;
 		}
 		for(int j = 0; j < this.gaengeLose.length; j++) {
 			this.gaengeLose[j].gangkarteWirbeln();
