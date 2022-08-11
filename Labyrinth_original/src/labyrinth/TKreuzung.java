@@ -3,7 +3,7 @@ package labyrinth;
 public class TKreuzung extends Gangkarte {
 
 	private static String[] schatznamen = {"zwerg","flaschengeist","fledermaus", "geist", 
-			"Drache", "Einhorn"};
+			"drache", "einhorn"};
 	
 	private static String[] schatznamenFest = {"ring", "zaubertrank", "kerzenstaender", "schatztruhe",
 			"krone", "buch", "ritterhelm", "rubin", "schluessel", "muenzbeutel", "dolch", "kelch"};
