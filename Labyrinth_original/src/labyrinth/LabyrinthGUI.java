@@ -64,7 +64,7 @@ public class LabyrinthGUI extends JFrame {
 	private JPanel kartenuebrig4;
 	private JLabel spielername4;
 	private JLabel kartenanzahl4;
-	
+	private JPanel spielfeldHintergrund;
 	
 	private JLabel aktuellerspielername; 
 	
@@ -157,6 +157,7 @@ public class LabyrinthGUI extends JFrame {
 		String imagePath00 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang00, imagePath00);
 		gang00.setBounds(470, 30, 80, 85);
+		gang00.setOpaque(false);
 		p1.add(gang00); 
 		
 		JPanel gang10 = new JPanel();
@@ -203,6 +204,7 @@ public class LabyrinthGUI extends JFrame {
 		String imagePath01 = "Bilder/gruen_g.png";
 		generiereGangbilder(gang01, imagePath01);
 		gang01.setBounds(470, 110, 80, 85);
+		gang01.setOpaque(false);
 		p1.add(gang01); 
 		
 		JPanel gang11 = new JPanel();
@@ -569,6 +571,16 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(rechts);
 		p1.add(links);
 		p1.add(fertig);	
+		
+		
+		//Hintergrund Spielfeld Blau
+		spielfeldHintergrund = new JPanel();
+		spielfeldHintergrund.setBackground(Color.BLUE);
+		//spielfeldHintergrund.setBounds(450, 10, 600, 605);
+		spielfeldHintergrund.setBounds(350, 35, 670, 675);
+		p1.add(spielfeldHintergrund);
+		
+		
 		
 		// zum Fenster hinzufuegen
 		this.setJMenuBar(menueLeiste);
