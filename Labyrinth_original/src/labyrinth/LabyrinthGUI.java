@@ -179,66 +179,80 @@ public class LabyrinthGUI extends JFrame{
 		//Dreieckbuttons
 		//Dreiecke Oben
 		ImageIcon DreieckObenIcon = new ImageIcon("Bilder/pfeil_oben.png");
+		ImageIcon DreieckObenIconRollover = new ImageIcon("Bilder/pfeil_oben_mouseover.png");
 		dreieckOben1 = new JButton(DreieckObenIcon);
 		dreieckOben1.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInYRichtungVonOben(1);einschiebenYRichtung(1);});
+		dreieckOben1.setRolloverIcon(DreieckObenIconRollover);
 		dreieckButtonEigenschaften(dreieckOben1, 490, 28, 30, 30);
 		dreieckOben2 = new JButton(DreieckObenIcon);
 		dreieckOben2.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInYRichtungVonOben(3);einschiebenYRichtung(3);});
 		dreieckButtonEigenschaften(dreieckOben2, 670, 28, 30, 30);
+		dreieckOben2.setRolloverIcon(DreieckObenIconRollover);
 		dreieckOben3 = new JButton(DreieckObenIcon);
 		dreieckOben3.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInYRichtungVonOben(5);einschiebenYRichtung(5);});
 		dreieckButtonEigenschaften(dreieckOben3, 850, 28, 30, 30);
+		dreieckOben3.setRolloverIcon(DreieckObenIconRollover);
 		
 		//Dreiecke Rechts
 		ImageIcon DreieckRechtsIcon = new ImageIcon("Bilder/pfeil_rechts.png");
+		ImageIcon DreieckRechtsIconRollover = new ImageIcon("Bilder/pfeil_rechts_mouseover.png");
 		dreieckRechts1 = new JButton(DreieckRechtsIcon);
 		dreieckRechts1.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInXRichtungVonRechts(1);einschiebenXRichtung(1);});
+		dreieckRechts1.setRolloverIcon(DreieckRechtsIconRollover);
 		dreieckButtonEigenschaften(dreieckRechts1, 998, 176, 30, 30);
 		dreieckRechts2 = new JButton(DreieckRechtsIcon);
 		dreieckRechts2.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInXRichtungVonRechts(3);einschiebenXRichtung(3);});
+		dreieckRechts2.setRolloverIcon(DreieckRechtsIconRollover);
 		dreieckButtonEigenschaften(dreieckRechts2, 998, 356, 30, 30);
 		dreieckRechts3 = new JButton(DreieckRechtsIcon);
 		dreieckRechts3.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInXRichtungVonRechts(5);einschiebenXRichtung(5);});
 		dreieckButtonEigenschaften(dreieckRechts3, 998, 536, 30, 30);
+		dreieckRechts3.setRolloverIcon(DreieckRechtsIconRollover);
 		
 		//Dreiecke Unten
 		ImageIcon DreieckUntenIcon = new ImageIcon("Bilder/pfeil_unten.png");
+		ImageIcon DreieckUntenIconRollover = new ImageIcon("Bilder/pfeil_unten_mouseover.png");
 		dreieckUnten1 = new JButton(DreieckUntenIcon);
 		dreieckUnten1.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInYRichtungVonUnten(1);einschiebenYRichtung(1);});
+		dreieckUnten1.setRolloverIcon(DreieckUntenIconRollover);
 		dreieckButtonEigenschaften(dreieckUnten1, 490, 688, 30, 30);
 		dreieckUnten2 = new JButton(DreieckUntenIcon);
 		dreieckUnten2.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInYRichtungVonUnten(3);einschiebenYRichtung(3);});
 		dreieckButtonEigenschaften(dreieckUnten2, 670, 688, 30, 30);
+		dreieckUnten2.setRolloverIcon(DreieckUntenIconRollover);
 		dreieckUnten3 = new JButton(DreieckUntenIcon);
 		dreieckUnten3.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInYRichtungVonUnten(5);einschiebenYRichtung(5);});
 		dreieckButtonEigenschaften(dreieckUnten3, 850, 688, 30, 30);
+		dreieckUnten3.setRolloverIcon(DreieckUntenIconRollover);
 		
 		//Dreiecke Links
 		ImageIcon DreieckLinksIcon = new ImageIcon("Bilder/pfeil_links.png");
+		ImageIcon DreieckLinksIconRollover = new ImageIcon("Bilder/pfeil_links_mouseover.png");
 		dreieckLinks1 = new JButton(DreieckLinksIcon);
 		dreieckLinks1.addActionListener(e -> 
 			{daten.getSpielfeld().schiebenInXRichtungVonLinks(1);einschiebenXRichtung(1);});
+		dreieckLinks1.setRolloverIcon(DreieckLinksIconRollover);
 		dreieckButtonEigenschaften(dreieckLinks1, 342, 176, 30, 30);
 		dreieckLinks2 = new JButton(DreieckLinksIcon);
 		dreieckLinks2.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInXRichtungVonLinks(3);einschiebenXRichtung(3);});
 		dreieckButtonEigenschaften(dreieckLinks2, 342, 356, 30, 30);
+		dreieckLinks2.setRolloverIcon(DreieckLinksIconRollover);
 		dreieckLinks3 = new JButton(DreieckLinksIcon);
 		dreieckLinks3.addActionListener(e -> 
 		{daten.getSpielfeld().schiebenInXRichtungVonLinks(5);einschiebenXRichtung(5);});
 		dreieckButtonEigenschaften(dreieckLinks3, 342, 536, 30, 30);
+		dreieckLinks3.setRolloverIcon(DreieckLinksIconRollover);
 
-		
-		
 		//Spielfeld
 		//Erste Zeile
 		//Festes
