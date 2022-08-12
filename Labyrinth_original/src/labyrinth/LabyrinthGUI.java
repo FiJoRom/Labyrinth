@@ -45,29 +45,7 @@ public class LabyrinthGUI extends JFrame{
 	private JMenuItem beenden;
 	private JMenuItem neuesSpiel;
 	private JMenuItem hilfe;
-	private JButton oben;
-	private JButton unten;
-	private JButton links;
-	private JButton rechts;
-	private JButton fertig;
 	private JPanel p1;
-	
-	private JLabel spielernummer1;
-	private JPanel kartenuebrig1;
-	private JLabel spielername1;
-	private JLabel kartenanzahl1;
-	private JLabel spielernummer2;
-	private JPanel kartenuebrig2;
-	private JLabel spielername2;
-	private JLabel kartenanzahl2;
-	private JLabel spielernummer3;
-	private JPanel kartenuebrig3;
-	private JLabel spielername3;
-	private JLabel kartenanzahl3;
-	private JLabel spielernummer4;
-	private JPanel kartenuebrig4;
-	private JLabel spielername4;
-	private JLabel kartenanzahl4;
 	
 	//private GangPanel gang00;
 	
@@ -100,6 +78,7 @@ public class LabyrinthGUI extends JFrame{
 	private Willkommen willkommen;
 	private Anleitung anleitung;	
 	private GangUebrigPanel ganguebrigpanel;
+	private JoystickPanel joystickPanel;
 	
 	public LabyrinthGUI(LabyrinthDaten model) {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -781,8 +760,12 @@ public class LabyrinthGUI extends JFrame{
 		organisationGaenge[6][6] = gang66;
 		
 		//EinschiebeGang
-		GangUebrigPanel ganguebrigpanel = new GangUebrigPanel();
+		this.ganguebrigpanel = new GangUebrigPanel();
 		p1.add(ganguebrigpanel);		
+		
+		//JoystickPanel
+		this.joystickPanel = new JoystickPanel();
+		p1.add(joystickPanel);
 		
 		//AktuellerSpielerPanel
 		JLabel aktuellerSpieler = new JLabel("Aktueller Spieler");
@@ -844,14 +827,7 @@ public class LabyrinthGUI extends JFrame{
 		
 		//Joysticks Panel
 		
-		
-		
-		//Icons
-		ImageIcon obenIcon = new ImageIcon("Bilder/iconoben.png");
-		ImageIcon untenIcon = new ImageIcon("Bilder/iconunten.png");
-		ImageIcon linksIcon = new ImageIcon("Bilder/iconlinks.png");
-		ImageIcon rechtsIcon = new ImageIcon("Bilder/iconrechts.png");
-		ImageIcon fertigIcon = new ImageIcon("Bilder/iconfertig.png");
+	
 		
 		// Menue
 		menueLeiste = new JMenuBar();
@@ -860,54 +836,10 @@ public class LabyrinthGUI extends JFrame{
 		hilfe = new JMenuItem("Hilfe");
 		beenden = new JMenuItem("Beenden");
 		
-		oben = new JButton(obenIcon);
-		unten = new JButton(untenIcon);
-		rechts = new JButton(rechtsIcon);
-		links = new JButton(linksIcon);
-		fertig = new JButton(fertigIcon);
-		
-		
-		//Joystick
-		oben.setBounds(1250, 690, 52, 52);
-		oben.setBorderPainted(false);
-		oben.setContentAreaFilled(false);
-		oben.setFocusPainted(false);
-		oben.setOpaque(false);
-		
-		unten.setBounds(1250, 810, 52, 52);
-		unten.setBorderPainted(false);
-		unten.setContentAreaFilled(false);
-		unten.setFocusPainted(false);
-		unten.setOpaque(false);
-		
-		rechts.setBounds(1310, 750, 52, 52);
-		rechts.setBorderPainted(false);
-		rechts.setContentAreaFilled(false);
-		rechts.setFocusPainted(false);
-		rechts.setOpaque(false);
-		
-		links.setBounds(1190, 750, 52, 52);
-		links.setBorderPainted(false);
-		links.setContentAreaFilled(false);
-		links.setFocusPainted(false);
-		links.setOpaque(false);
-		
-		fertig.setBounds(1250, 750, 52, 52);
-		fertig.setBorderPainted(false);
-		fertig.setContentAreaFilled(false);
-		fertig.setFocusPainted(false);
-		fertig.setOpaque(false);
-		
 		//ActionListener
 		neuesSpiel.addActionListener(e -> {System.exit(0);});
 		hilfe.addActionListener(e -> hilfe());
 		beenden.addActionListener(e -> {beenden();});
-		
-		oben.addActionListener(e -> {System.exit(0);});
-		unten.addActionListener(e -> {System.exit(0);});
-		rechts.addActionListener(e -> {System.exit(0);});
-		links.addActionListener(e -> {System.exit(0);});
-		fertig.addActionListener(e -> {System.exit(0);});
 		
 		//Menueleiste Zuordnung
 		menueLeiste.add(spielMenue);
@@ -915,21 +847,12 @@ public class LabyrinthGUI extends JFrame{
 		spielMenue.add(hilfe);
 		spielMenue.add(beenden);
 		
-		p1.add(oben);
-		p1.add(unten);
-		p1.add(rechts);
-		p1.add(links);
-		p1.add(fertig);	
-		
-		
 		//Hintergrund Spielfeld Blau
 		spielfeldHintergrund = new JPanel();
 		spielfeldHintergrund.setBackground(Color.decode("#2a4071"));
 		//spielfeldHintergrund.setBounds(450, 10, 600, 605);
 		spielfeldHintergrund.setBounds(342, 27, 686, 691);
 		p1.add(spielfeldHintergrund);
-		
-		
 		
 		// zum Fenster hinzufuegen
 		this.setJMenuBar(menueLeiste);

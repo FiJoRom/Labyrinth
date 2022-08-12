@@ -22,7 +22,6 @@ public class SpielerPanel extends JPanel{
 	private JLabel spielernummer;
 	private JPanel kartenuebrig;
 	private JLabel spielername;
-	
 		
 	public SpielerPanel(int y, String spNummer, String spName) {
 		this.setLayout(new BorderLayout());

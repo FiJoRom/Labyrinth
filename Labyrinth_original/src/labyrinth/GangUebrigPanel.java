@@ -3,7 +3,13 @@ package labyrinth;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,72 +21,36 @@ public class GangUebrigPanel extends JPanel {
 	
 	public GangUebrigPanel() {
 		this.setLayout(new BorderLayout());
-		this.setBounds(1150, 100, 230, 115);
+		this.setBounds(1050, 100, 280, 115);
 		
 		ImageIcon linksdrehungIcon = new ImageIcon("Bilder/iconDrehungLinks.png");
 		ImageIcon rechtsdrehungIcon = new ImageIcon("Bilder/iconDrehungRechts.png");
-		
-		linksdrehung = new JButton(linksdrehungIcon);
-		rechtsdrehung = new JButton(rechtsdrehungIcon);
-		
-		linksdrehung.setSize(52, 52);
-		linksdrehung.setBorderPainted(false);
-		linksdrehung.setContentAreaFilled(false);
-		linksdrehung.setFocusPainted(false);
-		linksdrehung.setOpaque(false);
-		linksdrehung.addActionListener(e -> {System.exit(0);});
-		this.add(linksdrehung,BorderLayout.WEST );
-		
-		rechtsdrehung.setSize(52, 52);
-		rechtsdrehung.setBorderPainted(false);
-		rechtsdrehung.setContentAreaFilled(false);
-		rechtsdrehung.setFocusPainted(false);
-		rechtsdrehung.setOpaque(false);
-		rechtsdrehung.addActionListener(e -> {System.exit(0);});
-		this.add(rechtsdrehung, BorderLayout.EAST);
+		ImageIcon linksdrehungsIconRollover = new ImageIcon("Bilder/iconDrehungLinks_mouseover.png");
+		ImageIcon rechtsdrehungsIconRollover = new ImageIcon("Bilder/iconDrehungRechts_mouseover.png");
 		
 		ganguebrig = new GangPanel("Bilder/blau_g.png");
 		this.add(ganguebrig);
 		
-	}
+		linksdrehung = new JButton(linksdrehungIcon);
+		rechtsdrehung = new JButton(rechtsdrehungIcon);
 	
-	private class MouseHandler implements MouseListener{
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-            System.out.println("mouse entered!");
-            //String gesuchterSchatzName = aktuellerSpielerAmZug.getKartenblatt().get(0).getSchatz();
-            String URI = "Bilder/iconDrehungLinks_mouseover.png";
-
-            System.out.println(URI);
-
-            //linksdrehung.bildaendern(URI);
-            validate();
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			//aktuelleKarte.bildaendern("Bilder/rueckseite2_k.png");
-			validate();
-		}
+		linksdrehung.setBorderPainted(false);
+		linksdrehung.setContentAreaFilled(false);
+		linksdrehung.setFocusPainted(false);
+		linksdrehung.setOpaque(false);
+		linksdrehung.setRolloverIcon(linksdrehungsIconRollover);
+		linksdrehung.addActionListener(e -> {System.exit(0);});
+		this.add(linksdrehung, BorderLayout.WEST );
+	
+		rechtsdrehung.setBorderPainted(false);
+		rechtsdrehung.setContentAreaFilled(false);
+		rechtsdrehung.setFocusPainted(false);
+		rechtsdrehung.setOpaque(false);
+		rechtsdrehung.setRolloverIcon(rechtsdrehungsIconRollover);
+		rechtsdrehung.addActionListener(e -> {System.exit(0);});
+		this.add(rechtsdrehung, BorderLayout.EAST);
 		
 	}
+	
+	
 }
