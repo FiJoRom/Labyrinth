@@ -763,7 +763,16 @@ public class LabyrinthGUI extends JFrame{
 		
 		//EinschiebeGang
 		this.ganguebrigpanel = new GangUebrigPanel();
-		p1.add(ganguebrigpanel);		
+		p1.add(ganguebrigpanel);
+		//Spielfeld referenz = this.daten.getSpielfeld();
+		//ganguebrigpanel.getLinksdrehung().addActionListener(e -> linksDrehung(referenz));
+		//.addActionListener(e -> linksDrehung());
+		//ganguebrigpanel.me..
+		//.daten.getSpielfeld()		
+		ganguebrigpanel.getLinksdrehung().addActionListener(e -> linksDrehung());
+		ganguebrigpanel.getRechtsdrehung().addActionListener(e -> rechtsDrehung());
+		
+		
 		
 		//JoystickPanel
 		this.joystickPanel = new JoystickPanel();
@@ -1357,6 +1366,17 @@ private class Anleitung extends JDialog{			//NEU
 		System.out.println(daten.getSpielerliste());
 	}
 	
+	public void linksDrehung() {
+		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachLinks();
+		ganguebrigpanel.getGanguebrig().drehen(this.daten.getSpielfeld().getRest().drehung);
+		repaint();
+	}
+	
+	public void rechtsDrehung() {
+		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachRechts();
+		ganguebrigpanel.getGanguebrig().drehen(this.daten.getSpielfeld().getRest().drehung);
+		repaint();
+	}
 	
 	private void aktualisiereGanguebrig() {
 		String pfad = "";

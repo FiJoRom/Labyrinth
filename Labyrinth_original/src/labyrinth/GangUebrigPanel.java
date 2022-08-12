@@ -47,18 +47,30 @@ public class GangUebrigPanel extends JPanel {
 		linksdrehung.setFocusPainted(false);
 		linksdrehung.setOpaque(false);
 		linksdrehung.setRolloverIcon(linksdrehungsIconRollover);
-		linksdrehung.addActionListener(e -> {System.exit(0);});
-		this.add(linksdrehung, BorderLayout.WEST );
+		this.add(linksdrehung, BorderLayout.EAST );
 	
 		rechtsdrehung.setBorderPainted(false);
 		rechtsdrehung.setContentAreaFilled(false);
 		rechtsdrehung.setFocusPainted(false);
 		rechtsdrehung.setOpaque(false);
 		rechtsdrehung.setRolloverIcon(rechtsdrehungsIconRollover);
-		rechtsdrehung.addActionListener(e -> {System.exit(0);});
-		this.add(rechtsdrehung, BorderLayout.EAST);
+		this.add(rechtsdrehung, BorderLayout.WEST);
 		
 	}
 	
-	
+	public JButton getLinksdrehung() {
+		return linksdrehung;
+	}
+
+	public void setLinksdrehung(JButton linksdrehung) {
+		this.linksdrehung = linksdrehung;
+	}
+
+	public JButton getRechtsdrehung() {
+		return rechtsdrehung;
+	}
+
+	public void setRechtsdrehung(JButton rechtsdrehung) {
+		this.rechtsdrehung = rechtsdrehung;
+	}
 }
