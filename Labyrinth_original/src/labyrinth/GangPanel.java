@@ -42,6 +42,23 @@ public class GangPanel extends JPanel{
 		
 	}
 	
+	public GangPanel(String imagepath) {
+		this.setSize(90, 95);
+		this.setOpaque(false);
+		this.bilddateipfad = imagepath;
+		this.bilddatei = new File(imagepath);
+		try {
+			this.bufferedimage = ImageIO.read(bilddatei);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.imageicon = new ImageIcon(bufferedimage);
+		this.jlabel = new RotatedLabel(imageicon);
+
+		this.add(jlabel);
+		
+	}
+	
 	public void bildaendern(String neu) {
 		this.removeAll();
 		repaint();

@@ -99,8 +99,7 @@ public class LabyrinthGUI extends JFrame{
 	
 	private Willkommen willkommen;
 	private Anleitung anleitung;	
-	
-	
+	private GangUebrigPanel ganguebrigpanel;
 	
 	public LabyrinthGUI(LabyrinthDaten model) {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -782,9 +781,8 @@ public class LabyrinthGUI extends JFrame{
 		organisationGaenge[6][6] = gang66;
 		
 		//EinschiebeGang
-		
-		
-		
+		GangUebrigPanel ganguebrigpanel = new GangUebrigPanel();
+		p1.add(ganguebrigpanel);		
 		
 		//AktuellerSpielerPanel
 		JLabel aktuellerSpieler = new JLabel("Aktueller Spieler");
