@@ -207,6 +207,8 @@ public class LabyrinthGUI extends JFrame{
 		//Dreiecke Links
 		ImageIcon DreieckLinksIcon = new ImageIcon("Bilder/pfeil_links.png");
 		dreieckLinks1 = new JButton(DreieckLinksIcon);
+		dreieckLinks1.addActionListener(e -> 
+			{einschiebenLinksGrafisch(1); daten.getSpielfeld().schiebenInXRichtungVonLinks(1);});
 		dreieckButtonEigenschaften(dreieckLinks1, 342, 176, 30, 30);
 		dreieckLinks2 = new JButton(DreieckLinksIcon);
 		dreieckButtonEigenschaften(dreieckLinks2, 342, 356, 30, 30);
@@ -763,16 +765,9 @@ public class LabyrinthGUI extends JFrame{
 		
 		//EinschiebeGang
 		this.ganguebrigpanel = new GangUebrigPanel();
-		p1.add(ganguebrigpanel);
-		//Spielfeld referenz = this.daten.getSpielfeld();
-		//ganguebrigpanel.getLinksdrehung().addActionListener(e -> linksDrehung(referenz));
-		//.addActionListener(e -> linksDrehung());
-		//ganguebrigpanel.me..
-		//.daten.getSpielfeld()		
+		p1.add(ganguebrigpanel);	
 		ganguebrigpanel.getLinksdrehung().addActionListener(e -> linksDrehung());
 		ganguebrigpanel.getRechtsdrehung().addActionListener(e -> rechtsDrehung());
-		
-		
 		
 		//JoystickPanel
 		this.joystickPanel = new JoystickPanel();
@@ -1376,6 +1371,22 @@ private class Anleitung extends JDialog{			//NEU
 		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachRechts();
 		ganguebrigpanel.getGanguebrig().drehen(this.daten.getSpielfeld().getRest().drehung);
 		repaint();
+	}
+	
+	public void einschiebenLinksGrafisch(int eingabeStelle) {
+		
+		String kopieN1 = this.organisationGaenge[eingabeStelle][0].getBilddateipfad();
+		String kopieN2;
+		this.organisationGaenge[eingabeStelle][0].bildaendern(this.ganguebrigpanel.getGanguebrig().getBilddateipfad());
+		this.ganguebrigpanel.getGanguebrig().bildaendern(organisationGaenge[eingabeStelle][6].getBilddateipfad());
+		for(int i = 1; i < 7; i++) {
+			kopieN2 = kopieN1;
+			kopieN1 = organisationGaenge[eingabeStelle][i].getBilddateipfad();
+			organisationGaenge[eingabeStelle][i].setBilddateipfad(kopieN2);
+			repaint();
+		}
+		
+		
 	}
 	
 	private void aktualisiereGanguebrig() {

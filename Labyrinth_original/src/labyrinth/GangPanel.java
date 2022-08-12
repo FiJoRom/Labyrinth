@@ -20,6 +20,14 @@ public class GangPanel extends JPanel{
 	private String bilddateipfad;
 	
 	
+	public RotatedLabel getJlabel() {
+		return jlabel;
+	}
+
+	public void setJlabel(RotatedLabel jlabel) {
+		this.jlabel = jlabel;
+	}
+
 	public GangPanel(int x, int y, String imagepath) {
 		this.setBounds(x, y, 90, 95);
 		this.setOpaque(false);
@@ -41,6 +49,14 @@ public class GangPanel extends JPanel{
 		this.add(jlabel);
 	}
 	
+	public String getBilddateipfad() {
+		return bilddateipfad;
+	}
+
+	public void setBilddateipfad(String bilddateipfad) {
+		this.bilddateipfad = bilddateipfad;
+	}
+
 	public GangPanel(String imagepath) {
 		this.setSize(90, 95);
 		this.setOpaque(false);
