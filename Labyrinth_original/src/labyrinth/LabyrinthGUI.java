@@ -34,7 +34,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 
-public class LabyrinthGUI extends JFrame {
+public class LabyrinthGUI extends JFrame{
 
 	private LabyrinthDaten daten;
 
@@ -91,6 +91,11 @@ public class LabyrinthGUI extends JFrame {
 	
 	private JLabel aktuellerspielername; 
 	
+	private SpielerPanel spielerPanel1;
+	private SpielerPanel spielerPanel2;
+	private SpielerPanel spielerPanel3;
+	private SpielerPanel spielerPanel4;
+	
 	private Willkommen willkommen;
 	
 	
@@ -100,7 +105,7 @@ public class LabyrinthGUI extends JFrame {
 		this.daten = model;
 		
 		// JFrame-Konfiguration
-		this.setSize(1500, 1000);
+		this.setSize(1500, 1200);
 		this.setLocation(200, 20);
 		
 		//BackgroundPanel
@@ -109,6 +114,9 @@ public class LabyrinthGUI extends JFrame {
 		this.add(p1);
 		//p1.setBackground(Color.lightGray);
 		
+		spielerPanel1 = new SpielerPanel(77,"Spieler 1", "Spielername");
+		p1.add(spielerPanel1);
+		/*
 		//Spieler 1
 		spielernummer1 = new JLabel("Spieler 1");	
 		spielernummer1.setBounds(20, 35, 200, 30);
@@ -128,7 +136,11 @@ public class LabyrinthGUI extends JFrame {
 		spielername1.setBounds(20, 65, 200, 25);
 		spielername1.setFont(spielernummer1.getFont().deriveFont((float) 15));
 		p1.add(spielername1); 
+		*/
 		
+		spielerPanel2 = new SpielerPanel(238,"Spieler 2", "Spielername");
+		p1.add(spielerPanel2);
+		/*
 		//Spieler2
 		spielernummer2 = new JLabel("Spieler 2");	
 		spielernummer2.setBounds(20, 160, 200, 30);
@@ -142,7 +154,15 @@ public class LabyrinthGUI extends JFrame {
 		spielername2.setBounds(20, 190, 200, 25);
 		spielername2.setFont(spielernummer2.getFont().deriveFont((float) 15));
 		p1.add(spielername2); 		
+		*/
 		
+		spielerPanel3 = new SpielerPanel(399,"Spieler 3", "Spielername");
+		p1.add(spielerPanel3);
+		
+		spielerPanel4 = new SpielerPanel(561,"Spieler 4", "Spielername");
+		p1.add(spielerPanel4);
+		
+		/*
 		//Spieler3
 		spielernummer3 = new JLabel("Spieler 3");	
 		spielernummer3.setBounds(20, 285, 200, 30);
@@ -171,7 +191,7 @@ public class LabyrinthGUI extends JFrame {
 		spielername4.setBounds(20, 440, 200, 25);
 		spielername4.setFont(spielernummer4.getFont().deriveFont((float) 15));
 		p1.add(spielername4); 
-		
+		*/
 		
 		//Dreieckbuttons
 		//Dreiecke Oben
@@ -774,8 +794,11 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(aktuellerspielername);
 		
 		aktuelleKarte = new AktuelleKarte("Bilder/rueckseite2_k.png");
+		//neu
         p1.add(aktuelleKarte);
-
+        aktuelleKarte.addMouseListener(new MouseHandler());
+            
+        /*
         aktuelleKarte.addMouseListener(new MouseListener() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -788,6 +811,7 @@ public class LabyrinthGUI extends JFrame {
                 System.out.println(URI);
 
                 aktuelleKarte.bildaendern(URI);
+                repaint();
             } 
 
             @Override
@@ -815,7 +839,7 @@ public class LabyrinthGUI extends JFrame {
             }
             
         });
-		
+		*/
 		
 		//Joysticks Panel
 		
@@ -1165,6 +1189,48 @@ public class LabyrinthGUI extends JFrame {
 		
 	}
 	
+	private class MouseHandler implements MouseListener{
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			String gesuchterSchatzName = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
+			//Spieler aktuellerSpielerAmZug = daten.getSpielerliste().get(0);
+            System.out.println("mouse entered!");
+            //String gesuchterSchatzName = aktuellerSpielerAmZug.getKartenblatt().get(0).getSchatz();
+            String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
+
+            System.out.println(URI);
+
+            aktuelleKarte.bildaendern(URI);
+            validate();
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			aktuelleKarte.bildaendern("Bilder/rueckseite2_k.png");
+			validate();
+		}
+		
+	}
+	
 	private void willkommenSchliessen() {
 		this.willkommen.setVisible(false);
 		spielGenerieren();
@@ -1173,34 +1239,33 @@ public class LabyrinthGUI extends JFrame {
 	private void spielUebersichtGenerieren() {
 		switch (daten.getSpieleranzahl()) {
 			case 2: 
-				p1.remove(spielernummer3);
-				p1.remove(kartenuebrig3);
-				p1.remove(spielername3);
-				p1.remove(spielernummer4);
-				p1.remove(kartenuebrig4);
-				p1.remove(spielername4);
+				p1.remove(spielerPanel3);
+				p1.remove(spielerPanel4);
 				repaint();
-				spielername1.setText(daten.getSpielerliste().get(0).getName());
-				spielername2.setText(daten.getSpielerliste().get(1).getName());
+				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
+				spielerPanel1.getKartenanzahl().setText("12");
+				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
+				spielerPanel2.getKartenanzahl().setText("12");
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
 				break;
 			
 			case 3:
-				p1.remove(spielernummer4);
-				p1.remove(kartenuebrig4);
-				p1.remove(spielername4);
+				p1.remove(spielerPanel4);
 				repaint();
-				spielername1.setText(daten.getSpielerliste().get(0).getName());
-				spielername2.setText(daten.getSpielerliste().get(1).getName());
-				spielername3.setText(daten.getSpielerliste().get(2).getName());
+				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
+				spielerPanel1.getKartenanzahl().setText("8");
+				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
+				spielerPanel2.getKartenanzahl().setText("8");
+				spielerPanel3.getSpielername().setText(daten.getSpielerliste().get(2).getName());
+				spielerPanel3.getKartenanzahl().setText("8");
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
 				break;
 				
 			case 4:
-				spielername1.setText(daten.getSpielerliste().get(0).getName());
-				spielername2.setText(daten.getSpielerliste().get(1).getName());
-				spielername3.setText(daten.getSpielerliste().get(2).getName());
-				spielername4.setText(daten.getSpielerliste().get(3).getName());
+				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
+				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
+				spielerPanel3.getSpielername().setText(daten.getSpielerliste().get(2).getName());
+				spielerPanel4.getSpielername().setText(daten.getSpielerliste().get(3).getName());
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
 				break;
 			
@@ -1214,6 +1279,7 @@ public class LabyrinthGUI extends JFrame {
 		daten.setKartendeck(Karte.erstelleKartenDeck()); 
 		Karte.shuffleKartenDeck(daten.getKartendeck());
 		daten.schatzkartenAusteilen(daten.getKartendeck());
+		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
 		spielfeldVorbereiten();
 		System.out.println(daten.getSpielerliste());
 	}
@@ -1279,8 +1345,59 @@ public class LabyrinthGUI extends JFrame {
 		p1.add(dreieck);
 	}
 	
+	/*
+	public void pfadKarteBestimmen() {
+		
+		String gesuchterSchatzName = daten.getSpielerliste().get(0).getKartenblatt().get(0).getSchatz();
+		String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
+		stringuebergabe(URI);
+		
+	}
+	*/
+	
+
+	
 	private void beenden() {
 		System.exit(0);		
 	}
+	/*
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+        
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		Spieler aktuellerSpielerAmZug = daten.getSpielerliste().get(0);
+        System.out.println("mouse entered!");
+        String gesuchterSchatzName = aktuellerSpielerAmZug.getKartenblatt().get(0).getSchatz();
+        String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
+
+        System.out.println(URI);
+
+        aktuelleKarte.bildaendern(URI);
+        
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	*/
 	
 }

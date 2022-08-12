@@ -1,5 +1,7 @@
 package labyrinth;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -9,13 +11,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class AktuelleKarte extends JPanel {
+
+public class AktuelleKarte extends JPanel{
 
 	private JLabel jlabel;
 	private BufferedImage bufferedimage;
 	private File bilddatei;
 	private ImageIcon imageicon;
 	private String bilddateipfad;
+
 	
 	public AktuelleKarte(String imagepath) {
 		this.setBounds(713, 740, 127, 205);
@@ -32,6 +36,7 @@ public class AktuelleKarte extends JPanel {
 		this.add(jlabel);
 	}
 	
+	
 	public void bildaendern(String neu) {
 		this.removeAll();
 		repaint();
@@ -45,5 +50,9 @@ public class AktuelleKarte extends JPanel {
 		this.jlabel = new JLabel(imageicon);
 		this.add(jlabel);
 	}
+
+
+
+	
 	
 }

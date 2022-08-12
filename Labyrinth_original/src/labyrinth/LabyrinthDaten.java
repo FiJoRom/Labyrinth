@@ -11,7 +11,16 @@ public class LabyrinthDaten {
 	private List<Spieler> spielerliste = new ArrayList<Spieler>();
 	private List<Karte> kartendeck;
 	private Spielfeld spielfeld = new Spielfeld();
+	private Spieler aktuellerSpieler;
 	
+	public Spieler getAktuellerSpieler() {
+		return aktuellerSpieler;
+	}
+
+	public void setAktuellerSpieler(Spieler aktuellerSpieler) {
+		this.aktuellerSpieler = aktuellerSpieler;
+	}
+
 	public LabyrinthDaten() {
 		spielfeld.gaengekartenAuslegen();
 	}
