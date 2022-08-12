@@ -14,10 +14,15 @@ public class JoystickPanel extends JPanel{
 	private JButton links;
 	private JButton rechts;
 	private JButton fertig;
+	//neu
+	private BorderLayout layout;
 
 	public JoystickPanel(){
 		
-		this.setLayout(new BorderLayout());
+		layout = new BorderLayout();
+		
+		this.setLayout(layout);
+		layout.setHgap(-10);
 		this.setBounds(1050, 700, 200, 180);
 		
 		//Icons

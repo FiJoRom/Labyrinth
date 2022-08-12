@@ -1346,10 +1346,26 @@ private class Anleitung extends JDialog{			//NEU
 		daten.schatzkartenAusteilen(daten.getKartendeck());
 		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
 		spielfeldVorbereiten();
+		aktualisiereGanguebrig();
 		System.out.println(daten.getSpielerliste());
 	}
 	
 	
+	private void aktualisiereGanguebrig() {
+		String pfad = "";
+		if(!(daten.getSpielfeld().getRest().schatz.equals("keinSchatz"))) {
+			pfad = "Bilder/" + daten.getSpielfeld().getRest().schatz + "_g.png";
+		} else {
+			if(daten.getSpielfeld().getRest() instanceof Ecke ) {
+				pfad = "Bilder/ecke_g.png";
+			} else {
+				pfad = "Bilder/gerade_g.png";
+			}
+		}
+		ganguebrigpanel.getGanguebrig().bildaendern(pfad);
+		ganguebrigpanel.getGanguebrig().drehen(daten.getSpielfeld().getRest().drehung);
+	}
+
 	private void spielfeldVorbereiten() {
 		for(int i = 0; i < 7; i++) {
 			for(int j = 0; j < 7; j++) {

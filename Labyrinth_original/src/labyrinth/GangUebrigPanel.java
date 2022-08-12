@@ -19,6 +19,14 @@ public class GangUebrigPanel extends JPanel {
 	private JButton rechtsdrehung;
 	private GangPanel ganguebrig;
 	
+	public GangPanel getGanguebrig() {
+		return ganguebrig;
+	}
+
+	public void setGanguebrig(GangPanel ganguebrig) {
+		this.ganguebrig = ganguebrig;
+	}
+
 	public GangUebrigPanel() {
 		this.setLayout(new BorderLayout());
 		this.setBounds(1050, 100, 280, 115);
