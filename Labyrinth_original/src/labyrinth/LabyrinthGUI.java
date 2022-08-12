@@ -75,6 +75,8 @@ public class LabyrinthGUI extends JFrame{
 	private SpielerPanel spielerPanel3;
 	private SpielerPanel spielerPanel4;
 	
+	private JPanel drachenBild;
+	
 	private Willkommen willkommen;
 	private Anleitung anleitung;	
 	private GangUebrigPanel ganguebrigpanel;
@@ -86,7 +88,7 @@ public class LabyrinthGUI extends JFrame{
 		this.daten = model;
 		
 		// JFrame-Konfiguration
-		this.setSize(1500, 1200);
+		this.setSize(1400, 1050);
 		this.setLocation(200, 20);
 		
 		//BackgroundPanel
@@ -781,7 +783,12 @@ public class LabyrinthGUI extends JFrame{
 		//neu
         p1.add(aktuelleKarte);
         aktuelleKarte.addMouseListener(new MouseHandler());
-            
+        
+        
+        this.drachenBild = new DekoBild(50, 645, 430, 341, "Bilder/DracheMitSchatz.png");
+		p1.add(drachenBild);
+		
+        
         /*
         aktuelleKarte.addMouseListener(new MouseListener() {
             @Override

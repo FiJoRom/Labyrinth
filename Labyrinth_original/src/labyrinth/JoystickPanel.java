@@ -23,7 +23,7 @@ public class JoystickPanel extends JPanel{
 		
 		this.setLayout(layout);
 		layout.setHgap(-10);
-		this.setBounds(1050, 700, 200, 180);
+		this.setBounds(1100, 450, 200, 180);
 		
 		//Icons
 		ImageIcon fertigIcon = new ImageIcon("Bilder/iconfertig.png");
@@ -59,6 +59,7 @@ public class JoystickPanel extends JPanel{
 		oben.setContentAreaFilled(false);
 		oben.setFocusPainted(false);
 		oben.setOpaque(false);
+		oben.setRolloverIcon(obenIconMouseover);
 		this.add(oben, BorderLayout.NORTH);
 		
 		unten.setSize(52,52);
@@ -66,6 +67,7 @@ public class JoystickPanel extends JPanel{
 		unten.setContentAreaFilled(false);
 		unten.setFocusPainted(false);
 		unten.setOpaque(false);
+		unten.setRolloverIcon(untenIconMouseover);
 		this.add(unten, BorderLayout.SOUTH);
 		
 		rechts.setSize(52,52);
@@ -73,6 +75,7 @@ public class JoystickPanel extends JPanel{
 		rechts.setContentAreaFilled(false);
 		rechts.setFocusPainted(false);
 		rechts.setOpaque(false);
+		rechts.setRolloverIcon(rechtsIconMouseover);
 		this.add(rechts, BorderLayout.EAST);
 		
 		links.setSize(52,52);
@@ -80,6 +83,7 @@ public class JoystickPanel extends JPanel{
 		links.setContentAreaFilled(false);
 		links.setFocusPainted(false);
 		links.setOpaque(false);
+		links.setRolloverIcon(linksIconMouseover);
 		this.add(links, BorderLayout.WEST);
 				
 		fertig.addActionListener(e -> {System.exit(0);});

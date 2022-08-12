@@ -26,6 +26,7 @@ public class SpielerPanel extends JPanel{
 	public SpielerPanel(int y, String spNummer, String spName) {
 		this.setLayout(new BorderLayout());
 		this.setBounds(40, y, 230, 115);
+		this.setOpaque(false);
 		
 		kartenanzahl = new JLabel("6", SwingConstants.CENTER);
 		kartenanzahl.setSize(225, 110);

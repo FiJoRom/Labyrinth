@@ -39,7 +39,6 @@ public class GangPanel extends JPanel{
 		//jlabel.setDirection(Direction.HORIZONTAL);
 
 		this.add(jlabel);
-		
 	}
 	
 	public GangPanel(String imagepath) {
