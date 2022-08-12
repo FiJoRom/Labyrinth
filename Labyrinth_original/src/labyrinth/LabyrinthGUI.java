@@ -208,7 +208,7 @@ public class LabyrinthGUI extends JFrame{
 		ImageIcon DreieckLinksIcon = new ImageIcon("Bilder/pfeil_links.png");
 		dreieckLinks1 = new JButton(DreieckLinksIcon);
 		dreieckLinks1.addActionListener(e -> 
-			{einschiebenLinksGrafisch(1); daten.getSpielfeld().schiebenInXRichtungVonLinks(1);});
+			{daten.getSpielfeld().schiebenInXRichtungVonLinks(1);einschiebenLinksGrafisch(1);});
 		dreieckButtonEigenschaften(dreieckLinks1, 342, 176, 30, 30);
 		dreieckLinks2 = new JButton(DreieckLinksIcon);
 		dreieckButtonEigenschaften(dreieckLinks2, 342, 356, 30, 30);
@@ -1375,16 +1375,30 @@ private class Anleitung extends JDialog{			//NEU
 	
 	public void einschiebenLinksGrafisch(int eingabeStelle) {
 		
+		for(int i = 0; i < 7; i++) {
+			String imagepath = pfadBestimmen(eingabeStelle,i);
+			System.out.println(imagepath);
+			this.organisationGaenge[eingabeStelle][i].bildaendern(imagepath);
+			repaint();
+			int zustand = daten.getSpielfeld().getMatrix()[eingabeStelle][i].getDrehung();
+			this.organisationGaenge[eingabeStelle][i].drehen(zustand);
+			validate();
+		}
+		aktualisiereGanguebrig();
+		validate();
+		/*
 		String kopieN1 = this.organisationGaenge[eingabeStelle][0].getBilddateipfad();
 		String kopieN2;
 		this.organisationGaenge[eingabeStelle][0].bildaendern(this.ganguebrigpanel.getGanguebrig().getBilddateipfad());
 		this.ganguebrigpanel.getGanguebrig().bildaendern(organisationGaenge[eingabeStelle][6].getBilddateipfad());
+		repaint();
 		for(int i = 1; i < 7; i++) {
 			kopieN2 = kopieN1;
 			kopieN1 = organisationGaenge[eingabeStelle][i].getBilddateipfad();
 			organisationGaenge[eingabeStelle][i].setBilddateipfad(kopieN2);
 			repaint();
 		}
+		*/
 		
 		
 	}
