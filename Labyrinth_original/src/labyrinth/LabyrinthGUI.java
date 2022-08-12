@@ -1437,13 +1437,15 @@ private class Anleitung extends JDialog{			//NEU
 						j++;
 						String imagepath = pfadBestimmen(i,j);
 						this.organisationGaenge[i][j].bildaendern(imagepath);
-						//drehen
+						int zustand = daten.getSpielfeld().getMatrix()[i][j].getDrehung();
+						this.organisationGaenge[i][j].drehen(zustand);
 					}
 				} else {
 					String imagepath = pfadBestimmen(i,j);
 					System.out.println(imagepath);
 					this.organisationGaenge[i][j].bildaendern(imagepath);
-					//drehen
+					int zustand = daten.getSpielfeld().getMatrix()[i][j].getDrehung();
+					this.organisationGaenge[i][j].drehen(zustand);
 				}
 			}
 		}
