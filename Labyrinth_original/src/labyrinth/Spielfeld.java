@@ -101,7 +101,7 @@ public class Spielfeld {
 		Gangkarte kopieN2;
 		this.matrix[6][x] = this.rest;
 		this.rest = this.matrix[0][x];
-		for(int i = 5; i > 0; i--) {
+		for(int i = 5; i >= 0; i--) {
 			kopieN2 = kopieN1;
 			kopieN1 = matrix[i][x];
 			matrix[i][x] = kopieN2;

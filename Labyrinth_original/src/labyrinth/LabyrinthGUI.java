@@ -180,39 +180,61 @@ public class LabyrinthGUI extends JFrame{
 		//Dreiecke Oben
 		ImageIcon DreieckObenIcon = new ImageIcon("Bilder/pfeil_oben.png");
 		dreieckOben1 = new JButton(DreieckObenIcon);
+		dreieckOben1.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInYRichtungVonOben(1);einschiebenYRichtung(1);});
 		dreieckButtonEigenschaften(dreieckOben1, 490, 28, 30, 30);
 		dreieckOben2 = new JButton(DreieckObenIcon);
+		dreieckOben2.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInYRichtungVonOben(3);einschiebenYRichtung(3);});
 		dreieckButtonEigenschaften(dreieckOben2, 670, 28, 30, 30);
 		dreieckOben3 = new JButton(DreieckObenIcon);
+		dreieckOben3.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInYRichtungVonOben(5);einschiebenYRichtung(5);});
 		dreieckButtonEigenschaften(dreieckOben3, 850, 28, 30, 30);
 		
 		//Dreiecke Rechts
 		ImageIcon DreieckRechtsIcon = new ImageIcon("Bilder/pfeil_rechts.png");
 		dreieckRechts1 = new JButton(DreieckRechtsIcon);
+		dreieckRechts1.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInXRichtungVonRechts(1);einschiebenXRichtung(1);});
 		dreieckButtonEigenschaften(dreieckRechts1, 998, 176, 30, 30);
 		dreieckRechts2 = new JButton(DreieckRechtsIcon);
+		dreieckRechts2.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInXRichtungVonRechts(3);einschiebenXRichtung(3);});
 		dreieckButtonEigenschaften(dreieckRechts2, 998, 356, 30, 30);
 		dreieckRechts3 = new JButton(DreieckRechtsIcon);
+		dreieckRechts3.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInXRichtungVonRechts(5);einschiebenXRichtung(5);});
 		dreieckButtonEigenschaften(dreieckRechts3, 998, 536, 30, 30);
 		
 		//Dreiecke Unten
 		ImageIcon DreieckUntenIcon = new ImageIcon("Bilder/pfeil_unten.png");
 		dreieckUnten1 = new JButton(DreieckUntenIcon);
+		dreieckUnten1.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInYRichtungVonUnten(1);einschiebenYRichtung(1);});
 		dreieckButtonEigenschaften(dreieckUnten1, 490, 688, 30, 30);
 		dreieckUnten2 = new JButton(DreieckUntenIcon);
+		dreieckUnten2.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInYRichtungVonUnten(3);einschiebenYRichtung(3);});
 		dreieckButtonEigenschaften(dreieckUnten2, 670, 688, 30, 30);
 		dreieckUnten3 = new JButton(DreieckUntenIcon);
+		dreieckUnten3.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInYRichtungVonUnten(5);einschiebenYRichtung(5);});
 		dreieckButtonEigenschaften(dreieckUnten3, 850, 688, 30, 30);
 		
 		//Dreiecke Links
 		ImageIcon DreieckLinksIcon = new ImageIcon("Bilder/pfeil_links.png");
 		dreieckLinks1 = new JButton(DreieckLinksIcon);
 		dreieckLinks1.addActionListener(e -> 
-			{daten.getSpielfeld().schiebenInXRichtungVonLinks(1);einschiebenLinksGrafisch(1);});
+			{daten.getSpielfeld().schiebenInXRichtungVonLinks(1);einschiebenXRichtung(1);});
 		dreieckButtonEigenschaften(dreieckLinks1, 342, 176, 30, 30);
 		dreieckLinks2 = new JButton(DreieckLinksIcon);
+		dreieckLinks2.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInXRichtungVonLinks(3);einschiebenXRichtung(3);});
 		dreieckButtonEigenschaften(dreieckLinks2, 342, 356, 30, 30);
 		dreieckLinks3 = new JButton(DreieckLinksIcon);
+		dreieckLinks3.addActionListener(e -> 
+		{daten.getSpielfeld().schiebenInXRichtungVonLinks(5);einschiebenXRichtung(5);});
 		dreieckButtonEigenschaften(dreieckLinks3, 342, 536, 30, 30);
 
 		
@@ -1373,11 +1395,10 @@ private class Anleitung extends JDialog{			//NEU
 		repaint();
 	}
 	
-	public void einschiebenLinksGrafisch(int eingabeStelle) {
+	public void einschiebenXRichtung(int eingabeStelle) {
 		
 		for(int i = 0; i < 7; i++) {
 			String imagepath = pfadBestimmen(eingabeStelle,i);
-			System.out.println(imagepath);
 			this.organisationGaenge[eingabeStelle][i].bildaendern(imagepath);
 			repaint();
 			int zustand = daten.getSpielfeld().getMatrix()[eingabeStelle][i].getDrehung();
@@ -1386,22 +1407,22 @@ private class Anleitung extends JDialog{			//NEU
 		}
 		aktualisiereGanguebrig();
 		validate();
-		/*
-		String kopieN1 = this.organisationGaenge[eingabeStelle][0].getBilddateipfad();
-		String kopieN2;
-		this.organisationGaenge[eingabeStelle][0].bildaendern(this.ganguebrigpanel.getGanguebrig().getBilddateipfad());
-		this.ganguebrigpanel.getGanguebrig().bildaendern(organisationGaenge[eingabeStelle][6].getBilddateipfad());
-		repaint();
-		for(int i = 1; i < 7; i++) {
-			kopieN2 = kopieN1;
-			kopieN1 = organisationGaenge[eingabeStelle][i].getBilddateipfad();
-			organisationGaenge[eingabeStelle][i].setBilddateipfad(kopieN2);
-			repaint();
-		}
-		*/
-		
-		
 	}
+	
+	public void einschiebenYRichtung(int eingabeStelle) {
+		
+		for(int i = 0; i < 7; i++) {
+			String imagepath = pfadBestimmen(i,eingabeStelle);
+			this.organisationGaenge[i][eingabeStelle].bildaendern(imagepath);
+			repaint();
+			int zustand = daten.getSpielfeld().getMatrix()[i][eingabeStelle].getDrehung();
+			this.organisationGaenge[i][eingabeStelle].drehen(zustand);
+			validate();
+		}
+		aktualisiereGanguebrig();
+		validate();
+	}
+	
 	
 	private void aktualisiereGanguebrig() {
 		String pfad = "";
@@ -1431,7 +1452,6 @@ private class Anleitung extends JDialog{			//NEU
 					}
 				} else {
 					String imagepath = pfadBestimmen(i,j);
-					System.out.println(imagepath);
 					this.organisationGaenge[i][j].bildaendern(imagepath);
 					int zustand = daten.getSpielfeld().getMatrix()[i][j].getDrehung();
 					this.organisationGaenge[i][j].drehen(zustand);
@@ -1454,8 +1474,6 @@ private class Anleitung extends JDialog{			//NEU
 		return pfad;
 	}
 	
-	
-	
 	//Spielfeld
 	private void generiereGangbilder(JPanel gangpanel, String gangpath) {
 		try {
@@ -1468,8 +1486,6 @@ private class Anleitung extends JDialog{			//NEU
 		}
 		
 	}
-	
-	
 	
 	public void dreieckButtonEigenschaften(JButton dreieck, int x, int y, int breite, int hoehe) {
 		dreieck.setBounds(x, y, breite, hoehe);
