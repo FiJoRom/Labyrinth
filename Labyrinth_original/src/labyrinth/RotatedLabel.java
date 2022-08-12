@@ -23,9 +23,11 @@ import java.awt.Graphics2D;
 	 */
 	public class RotatedLabel extends JLabel {
 
+	
 	  /** Serialisation ID. */
-	  private static final long serialVersionUID = -5589305224172247331L;
-
+	  //private static final long serialVersionUID = -5589305224172247331L;
+	 
+	  
 	  /** Represents the direction of a rotated label. */
 	  public enum Direction {
 	    /** Normal horizontal direction. */
@@ -33,7 +35,9 @@ import java.awt.Graphics2D;
 	    /** Vertical, upwards (for left-to-right languages). */
 	    VERTICAL_UP,
 	    /** Vertical, downwards (for left-to-right languages). */
-	    VERTICAL_DOWN
+	    VERTICAL_DOWN,
+	    //
+	    BACKWARDS
 	  }
 
 	  /** The text direction. */
@@ -155,6 +159,7 @@ import java.awt.Graphics2D;
 	    case VERTICAL_UP: // NOTE: fall-through
 	    case VERTICAL_DOWN:
 	      return new Dimension(preferredSize.height, preferredSize.width);
+	    case BACKWARDS:
 	    default:
 	      return preferredSize;
 	    }
@@ -177,6 +182,7 @@ import java.awt.Graphics2D;
 	    case VERTICAL_DOWN:
 	    case VERTICAL_UP:
 	      return new Dimension(size.height, size.width);
+	    case BACKWARDS:
 	    default:
 	      return super.getSize();
 	    }
@@ -220,6 +226,11 @@ import java.awt.Graphics2D;
 	      gr.transform(AffineTransform.getQuadrantRotateInstance(1));
 	      gr.translate(0, -getSize().getWidth());
 	      break;
+	      
+	    case BACKWARDS:
+	    gr.translate(getSize().getWidth(), getSize().getHeight());
+		gr.transform(AffineTransform.getQuadrantRotateInstance(2));
+		  break;
 	    default:
 	    }
 
