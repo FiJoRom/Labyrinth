@@ -13,6 +13,14 @@ public abstract class Gangkarte {
 	protected String schatz;
 	protected int drehung;
 	
+	public int getDrehung() {
+		return drehung;
+	}
+
+	public void setDrehung(int drehung) {
+		this.drehung = drehung;
+	}
+
 	public Gangkarte() {
 		drehung = 0;
 	}

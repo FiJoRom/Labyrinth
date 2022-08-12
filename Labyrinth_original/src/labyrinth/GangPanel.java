@@ -9,9 +9,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import labyrinth.RotatedLabel.Direction;
+
 public class GangPanel extends JPanel{
 
-	private JLabel jlabel;
+	private RotatedLabel jlabel;
 	private BufferedImage bufferedimage;
 	private File bilddatei;
 	private ImageIcon imageicon;
@@ -29,8 +31,15 @@ public class GangPanel extends JPanel{
 			e.printStackTrace();
 		}
 		this.imageicon = new ImageIcon(bufferedimage);
-		this.jlabel = new JLabel(imageicon);
+		this.jlabel = new RotatedLabel(imageicon);
+		
+		//jlabel.setDirection(Direction.VERTICAL_DOWN);
+		//jlabel.setDirection(Direction.VERTICAL_UP);
+		//jlabel.setDirection(Direction.BACKWARDS);
+		//jlabel.setDirection(Direction.HORIZONTAL);
+
 		this.add(jlabel);
+		
 	}
 	
 	public void bildaendern(String neu) {
@@ -43,8 +52,24 @@ public class GangPanel extends JPanel{
 			e.printStackTrace();
 		}
 		this.imageicon = new ImageIcon(bufferedimage);
-		this.jlabel = new JLabel(imageicon);
+		this.jlabel = new RotatedLabel(imageicon);
 		this.add(jlabel);
 	}
 
+	public void drehen(int d) {
+		switch(d) {
+		case 0:
+			this.jlabel.setDirection(Direction.VERTICAL_UP);
+			break;
+		case 1:
+			this.jlabel.setDirection(Direction.HORIZONTAL);
+			break;
+		case 2:
+			this.jlabel.setDirection(Direction.VERTICAL_DOWN);
+			break;
+		case 3:
+			this.jlabel.setDirection(Direction.BACKWARDS);
+			break;
+		}
+	}
 }
