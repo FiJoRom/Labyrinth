@@ -40,12 +40,6 @@ public class GangPanel extends JPanel{
 		}
 		this.imageicon = new ImageIcon(bufferedimage);
 		this.jlabel = new RotatedLabel(imageicon);
-		
-		//jlabel.setDirection(Direction.VERTICAL_DOWN);
-		//jlabel.setDirection(Direction.VERTICAL_UP);
-		//jlabel.setDirection(Direction.BACKWARDS);
-		//jlabel.setDirection(Direction.HORIZONTAL);
-
 		this.add(jlabel);
 	}
 	
