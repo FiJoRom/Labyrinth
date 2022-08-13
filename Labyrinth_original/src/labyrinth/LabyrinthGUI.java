@@ -827,10 +827,10 @@ public class LabyrinthGUI extends JFrame{
 		this.joystickPanel = new JoystickPanel();
 		
 		joystickPanel.getFertig().addActionListener(e -> {System.exit(0);});
-		joystickPanel.getOben().addActionListener(e -> {System.exit(0);});
-		joystickPanel.getUnten().addActionListener(e -> {System.exit(0);});
-		joystickPanel.getRechts().addActionListener(e -> {System.exit(0);});
-		joystickPanel.getLinks().addActionListener(e -> {System.exit(0);});
+		joystickPanel.getOben().addActionListener(e -> aktuelleSpielerbewegung("oben"));
+		joystickPanel.getUnten().addActionListener(e -> aktuelleSpielerbewegung("unten"));
+		joystickPanel.getRechts().addActionListener(e -> aktuelleSpielerbewegung("rechts"));
+		joystickPanel.getLinks().addActionListener(e -> aktuelleSpielerbewegung("links"));
 		p1.add(joystickPanel);
 		
 		//AktuellerSpielerPanel
@@ -1533,6 +1533,29 @@ private class Anleitung extends JDialog{			//NEU
 		validate();
 	}
 	
+	private void aktuelleSpielerbewegung(String richtung) {
+		daten.schrittMachen(richtung);
+		
+		int eingabeX = daten.getAktuellerSpieler().getPositionX();
+		int eingabeY = daten.getAktuellerSpieler().getPositionY();
+		String farbe = daten.getAktuellerSpieler().getFarbe();
+		switch(farbe) {
+		case "Rot":
+			spielfigurRot.position(eingabeX,eingabeY,farbe);
+			break;
+		case "Gruen":
+			spielfigurGruen.position(eingabeX,eingabeY,farbe);
+			break;
+		case "Blau":
+			spielfigurBlau.position(eingabeX,eingabeY,farbe);
+			break;
+		case "Gelb":
+			spielfigurGelb.position(eingabeX,eingabeY,farbe);
+			break;
+		}
+		repaint();
+		aktualisiereButtons();
+	}
 	
 	private void aktualisiereGanguebrig() {
 		String pfad = "";

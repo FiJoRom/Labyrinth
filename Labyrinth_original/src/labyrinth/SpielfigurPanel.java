@@ -65,6 +65,7 @@ public class SpielfigurPanel extends JPanel {
 		}
 		
 		this.setAlignmentY(yPositionen[eingabeY]);
+		validate();
 	}
 	
 	
