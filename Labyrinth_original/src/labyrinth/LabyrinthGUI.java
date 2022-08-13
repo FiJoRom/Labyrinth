@@ -1425,14 +1425,14 @@ private class Anleitung extends JDialog{			//NEU
 		
 		System.out.println(daten.getSpielerliste());
 		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].nordausgang);
-		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].westausgang);
-		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].suedausgang);
 		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].ostausgang);
+		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].suedausgang);
+		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].westausgang);
 		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].drehung);
 		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].nordausgang);
-		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].westausgang);
-		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].suedausgang);
 		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].ostausgang);
+		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].suedausgang);
+		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].westausgang);
 		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].drehung);
 	}
 	

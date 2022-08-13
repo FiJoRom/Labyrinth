@@ -91,16 +91,16 @@ public class GangPanel extends JPanel{
 	public void drehen(int d) {
 		switch(d) {
 		case 0:
-			this.jlabel.setDirection(Direction.VERTICAL_UP);
-			break;
-		case 1:
 			this.jlabel.setDirection(Direction.HORIZONTAL);
 			break;
-		case 2:
+		case 1:
 			this.jlabel.setDirection(Direction.VERTICAL_DOWN);
 			break;
-		case 3:
+		case 2:
 			this.jlabel.setDirection(Direction.BACKWARDS);
+			break;
+		case 3:			
+			this.jlabel.setDirection(Direction.VERTICAL_UP);
 			break;
 		}
 	}

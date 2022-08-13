@@ -107,10 +107,5 @@ public class TKreuzung extends Gangkarte {
 		}
 	}
 
-	@Override
-	public void zustandAendern() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
