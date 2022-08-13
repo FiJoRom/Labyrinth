@@ -138,6 +138,25 @@ public class LabyrinthDaten {
 		return rueckgabe;
 	}
 	
+	public void schrittMachen(String richtung) {
+		switch(richtung) {
+		case "oben": 
+			aktuellerSpieler.schrittNachOben();
+			break;
+		case "unten": 
+			aktuellerSpieler.schrittNachUnten();
+			break;
+		case "links": 
+			aktuellerSpieler.schrittNachLinks();
+			break;
+		case "rechts":
+			aktuellerSpieler.schrittNachRechts();
+			break;
+		default:
+			break;
+		}
+	}
+	
 	
 	public void spielerVerschieben(int x, int y) {
 		
