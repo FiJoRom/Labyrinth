@@ -11,6 +11,7 @@ public class Spieler {
 	private int positionY;
 	private List<Karte> kartenblatt = new ArrayList<Karte>();
 	private boolean verschoben;
+	private int spielerNummer;
 	
 	public boolean isVerschoben() {
 		return verschoben;
@@ -60,10 +61,19 @@ public class Spieler {
 		this.kartenblatt = kartenblatt;
 	}
 
-	public Spieler(String NameEingabe, String FarbeEingabe) {
+	public int getSpielerNummer() {
+		return spielerNummer;
+	}
+
+	public void setSpielerNummer(int spielerNummer) {
+		this.spielerNummer = spielerNummer;
+	}
+
+	public Spieler(String NameEingabe, String FarbeEingabe, int spielerNummerEingabe) {
 		
 		this.name = NameEingabe;
 		this.farbe = FarbeEingabe;
+		this.spielerNummer = spielerNummerEingabe - 1;
 		
 		if(this.farbe == "Gruen"){
 			this.positionX = 0; 
