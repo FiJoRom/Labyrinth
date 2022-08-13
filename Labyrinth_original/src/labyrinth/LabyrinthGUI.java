@@ -1590,14 +1590,10 @@ private class Anleitung extends JDialog{			//NEU
 		}
 		daten.SpielerMitGangVerschieben(richtung, eingabeStelle);
 		spielerGrafischAnpassen();
+		aktualisiereButtons();
 		validate();
 	}
 	
-	/*
-	private void aktualisiereAktuellenSpieler() {
-		daten.setAktuellerSpieler();
-	}
-	*/
 	
 	private void spielerGrafischAnpassen() {
 		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
