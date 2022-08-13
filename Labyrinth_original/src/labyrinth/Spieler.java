@@ -76,6 +76,34 @@ public class Spieler {
 			this.positionY = 6;
 		}
 	}
+
+	public void schrittNachOben() {
+		this.positionY = (this.positionY + 1)%7;
+	}
+	
+	public void schrittNachUnten() {
+		
+		if(positionY == 0)
+		{
+			this.positionY = 6;
+		}else {
+		this.positionY = (this.positionY - 1);
+		}
+	}
+	
+	public void schrittNachLinks() {
+		this.positionX = (this.positionX + 1)%7;
+	}
+	
+	public void schrittNachRechts() {
+		if(positionX == 0)
+		{
+			this.positionX = 6;
+		}else {
+		this.positionX = (this.positionX - 1);
+		}
+	}
+	
 	
 	@Override
 	public String toString() {
@@ -83,4 +111,5 @@ public class Spieler {
 		Ausgabe = this.name + " " + this.farbe + " " + positionX + " " + positionY + " " + this.kartenblatt; 
 		return Ausgabe;
 	}
+
 }

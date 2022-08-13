@@ -17,6 +17,10 @@ public class SpielfigurPanel extends JPanel {
 	private ImageIcon imageicon;
 	private String bilddateipfad;
 	
+	private static int xPositionenRotGelb[]= {385, 475, 565, 655, 745, 835, 925};
+	private static int xPositionenGruenBlau[] = {389, 479, 569, 659, 749, 839, 929};
+	private static int yPositionen[]= {43, 133, 223, 313, 403, 493, 583};
+
 	SpielfigurPanel(int x, int y, int width, int height, String imagePath){
 		
 		this.setBounds(x, y, width, height);
@@ -50,6 +54,17 @@ public class SpielfigurPanel extends JPanel {
 		this.imageicon = new ImageIcon(bufferedimage);
 		this.jlabel = new JLabel(imageicon);
 		this.add(jlabel);
+	}
+	
+	public void position(int eingabeX, int eingabeY, String farbe) {
+		
+		if(farbe.equals("Rot") || farbe.equals("Gelb")) {
+			this.setAlignmentX(xPositionenRotGelb[eingabeX]);
+		}else {
+			this.setAlignmentX(xPositionenGruenBlau[eingabeX]);
+		}
+		
+		this.setAlignmentY(yPositionen[eingabeY]);
 	}
 	
 	

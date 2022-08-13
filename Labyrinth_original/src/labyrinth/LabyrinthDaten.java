@@ -69,6 +69,80 @@ public class LabyrinthDaten {
 		}
 		while(j < 24);
 	}
+	
+	public boolean schrittMoeglichOben() {
+		boolean rueckgabe = false;
+		int x = aktuellerSpieler.getPositionX();
+		int y = aktuellerSpieler.getPositionY();
+		
+		if(y == 0) {
+			rueckgabe = false;
+		}else {
+			if(spielfeld.getMatrix()[x][y].nordausgang && spielfeld.getMatrix()[x][y-1].suedausgang){
+				rueckgabe = true;
+			}else {
+				rueckgabe = false;
+			}
+		}
+		return rueckgabe;
+	}
+	
+	public boolean schrittMoeglichUnten() {
+		boolean rueckgabe = false;
+		int x = aktuellerSpieler.getPositionX();
+		int y = aktuellerSpieler.getPositionY();
+		
+		if(y == 6) {
+			rueckgabe = false;
+		}else {
+			if(spielfeld.getMatrix()[x][y].suedausgang && spielfeld.getMatrix()[x][y+1].nordausgang){
+				rueckgabe = true;
+			}else {
+				rueckgabe = false;
+			}
+		}
+		return rueckgabe;
+	}
+	
+	public boolean schrittMoeglichLinks() {
+		boolean rueckgabe = false;
+		int x = aktuellerSpieler.getPositionX();
+		int y = aktuellerSpieler.getPositionY();
+		
+		if(x == 0) {
+			rueckgabe = false;
+		}else {
+			if(spielfeld.getMatrix()[x][y].westausgang && spielfeld.getMatrix()[x-1][y].ostausgang){
+				rueckgabe = true;
+			}else {
+				rueckgabe = false;
+			}
+		}
+		return rueckgabe;
+	}
+	
+	public boolean schrittMoeglichRechts() {
+		boolean rueckgabe = false;
+		int x = aktuellerSpieler.getPositionX();
+		int y = aktuellerSpieler.getPositionY();
+		
+		if(x == 6) {
+			rueckgabe = false;
+		}else {
+			if(spielfeld.getMatrix()[x][y].ostausgang && spielfeld.getMatrix()[x+1][y].westausgang){
+				rueckgabe = true;
+			}else {
+				rueckgabe = false;
+			}
+		}
+		return rueckgabe;
+	}
+	
+	
+	public void spielerVerschieben(int x, int y) {
+		
+		
+	}
 
 	
 }

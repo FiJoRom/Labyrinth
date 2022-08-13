@@ -85,12 +85,46 @@ public class JoystickPanel extends JPanel{
 		links.setOpaque(false);
 		links.setRolloverIcon(linksIconMouseover);
 		this.add(links, BorderLayout.WEST);
-				
-		fertig.addActionListener(e -> {System.exit(0);});
-		oben.addActionListener(e -> {System.exit(0);});
-		unten.addActionListener(e -> {System.exit(0);});
-		rechts.addActionListener(e -> {System.exit(0);});
-		links.addActionListener(e -> {System.exit(0);});
+	}
+
+	public JButton getOben() {
+		return oben;
+	}
+
+	public void setOben(JButton oben) {
+		this.oben = oben;
+	}
+
+	public JButton getUnten() {
+		return unten;
+	}
+
+	public void setUnten(JButton unten) {
+		this.unten = unten;
+	}
+
+	public JButton getLinks() {
+		return links;
+	}
+
+	public void setLinks(JButton links) {
+		this.links = links;
+	}
+
+	public JButton getRechts() {
+		return rechts;
+	}
+
+	public void setRechts(JButton rechts) {
+		this.rechts = rechts;
+	}
+
+	public JButton getFertig() {
+		return fertig;
+	}
+
+	public void setFertig(JButton fertig) {
+		this.fertig = fertig;
 	}
 }
 	

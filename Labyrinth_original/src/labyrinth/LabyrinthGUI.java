@@ -825,6 +825,12 @@ public class LabyrinthGUI extends JFrame{
 		
 		//JoystickPanel
 		this.joystickPanel = new JoystickPanel();
+		
+		joystickPanel.getFertig().addActionListener(e -> {System.exit(0);});
+		joystickPanel.getOben().addActionListener(e -> {System.exit(0);});
+		joystickPanel.getUnten().addActionListener(e -> {System.exit(0);});
+		joystickPanel.getRechts().addActionListener(e -> {System.exit(0);});
+		joystickPanel.getLinks().addActionListener(e -> {System.exit(0);});
 		p1.add(joystickPanel);
 		
 		//AktuellerSpielerPanel
@@ -1446,7 +1452,9 @@ private class Anleitung extends JDialog{			//NEU
 		}	
 	}
 	
-	
+	public void positionAendern() {
+		
+	}
 	
 	public void linksDrehung() {
 		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachLinks();
