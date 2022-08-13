@@ -1535,7 +1535,29 @@ private class Anleitung extends JDialog{			//NEU
 	
 	private void aktuelleSpielerbewegung(String richtung) {
 		daten.schrittMachen(richtung);
-		
+		spielerBewegungGrafisch();
+		/*int eingabeX = daten.getAktuellerSpieler().getPositionX();
+		int eingabeY = daten.getAktuellerSpieler().getPositionY();
+		String farbe = daten.getAktuellerSpieler().getFarbe();
+		switch(farbe) {
+		case "Rot":
+			spielfigurRot.position(eingabeX,eingabeY,farbe);
+			break;
+		case "Gruen":
+			spielfigurGruen.position(eingabeX,eingabeY,farbe);
+			break;
+		case "Blau":
+			spielfigurBlau.position(eingabeX,eingabeY,farbe);
+			break;
+		case "Gelb":
+			spielfigurGelb.position(eingabeX,eingabeY,farbe);
+			break;
+		}
+		repaint();
+		aktualisiereButtons();*/
+	}
+	
+	private void spielerBewegungGrafisch() {
 		int eingabeX = daten.getAktuellerSpieler().getPositionX();
 		int eingabeY = daten.getAktuellerSpieler().getPositionY();
 		String farbe = daten.getAktuellerSpieler().getFarbe();
@@ -1555,6 +1577,32 @@ private class Anleitung extends JDialog{			//NEU
 		}
 		repaint();
 		aktualisiereButtons();
+	}
+	
+	private void schiebenMitSpieler(String richtung, int eingabeStelle) {
+		switch(richtung) {
+		case "oben":
+			daten.getSpielfeld().schiebenInYRichtungVonOben(eingabeStelle);
+			einschiebenYRichtung(eingabeStelle);
+			break;
+		case "rechts":
+			daten.getSpielfeld().schiebenInXRichtungVonRechts(eingabeStelle);
+			einschiebenXRichtung(eingabeStelle);
+			break;
+		case "unten":
+			daten.getSpielfeld().schiebenInYRichtungVonUnten(eingabeStelle);
+			einschiebenYRichtung(eingabeStelle);
+			break;
+		case "links":
+			daten.getSpielfeld().schiebenInXRichtungVonLinks(eingabeStelle);
+			einschiebenXRichtung(eingabeStelle);
+			break;
+		}
+		List<String> info = daten.SpielerMitGangVerschieben(richtung, eingabeStelle);
+		
+		for(int i = 0; i < info.size(); i++) {
+			spielerBewegungGrafisch();
+		}
 	}
 	
 	private void aktualisiereGanguebrig() {

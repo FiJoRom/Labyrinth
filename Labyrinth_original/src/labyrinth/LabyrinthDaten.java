@@ -138,6 +138,38 @@ public class LabyrinthDaten {
 		return rueckgabe;
 	}
 	
+	public List<String> SpielerMitGangVerschieben(String richtung, int eingabeStelle) {
+		List<String> informationFuerGUI = new ArrayList<String>();
+		for(int i = 0; i < this.spielerliste.size(); i++) {
+			switch(richtung) {
+			case "oben": 
+				if(this.spielerliste.get(i).getPositionX() == eingabeStelle) {
+					this.spielerliste.get(i).schrittNachUnten();
+					informationFuerGUI.add(this.spielerliste.get(i).getFarbe());
+				}
+				break;
+			case "unten": 
+				if(this.spielerliste.get(i).getPositionX() == eingabeStelle) {
+					this.spielerliste.get(i).schrittNachOben();
+				}
+				break;
+			case "links": 
+				if(this.spielerliste.get(i).getPositionY() == eingabeStelle) {
+					this.spielerliste.get(i).schrittNachRechts();
+				}
+				break;
+			case "rechts":
+				if(this.spielerliste.get(i).getPositionY() == eingabeStelle) {
+					this.spielerliste.get(i).schrittNachLinks();
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		return informationFuerGUI;
+	}
+	
 	public void schrittMachen(String richtung) {
 		switch(richtung) {
 		case "oben": 
