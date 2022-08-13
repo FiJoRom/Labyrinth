@@ -30,7 +30,7 @@ public abstract class Gangkarte {
 	
 	public void gangkarteWirbeln() {
 		int drehen = zufall.nextInt(4);
-		for(int i = 0; i < drehen; i++) {
+		for(int i = 0; i < drehen - 1; i++) {
 			gangkarte90GradDrehenNachRechts();
 		}
 	}

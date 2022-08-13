@@ -38,6 +38,12 @@ public class JoystickPanel extends JPanel{
 		ImageIcon linksIconMouseover = new ImageIcon("Bilder/iconlinks_mouseover.png");
 		ImageIcon rechtsIconMouseover = new ImageIcon("Bilder/iconrechts_mouseover.png");
 		
+		ImageIcon fertigIconLocked = new ImageIcon("Bilder/iconfertig_locked.png");
+		ImageIcon obenIconLocked = new ImageIcon("Bilder/iconoben_locked.png");
+		ImageIcon untenIconLocked = new ImageIcon("Bilder/iconunten_locked.png");
+		ImageIcon linksIconLocked = new ImageIcon("Bilder/iconlinks_locked.png");
+		ImageIcon rechtsIconLocked = new ImageIcon("Bilder/iconrechts_locked.png");
+		
 		fertig = new JButton(fertigIcon);
 		oben = new JButton(obenIcon);
 		unten = new JButton(untenIcon);
@@ -52,6 +58,7 @@ public class JoystickPanel extends JPanel{
 		fertig.setFocusPainted(false);
 		fertig.setOpaque(false);
 		fertig.setRolloverIcon(fertigIconMouseover);
+		fertig.setDisabledIcon(fertigIconLocked);
 		this.add(fertig, BorderLayout.CENTER);
 		
 		oben.setSize(52,52);
@@ -60,6 +67,7 @@ public class JoystickPanel extends JPanel{
 		oben.setFocusPainted(false);
 		oben.setOpaque(false);
 		oben.setRolloverIcon(obenIconMouseover);
+		oben.setDisabledIcon(obenIconLocked);
 		this.add(oben, BorderLayout.NORTH);
 		
 		unten.setSize(52,52);
@@ -68,6 +76,7 @@ public class JoystickPanel extends JPanel{
 		unten.setFocusPainted(false);
 		unten.setOpaque(false);
 		unten.setRolloverIcon(untenIconMouseover);
+		unten.setDisabledIcon(untenIconLocked);
 		this.add(unten, BorderLayout.SOUTH);
 		
 		rechts.setSize(52,52);
@@ -76,6 +85,7 @@ public class JoystickPanel extends JPanel{
 		rechts.setFocusPainted(false);
 		rechts.setOpaque(false);
 		rechts.setRolloverIcon(rechtsIconMouseover);
+		rechts.setDisabledIcon(rechtsIconLocked);
 		this.add(rechts, BorderLayout.EAST);
 		
 		links.setSize(52,52);
@@ -84,6 +94,7 @@ public class JoystickPanel extends JPanel{
 		links.setFocusPainted(false);
 		links.setOpaque(false);
 		links.setRolloverIcon(linksIconMouseover);
+		links.setDisabledIcon(linksIconLocked);
 		this.add(links, BorderLayout.WEST);
 	}
 

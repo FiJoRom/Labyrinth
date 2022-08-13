@@ -1420,7 +1420,20 @@ private class Anleitung extends JDialog{			//NEU
 		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
 		spielfeldVorbereiten();
 		aktualisiereGanguebrig();
+		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
+		aktualisiereButtons();
+		
 		System.out.println(daten.getSpielerliste());
+		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].nordausgang);
+		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].westausgang);
+		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].suedausgang);
+		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].ostausgang);
+		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].drehung);
+		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].nordausgang);
+		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].westausgang);
+		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].suedausgang);
+		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].ostausgang);
+		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].drehung);
 	}
 	
 	
@@ -1466,6 +1479,30 @@ private class Anleitung extends JDialog{			//NEU
 		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachRechts();
 		ganguebrigpanel.getGanguebrig().drehen(this.daten.getSpielfeld().getRest().drehung);
 		repaint();
+	}
+	
+	public void aktualisiereButtons() {
+		//vier mal
+		if(daten.schrittMoeglichOben()){
+			joystickPanel.getOben().setEnabled(true);
+		} else {
+			joystickPanel.getOben().setEnabled(false);
+		}
+		if(daten.schrittMoeglichRechts()){
+			joystickPanel.getRechts().setEnabled(true);
+		} else {
+			joystickPanel.getRechts().setEnabled(false);
+		}
+		if(daten.schrittMoeglichUnten()){
+			joystickPanel.getUnten().setEnabled(true);
+		} else {
+			joystickPanel.getUnten().setEnabled(false);
+		}
+		if(daten.schrittMoeglichLinks()){
+			joystickPanel.getLinks().setEnabled(true);
+		} else {
+			joystickPanel.getLinks().setEnabled(false);
+		}
 	}
 	
 	public void einschiebenXRichtung(int eingabeStelle) {

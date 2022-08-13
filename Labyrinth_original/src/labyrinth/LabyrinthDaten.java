@@ -78,7 +78,7 @@ public class LabyrinthDaten {
 		if(y == 0) {
 			rueckgabe = false;
 		}else {
-			if(spielfeld.getMatrix()[x][y].nordausgang && spielfeld.getMatrix()[x][y-1].suedausgang){
+			if(spielfeld.getMatrix()[y][x].nordausgang && spielfeld.getMatrix()[y-1][x].suedausgang){
 				rueckgabe = true;
 			}else {
 				rueckgabe = false;
@@ -95,7 +95,7 @@ public class LabyrinthDaten {
 		if(y == 6) {
 			rueckgabe = false;
 		}else {
-			if(spielfeld.getMatrix()[x][y].suedausgang && spielfeld.getMatrix()[x][y+1].nordausgang){
+			if(spielfeld.getMatrix()[y][x].suedausgang && spielfeld.getMatrix()[y+1][x].nordausgang){
 				rueckgabe = true;
 			}else {
 				rueckgabe = false;
@@ -112,7 +112,7 @@ public class LabyrinthDaten {
 		if(x == 0) {
 			rueckgabe = false;
 		}else {
-			if(spielfeld.getMatrix()[x][y].westausgang && spielfeld.getMatrix()[x-1][y].ostausgang){
+			if(spielfeld.getMatrix()[y][x].westausgang && spielfeld.getMatrix()[y][x-1].ostausgang){
 				rueckgabe = true;
 			}else {
 				rueckgabe = false;
@@ -129,7 +129,7 @@ public class LabyrinthDaten {
 		if(x == 6) {
 			rueckgabe = false;
 		}else {
-			if(spielfeld.getMatrix()[x][y].ostausgang && spielfeld.getMatrix()[x+1][y].westausgang){
+			if(spielfeld.getMatrix()[y][x].ostausgang && spielfeld.getMatrix()[y][x+1].westausgang){
 				rueckgabe = true;
 			}else {
 				rueckgabe = false;

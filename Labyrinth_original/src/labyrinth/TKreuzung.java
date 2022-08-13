@@ -53,20 +53,28 @@ public class TKreuzung extends Gangkarte {
 		this.drehung = (this.drehung + 1)%4;
 		switch(this.drehung) {
 		case 0:
+			this.nordausgang = true;
 			this.suedausgang = false;
 			this.ostausgang = true;
+			this.westausgang = true;
 			break;
 		case 1:
-			this.westausgang = false;
+			this.nordausgang = true;
 			this.suedausgang = true;
+			this.ostausgang = true;
+			this.westausgang = false;
 			break;
 		case 2:
 			this.nordausgang = false;
+			this.suedausgang = true;
+			this.ostausgang = true;
 			this.westausgang = true;
 			break;
 		case 3:
-			this.ostausgang = false;
 			this.nordausgang = true;
+			this.suedausgang = true;
+			this.ostausgang = false;
+			this.westausgang = true;
 			break;
 		}
 	}
