@@ -79,6 +79,7 @@ public class LabyrinthGUI extends JFrame{
 	private SpielfigurPanel spielfigurBlau;
 	private SpielfigurPanel spielfigurGelb;
 	private SpielfigurPanel spielfigurGruen;
+	private List <SpielfigurPanel> organisationSpielfiguren;
 	
 	private JPanel drachenBild;
 	
@@ -86,6 +87,7 @@ public class LabyrinthGUI extends JFrame{
 	private Anleitung anleitung;	
 	private GangUebrigPanel ganguebrigpanel;
 	private JoystickPanel joystickPanel;
+	
 	
 	public LabyrinthGUI(LabyrinthDaten model) {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -192,25 +194,22 @@ public class LabyrinthGUI extends JFrame{
 		p1.add(spielfigurGelb);
 		spielfigurBlau = new SpielfigurPanel();
 		p1.add(spielfigurBlau);
-		
+		organisationSpielfiguren = new ArrayList<SpielfigurPanel>();
 		
 		//Dreieckbuttons
 		//Dreiecke Oben
 		ImageIcon DreieckObenIcon = new ImageIcon("Bilder/pfeil_oben.png");
 		ImageIcon DreieckObenIconRollover = new ImageIcon("Bilder/pfeil_oben_mouseover.png");
 		dreieckOben1 = new JButton(DreieckObenIcon);
-		dreieckOben1.addActionListener(e -> 
-		{daten.getSpielfeld().schiebenInYRichtungVonOben(1);einschiebenYRichtung(1);});
+		dreieckOben1.addActionListener(e -> schiebenMitSpieler("oben", 1));
 		dreieckOben1.setRolloverIcon(DreieckObenIconRollover);
 		dreieckButtonEigenschaften(dreieckOben1, 490, 28, 30, 30);
 		dreieckOben2 = new JButton(DreieckObenIcon);
-		dreieckOben2.addActionListener(e -> 
-		{daten.getSpielfeld().schiebenInYRichtungVonOben(3);einschiebenYRichtung(3);});
+		dreieckOben2.addActionListener(e -> schiebenMitSpieler("oben", 3));
 		dreieckButtonEigenschaften(dreieckOben2, 670, 28, 30, 30);
 		dreieckOben2.setRolloverIcon(DreieckObenIconRollover);
 		dreieckOben3 = new JButton(DreieckObenIcon);
-		dreieckOben3.addActionListener(e -> 
-		{daten.getSpielfeld().schiebenInYRichtungVonOben(5);einschiebenYRichtung(5);});
+		dreieckOben3.addActionListener(e -> schiebenMitSpieler("oben", 5));
 		dreieckButtonEigenschaften(dreieckOben3, 850, 28, 30, 30);
 		dreieckOben3.setRolloverIcon(DreieckObenIconRollover);
 		
@@ -1535,7 +1534,10 @@ private class Anleitung extends JDialog{			//NEU
 	
 	private void aktuelleSpielerbewegung(String richtung) {
 		daten.schrittMachen(richtung);
-		spielerBewegungGrafisch();
+		int eingabeX = daten.getAktuellerSpieler().getPositionX();
+		int eingabeY = daten.getAktuellerSpieler().getPositionY();
+		String farbe = daten.getAktuellerSpieler().getFarbe();
+		spielerBewegungGrafisch(eingabeX, eingabeY, farbe);
 		/*int eingabeX = daten.getAktuellerSpieler().getPositionX();
 		int eingabeY = daten.getAktuellerSpieler().getPositionY();
 		String farbe = daten.getAktuellerSpieler().getFarbe();
@@ -1557,10 +1559,7 @@ private class Anleitung extends JDialog{			//NEU
 		aktualisiereButtons();*/
 	}
 	
-	private void spielerBewegungGrafisch() {
-		int eingabeX = daten.getAktuellerSpieler().getPositionX();
-		int eingabeY = daten.getAktuellerSpieler().getPositionY();
-		String farbe = daten.getAktuellerSpieler().getFarbe();
+	private void spielerBewegungGrafisch(int eingabeX, int eingabeY, String farbe) {
 		switch(farbe) {
 		case "Rot":
 			spielfigurRot.position(eingabeX,eingabeY,farbe);
@@ -1598,10 +1597,22 @@ private class Anleitung extends JDialog{			//NEU
 			einschiebenXRichtung(eingabeStelle);
 			break;
 		}
-		List<String> info = daten.SpielerMitGangVerschieben(richtung, eingabeStelle);
-		
-		for(int i = 0; i < info.size(); i++) {
-			spielerBewegungGrafisch();
+		daten.SpielerMitGangVerschieben(richtung, eingabeStelle);
+		spielerGrafischAnpassen();
+		validate();
+	}
+	
+	private void spielerGrafischAnpassen() {
+		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
+			//verschoben boolean
+			if(daten.getSpielerliste().get(i).isVerschoben()) {
+				int x = daten.getSpielerliste().get(i).getPositionX();
+				int y = daten.getSpielerliste().get(i).getPositionY();
+				String farbe = daten.getSpielerliste().get(i).getFarbe();
+				spielerBewegungGrafisch(x, y, farbe);
+				daten.getSpielerliste().get(i).setVerschoben(false);
+			}
+			
 		}
 	}
 	

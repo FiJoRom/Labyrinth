@@ -10,7 +10,16 @@ public class Spieler {
 	private int positionX;
 	private int positionY;
 	private List<Karte> kartenblatt = new ArrayList<Karte>();
+	private boolean verschoben;
 	
+	public boolean isVerschoben() {
+		return verschoben;
+	}
+
+	public void setVerschoben(boolean verschoben) {
+		this.verschoben = verschoben;
+	}
+
 	public String getName() {
 		return name;
 	}
