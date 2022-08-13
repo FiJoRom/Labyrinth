@@ -75,6 +75,11 @@ public class LabyrinthGUI extends JFrame{
 	private SpielerPanel spielerPanel3;
 	private SpielerPanel spielerPanel4;
 	
+	private SpielfigurPanel spielfigurRot;
+	private SpielfigurPanel spielfigurBlau;
+	private SpielfigurPanel spielfigurGelb;
+	private SpielfigurPanel spielfigurGruen;
+	
 	private JPanel drachenBild;
 	
 	private Willkommen willkommen;
@@ -175,6 +180,19 @@ public class LabyrinthGUI extends JFrame{
 		spielername4.setFont(spielernummer4.getFont().deriveFont((float) 15));
 		p1.add(spielername4); 
 		*/
+		
+		//Spielfiguren
+		
+		//spielfigurRot = new SpielfigurPanel(397, 60, 40, 51, "Bilder/spielfigur_rot.png");
+		spielfigurRot = new SpielfigurPanel();
+		p1.add(spielfigurRot);
+		spielfigurGruen = new SpielfigurPanel();
+		p1.add(spielfigurGruen);
+		spielfigurGelb = new SpielfigurPanel();
+		p1.add(spielfigurGelb);
+		spielfigurBlau = new SpielfigurPanel();
+		p1.add(spielfigurBlau);
+		
 		
 		//Dreieckbuttons
 		//Dreiecke Oben
@@ -1228,7 +1246,6 @@ private class Anleitung extends JDialog{			//NEU
 			gbl.setConstraints(spielerFarbeAuswahl, gbcZwei);
 			this.add(spielerFarbeAuswahl);
 			
-			
 			gbcZwei.gridx = 3;
 			gbcZwei.gridy = 3;
 			gbcZwei.gridwidth = 1;
@@ -1359,6 +1376,7 @@ private class Anleitung extends JDialog{			//NEU
 				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
 				spielerPanel2.getKartenanzahl().setText("12");
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
+				spielfigurenSetzen();
 				break;
 			
 			case 3:
@@ -1371,6 +1389,7 @@ private class Anleitung extends JDialog{			//NEU
 				spielerPanel3.getSpielername().setText(daten.getSpielerliste().get(2).getName());
 				spielerPanel3.getKartenanzahl().setText("8");
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
+				spielfigurenSetzen();
 				break;
 				
 			case 4:
@@ -1379,6 +1398,7 @@ private class Anleitung extends JDialog{			//NEU
 				spielerPanel3.getSpielername().setText(daten.getSpielerliste().get(2).getName());
 				spielerPanel4.getSpielername().setText(daten.getSpielerliste().get(3).getName());
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
+				spielfigurenSetzen();
 				break;
 			
 			default:
@@ -1396,6 +1416,37 @@ private class Anleitung extends JDialog{			//NEU
 		aktualisiereGanguebrig();
 		System.out.println(daten.getSpielerliste());
 	}
+	
+	
+	public void spielfigurenSetzen() {
+		
+		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
+			
+			switch(daten.getSpielerliste().get(i).getFarbe()) {
+			
+			case "Rot": 
+				spielfigurRot.setBounds(925, 583, 55, 70);
+				spielfigurRot.bildaendern("Bilder/spielfigur_rot.png");
+				break;
+			case "Gruen":
+				spielfigurGruen.setBounds(389, 43, 55, 70);
+				spielfigurGruen.bildaendern("Bilder/spielfigur_gruen.png");
+				break;
+			case "Blau":
+				spielfigurBlau.setBounds(389, 583, 55, 70);
+				spielfigurBlau.bildaendern("Bilder/spielfigur_blau.png");
+				break;
+			case "Gelb":
+				spielfigurGelb.setBounds(925, 43, 55, 70);
+				spielfigurGelb.bildaendern("Bilder/spielfigur_gelb.png");
+				break;
+			default: 
+				break;
+			}
+		}	
+	}
+	
+	
 	
 	public void linksDrehung() {
 		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachLinks();
