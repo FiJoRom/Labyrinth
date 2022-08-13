@@ -2,11 +2,11 @@ package labyrinth;
 
 public class TKreuzung extends Gangkarte {
 
-	private static String[] schatznamen = {"zwerg","flaschengeist","fledermaus", "geist", 
-			"drache", "einhorn"};
+	private static String[] schatznamen = {"Zwerg","Flaschengeist","Fledermaus", "Geist", 
+			"Drache", "Einhorn"};
 	
-	private static String[] schatznamenFest = {"ring", "zaubertrank", "kerzenstaender", "schatztruhe",
-			"krone", "buch", "ritterhelm", "rubin", "schluessel", "muenzbeutel", "dolch", "kelch"};
+	private static String[] schatznamenFest = {"Ring", "Zaubertrank", "Kerzenstaender", "Schatztruhe",
+			"Krone", "Buch", "Ritterhelm", "Rubin", "Schluessel", "Muenzbeutel", "Dolch", "Kelch"};
 	
 	public TKreuzung() {
 		nordausgang = true;
@@ -54,26 +54,27 @@ public class TKreuzung extends Gangkarte {
 		switch(this.drehung) {
 		case 0:
 			this.nordausgang = true;
-			this.suedausgang = false;
 			this.ostausgang = true;
+			this.suedausgang = false;
 			this.westausgang = true;
+			
 			break;
 		case 1:
 			this.nordausgang = true;
-			this.suedausgang = true;
 			this.ostausgang = true;
+			this.suedausgang = true;
 			this.westausgang = false;
 			break;
 		case 2:
 			this.nordausgang = false;
-			this.suedausgang = true;
 			this.ostausgang = true;
+			this.suedausgang = true;
 			this.westausgang = true;
 			break;
 		case 3:
 			this.nordausgang = true;
-			this.suedausgang = true;
 			this.ostausgang = false;
+			this.suedausgang = true;
 			this.westausgang = true;
 			break;
 		}
@@ -104,6 +105,12 @@ public class TKreuzung extends Gangkarte {
 			this.suedausgang = true;
 			break;
 		}
+	}
+
+	@Override
+	public void zustandAendern() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

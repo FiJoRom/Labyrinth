@@ -1,6 +1,5 @@
 package labyrinth;
 
-import java.util.List;
 import java.util.Random;
 
 public class Spielfeld {
@@ -46,14 +45,18 @@ public class Spielfeld {
 		this.setRest(this.gaengeLose[33]);
 	}
 
-		
 	public void gaengekartenMischen() {
 		Random zufall = new Random();
-		for(int i = this.gaengeLose.length - 1; i >= 0; i--) {
-			int j = zufall.nextInt(i+1);
-			Gangkarte tmp = this.gaengeLose[i];
-			this.gaengeLose[i] = this.gaengeLose[j];
-			this.gaengeLose[j] = tmp;
+		for(int i = 0; i <30; i++) {
+			int tauschA = zufall.nextInt(34);
+			int tauschB = zufall.nextInt(34);
+			//System.out.println("Tauschpartner A: " + tauschA + gaengeLose[tauschA].getClass().getName());
+			//System.out.println("Tauschpartner B: " + tauschB + gaengeLose[tauschB].getClass().getName());
+			Gangkarte ablage = this.gaengeLose[tauschA];
+			this.gaengeLose[tauschA] = this.gaengeLose[tauschB];
+			this.gaengeLose[tauschB] = ablage;
+			//System.out.println("Tauschpartner A: " + tauschA + gaengeLose[tauschA].getClass().getName());
+			//System.out.println("Tauschpartner B: " + tauschB + gaengeLose[tauschB].getClass().getName());
 		}
 		for(int j = 0; j < this.gaengeLose.length; j++) {
 			this.gaengeLose[j].gangkarteWirbeln();
@@ -101,7 +104,7 @@ public class Spielfeld {
 		Gangkarte kopieN2;
 		this.matrix[6][x] = this.rest;
 		this.rest = this.matrix[0][x];
-		for(int i = 5; i >= 0; i--) {
+		for(int i = 5; i > 0; i--) {
 			kopieN2 = kopieN1;
 			kopieN1 = matrix[i][x];
 			matrix[i][x] = kopieN2;
