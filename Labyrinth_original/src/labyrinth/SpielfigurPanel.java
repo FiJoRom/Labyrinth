@@ -59,12 +59,13 @@ public class SpielfigurPanel extends JPanel {
 	public void position(int eingabeX, int eingabeY, String farbe) {
 		
 		if(farbe.equals("Rot") || farbe.equals("Gelb")) {
-			this.setAlignmentX(xPositionenRotGelb[eingabeX]);
+			//this.setAlignmentX(xPositionenRotGelb[eingabeX]);
+			this.setLocation(xPositionenRotGelb[eingabeX], yPositionen[eingabeY]);
 		}else {
-			this.setAlignmentX(xPositionenGruenBlau[eingabeX]);
+			this.setLocation(xPositionenGruenBlau[eingabeX],yPositionen[eingabeY]);
 		}
 		
-		this.setAlignmentY(yPositionen[eingabeY]);
+		//this.setAlignmentY(yPositionen[eingabeY]);
 		validate();
 	}
 	

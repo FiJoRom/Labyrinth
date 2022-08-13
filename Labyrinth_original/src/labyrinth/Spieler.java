@@ -78,11 +78,6 @@ public class Spieler {
 	}
 
 	public void schrittNachOben() {
-		this.positionY = (this.positionY + 1)%7;
-	}
-	
-	public void schrittNachUnten() {
-		
 		if(positionY == 0)
 		{
 			this.positionY = 6;
@@ -91,17 +86,21 @@ public class Spieler {
 		}
 	}
 	
-	public void schrittNachLinks() {
-		this.positionX = (this.positionX + 1)%7;
+	public void schrittNachUnten() {
+		this.positionY = (this.positionY + 1)%7;
 	}
 	
-	public void schrittNachRechts() {
+	public void schrittNachLinks() {
 		if(positionX == 0)
 		{
 			this.positionX = 6;
 		}else {
 		this.positionX = (this.positionX - 1);
 		}
+	}
+	
+	public void schrittNachRechts() {
+		this.positionX = (this.positionX + 1)%7;
 	}
 	
 	
