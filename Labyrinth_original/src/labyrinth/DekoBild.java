@@ -17,9 +17,26 @@ public class DekoBild extends JPanel{
 	private ImageIcon imageicon;
 	private String bilddateipfad;
 	
-	DekoBild(int x, int y, int width, int height, String imagePath){
+	public DekoBild(int x, int y, int width, int height, String imagePath){
 
 		this.setBounds(x, y, width, height);
+		this.setOpaque(false);
+		this.bilddateipfad = imagePath;
+		this.bilddatei = new File(imagePath);
+		try {
+			this.bufferedimage = ImageIO.read(bilddatei);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.imageicon = new ImageIcon(bufferedimage);
+		this.jlabel = new JLabel(imageicon);
+		this.add(jlabel);
+	
+	}
+	
+	public DekoBild(int width, int height, String imagePath){
+
+		this.setSize(width, height);
 		this.setOpaque(false);
 		this.bilddateipfad = imagePath;
 		this.bilddatei = new File(imagePath);
