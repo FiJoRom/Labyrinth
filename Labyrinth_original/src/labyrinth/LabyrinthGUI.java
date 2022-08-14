@@ -87,6 +87,7 @@ public class LabyrinthGUI extends JFrame{
 	private Anleitung anleitung;	
 	private GangUebrigPanel ganguebrigpanel;
 	private JoystickPanel joystickPanel;
+	private AnleitungButton anleitungButton;
 	
 	
 	public LabyrinthGUI(LabyrinthDaten model) {
@@ -833,6 +834,11 @@ public class LabyrinthGUI extends JFrame{
 		hilfe.addActionListener(e -> hilfe());
 		beenden.addActionListener(e -> {beenden();});
 		
+		//Anleitung
+		ImageIcon buch = new ImageIcon("Bilder/buchAnleitung.png");
+		anleitungButton = new AnleitungButton(buch);
+		p1.add(anleitungButton);
+		
 		//Menueleiste Zuordnung
 		menueLeiste.add(spielMenue);
 		spielMenue.add(neuesSpiel);
@@ -1291,6 +1297,7 @@ private class Anleitung extends JDialog{			//NEU
 		spielGenerieren();
 	}
 	
+	/*
 	private void spielUebersichtGenerieren() {
 		switch (daten.getSpieleranzahl()) {
 			case 2: 
@@ -1331,6 +1338,105 @@ private class Anleitung extends JDialog{			//NEU
 				break;
 		}
 	}
+	*/
+	private void spielUebersichtGenerieren() {
+		switch (daten.getSpieleranzahl()) {
+			case 2: 
+				p1.remove(spielerPanel3);
+				p1.remove(spielerPanel4);
+				repaint();
+				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
+				spielerPanel1.getKartenanzahl().setText("12");
+				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
+				spielerPanel2.getKartenanzahl().setText("12");
+				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
+				spielfigurenSetzen();
+				break;
+			
+			case 3:
+				p1.remove(spielerPanel4);
+				repaint();
+				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
+				spielerPanel1.getKartenanzahl().setText("8");
+				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
+				spielerPanel2.getKartenanzahl().setText("8");
+				spielerPanel3.getSpielername().setText(daten.getSpielerliste().get(2).getName());
+				spielerPanel3.getKartenanzahl().setText("8");
+				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
+				spielfigurenSetzen();
+				break;
+				
+			case 4:
+				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
+				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
+				spielerPanel3.getSpielername().setText(daten.getSpielerliste().get(2).getName());
+				spielerPanel4.getSpielername().setText(daten.getSpielerliste().get(3).getName());
+				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
+				spielfigurenSetzen();
+				break;
+			
+			default:
+				break;
+		}
+	}
+
+	public void spielfigurAnzeigenSetzen(int spielerZahl, String farbe) {
+		
+		switch(spielerZahl) {
+		
+		case 0: 
+			String URI0 = "Bilder/spielfigur_" + farbe + "_vorne.png";
+			spielerPanel1.getSpielfigurAnzeige().bildaendern(URI0);
+			break;
+		case 1:
+			String URI1 = "Bilder/spielfigur_" + farbe + "_vorne.png";
+			spielerPanel2.getSpielfigurAnzeige().bildaendern(URI1);
+			break;
+		case 2:
+			String URI2 = "Bilder/spielfigur_" + farbe + "_vorne.png";
+			spielerPanel3.getSpielfigurAnzeige().bildaendern(URI2);
+			break;
+		case 3:
+			String URI3 = "Bilder/spielfigur_" + farbe + "_vorne.png";
+			spielerPanel4.getSpielfigurAnzeige().bildaendern(URI3);
+			break;
+		default:
+			break;
+		}
+	}
+
+
+	public void spielfigurenSetzen() {
+		
+		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
+			
+			switch(daten.getSpielerliste().get(i).getFarbe()) {
+			
+			case "Rot": 
+				spielfigurRot.setBounds(925, 583, 55, 70);
+				spielfigurRot.bildaendern("Bilder/spielfigur_rot.png");
+				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "rot");
+				break;
+			case "Gruen":
+				spielfigurGruen.setBounds(389, 43, 55, 70);
+				spielfigurGruen.bildaendern("Bilder/spielfigur_gruen.png");
+				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "gruen");
+				break;
+			case "Blau":
+				spielfigurBlau.setBounds(389, 583, 55, 70);
+				spielfigurBlau.bildaendern("Bilder/spielfigur_blau.png");
+				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "blau");
+				break;
+			case "Gelb":
+				spielfigurGelb.setBounds(925, 43, 55, 70);
+				spielfigurGelb.bildaendern("Bilder/spielfigur_gelb.png");
+				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "gelb");
+				break;
+			default: 
+				break;
+			}
+		}	
+	}
 	
 	private void spielGenerieren() {
 		spielUebersichtGenerieren();
@@ -1356,7 +1462,7 @@ private class Anleitung extends JDialog{			//NEU
 		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].drehung);
 	}
 	
-	
+	/*
 	public void spielfigurenSetzen() {
 		
 		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
@@ -1383,7 +1489,7 @@ private class Anleitung extends JDialog{			//NEU
 				break;
 			}
 		}	
-	}
+	}*/
 	
 	public void positionAendern() {
 		

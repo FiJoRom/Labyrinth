@@ -45,6 +45,7 @@ public class SpielfigurVornePanel extends JPanel {
 		}
 		this.imageicon = new ImageIcon(bufferedimage);
 		this.jlabel = new RotatedLabel(imageicon);
+		this.jlabel.setVisible(true);
 		this.add(jlabel);
 	}
 }

@@ -30,7 +30,7 @@ public class SpielerPanel extends JPanel{
 		this.setOpaque(false);
 		
 		spielfigurAnzeige = new SpielfigurVornePanel();
-		generiereGangbilder(spielfigurAnzeige, "Bilder/leeres_Bild_Spielfigur.png");
+		generiereGangbilderSpielfigur(spielfigurAnzeige, "Bilder/leeres_Bild_Spielfigur.png");
 		spielfigurAnzeige.setSize(30,50);
 		spielfigurAnzeige.setOpaque(false);
 		spielfigurAnzeige.setBorder(BorderFactory.createEmptyBorder(22, 0, 0, 0));
@@ -88,6 +88,17 @@ public class SpielerPanel extends JPanel{
 		try {
 			BufferedImage logo = ImageIO.read(new File(gangpath));
 			JLabel picLabel = new JLabel(new ImageIcon(logo));
+			gangpanel.add(picLabel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}	
+	private void generiereGangbilderSpielfigur(JPanel gangpanel, String gangpath) {
+		try {
+			BufferedImage logo = ImageIO.read(new File(gangpath));
+			JLabel picLabel = new JLabel(new ImageIcon(logo));
+			picLabel.setVisible(false);
 			gangpanel.add(picLabel);
 		} catch (IOException e) {
 			e.printStackTrace();
