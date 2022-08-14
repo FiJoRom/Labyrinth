@@ -448,6 +448,7 @@ public class LabyrinthGUI extends JFrame{
 		joystickPanel.getRechts().addActionListener(e -> aktuelleSpielerbewegung("rechts"));
 		joystickPanel.getLinks().addActionListener(e -> aktuelleSpielerbewegung("links"));
 		p1.add(joystickPanel);
+		sperrenButtons();
 		
 		//AktuellerSpielerPanel
 		JLabel aktuellerSpieler = new JLabel("Aktueller Spieler");
@@ -1055,7 +1056,7 @@ private class Anleitung extends JDialog{			//NEU
 		spielfeldVorbereiten();
 		aktualisiereGanguebrig();
 		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
-		aktualisiereButtons();
+		//aktualisiereButtons();
 		aktualisiereDreiecke(true);
 		
 		aktuelleKarte.addMouseListener(new MouseHandler());
@@ -1141,6 +1142,14 @@ private class Anleitung extends JDialog{			//NEU
 		}
 	}
 	
+	private void sperrenButtons() {
+		joystickPanel.getOben().setEnabled(false);
+		joystickPanel.getRechts().setEnabled(false);
+		joystickPanel.getUnten().setEnabled(false);
+		joystickPanel.getLinks().setEnabled(false);
+		joystickPanel.getFertig().setEnabled(false);
+	}
+	
 	public void einschiebenXRichtung(int eingabeStelle) {
 		
 		for(int i = 0; i < 7; i++) {
@@ -1217,10 +1226,12 @@ private class Anleitung extends JDialog{			//NEU
 		}
 		daten.SpielerMitGangVerschieben(richtung, eingabeStelle);
 		spielerGrafischAnpassen();
-		aktualisiereButtons();
+		//aktualisiereButtons();
 		daten.setVerboten(dreieck);
 		organisationDreiecke[dreieck].setEnabled(false);
 		aktualisiereDreiecke(false);
+		aktualisiereButtons();
+		joystickPanel.getFertig().setEnabled(true);
 		validate();
 	}
 	
@@ -1253,6 +1264,8 @@ private class Anleitung extends JDialog{			//NEU
 		aktualisiereButtons();
 		aktuellerspielername.setText(daten.getAktuellerSpieler().getName());
 		aktualisiereDreiecke(true);
+		//joystickPanel.getRechts().setEnabled(false);
+		sperrenButtons();
 		validate();
 	}
 	
