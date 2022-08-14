@@ -37,6 +37,7 @@ public class Spielanleitung extends JDialog {
 			fenster.setOpaque(true);
 			this.add(fenster);
 			scrollPane = new JScrollPane(fenster);
+			scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 			add(scrollPane);
 			gbl = new GridBagLayout();
 			fenster.setLayout(gbl);			

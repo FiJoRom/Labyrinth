@@ -4,16 +4,20 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -549,7 +553,7 @@ public class LabyrinthGUI extends JFrame{
 		private String[] farben = {"Rot","Blau","Gruen","Gelb"};
 		private JButton fertig;
 		private GridBagLayout gbl;
-		
+		private HintergrundPanel hintergrundPanel;
 		
 		private GridBagConstraints gbc;
 		private GridBagConstraints gbcZwei;
@@ -557,27 +561,23 @@ public class LabyrinthGUI extends JFrame{
 		Willkommen(){
 			this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 			this.setTitle("Das Verrueckte LabyrINTh");
-			
-			// JFrame-Konfiguration
-			this.setSize(1200, 800);
-			this.setLocation(400, 100);
+
+			this.setSize(450, 340);
+			this.setLocation(668, 300);
 			gbl = new GridBagLayout();
 			this.setLayout(gbl);
-						
+			
 			gbc = new GridBagConstraints();
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			gbc.insets = new Insets(5,5,5,5);
 			
 			gbcEigenschaftenSetzen(0,0,3,1);
-			//gbc.gridx = 0;
-			//gbc.gridy = 0;
-			//gbc.gridwidth = 3;
-			//gbc.gridheight = 1;
 			String imagePath = "Bilder/Labyrinth_Logo.png";
 			try {
 				BufferedImage logo = ImageIO.read(new File(imagePath));
 				JLabel picLabel = new JLabel(new ImageIcon(logo));
 				bildpanel = new JPanel();
+				bildpanel.setOpaque(false);
 				gbl.setConstraints(bildpanel, gbc);
 				this.add(bildpanel);
 				bildpanel.add(picLabel);
@@ -628,7 +628,8 @@ public class LabyrinthGUI extends JFrame{
 			gbl.setConstraints(vierSpieler, gbc);
 			this.add(vierSpieler);
 			
-			pack();			
+			this.getContentPane().setBackground(Color.decode("#6aaadd"));
+
 		}
 		
 		private void spielerAnzahlSetzen(int spAnzahl){
@@ -650,7 +651,7 @@ public class LabyrinthGUI extends JFrame{
 		}
 		
 		private void spielerEigenschaftenSetzen(int spielerNummer) {
-				
+	
 			gbcZwei = new GridBagConstraints();
 			gbcZwei.fill = GridBagConstraints.HORIZONTAL;
 			gbcZwei.insets = new Insets(5,5,5,5);
@@ -667,7 +668,6 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridwidth = 2;
 			gbcZwei.gridheight = 1;
 			spielerNamelabel = new JLabel ("Wie heisst Spieler " + spielerNummer + "?");
-			//spielerNamelabel.setSize(300, 30);
 			gbl.setConstraints(spielerNamelabel, gbcZwei);
 			this.add(spielerNamelabel);
 			
@@ -676,7 +676,6 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridwidth = 2;
 			gbcZwei.gridheight = 1;
 			spielerFarbe = new JLabel ("Farbe:");
-			//spielerFarbe.setSize(300, 30);
 			gbl.setConstraints(spielerFarbe, gbcZwei);
 			this.add(spielerFarbe);
 			
@@ -684,8 +683,8 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridy = 2;
 			gbcZwei.gridwidth = 2;
 			gbcZwei.gridheight = 1;
+			//gbcZwei.insets = new Insets(5,150,15,5);
 			spielerNametext = new JTextArea();
-			//spielerNametext.setSize(400, 30);
 			gbl.setConstraints(spielerNametext, gbcZwei);
 			this.add(spielerNametext);
 			
@@ -694,7 +693,6 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridwidth = 2;
 			gbcZwei.gridheight = 1;
 			spielerFarbeAuswahl = new JComboBox<String>(farben);
-			//spielerFarbeAuswahl.setSize(300, 30);
 			gbl.setConstraints(spielerFarbeAuswahl, gbcZwei);
 			this.add(spielerFarbeAuswahl);
 			
@@ -704,13 +702,14 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridheight = 1;
 			gbcZwei.insets = new Insets(5,130,15,30);
 			fertig = new JButton("Fertig");
-			//fertig.setSize(100, 30);
 			fertig.addActionListener(e -> spielerEigenschaftenSpeichern(spielerNummer));
 			gbl.setConstraints(fertig, gbcZwei);
-			this.add(fertig);
+			this.add(fertig);	
 			
 			pack();
 		
+			this.setSize(450, 350);
+			this.setLocation(668, 300);
 		}
 		
 		private void spielerEigenschaftenSpeichern(int spielerNummer) {
