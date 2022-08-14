@@ -51,6 +51,7 @@ public class SpielerPanel extends JPanel{
 		generiereGangbilder(kartenuebrig, "Bilder/rueckseite_k.png");
 		kartenuebrig.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 		kartenuebrig.setSize(63,110);
+		kartenuebrig.setOpaque(false);
 		this.add(kartenuebrig, BorderLayout.EAST);
 		spielername = new JLabel(spName);
 		spielername.setSize(120, 25);

@@ -30,6 +30,7 @@ public class GangUebrigPanel extends JPanel {
 	public GangUebrigPanel() {
 		this.setLayout(new BorderLayout());
 		this.setBounds(1050, 100, 280, 115);
+		this.setOpaque(false);
 		
 		ImageIcon linksdrehungIcon = new ImageIcon("Bilder/iconDrehungLinks.png");
 		ImageIcon rechtsdrehungIcon = new ImageIcon("Bilder/iconDrehungRechts.png");

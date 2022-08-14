@@ -24,6 +24,7 @@ public class JoystickPanel extends JPanel{
 		this.setLayout(layout);
 		layout.setHgap(-10);
 		this.setBounds(1100, 450, 200, 180);
+		this.setOpaque(false);
 		
 		//Icons
 		ImageIcon fertigIcon = new ImageIcon("Bilder/iconfertig.png");

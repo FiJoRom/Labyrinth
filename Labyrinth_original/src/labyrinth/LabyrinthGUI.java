@@ -1,7 +1,9 @@
 package labyrinth;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GradientPaint;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -518,9 +520,19 @@ public class LabyrinthGUI extends JFrame{
 		willkommen.setVisible(true);
 		willkommen.setAlwaysOnTop(true);
 		
+		
+		HintergrundPanel hintergrundPanel = new HintergrundPanel("#ff9137", "#ffcc40");
+		
+		//HintergrundPanel hintergrundPanel = new HintergrundPanel("#ffaa66", "#ffcc40");
+		//hintergrundPanel.setSize(p1.getWidth(), p1.getHeight());
+		hintergrundPanel.setSize(1400, 1050);
+		hintergrundPanel.setVisible(true);
+		hintergrundPanel.setOpaque(true);
+		p1.add(hintergrundPanel);
+		
 	}
 	
-private class Anleitung extends JDialog{			//NEU
+	private class Anleitung extends JDialog{			//NEU
 		
 		private JPanel fenster;
 		private JScrollPane scrollPane;
