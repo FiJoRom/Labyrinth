@@ -91,7 +91,7 @@ public class LabyrinthGUI extends JFrame{
 	private GangUebrigPanel ganguebrigpanel;
 	private JoystickPanel joystickPanel;
 	private AnleitungButton anleitungButton;
-	
+	private Gewonnen gewonnen;	
 	
 	public LabyrinthGUI(LabyrinthDaten model) {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -483,7 +483,7 @@ public class LabyrinthGUI extends JFrame{
 		beenden = new JMenuItem("Beenden");
 		
 		//ActionListener
-		neuesSpiel.addActionListener(e -> {System.exit(0);});
+		neuesSpiel.addActionListener(e -> gewinner());
 		hilfe.addActionListener(e -> hilfe());
 		beenden.addActionListener(e -> {beenden();});
 		
@@ -1396,6 +1396,12 @@ public class LabyrinthGUI extends JFrame{
 		dreieck.setEnabled(false);
 		p1.add(dreieck);
 	}
+	
+	public void gewinner() {
+        gewonnen = new Gewonnen("Spieler 1", "blau", "Spieler 2", "Spieler 3", "Spieler 4");
+        gewonnen.setVisible(true);
+        gewonnen.setAlwaysOnTop(true);
+    }
 
 	private void hilfe() {								
 		anleitung = new Anleitung();
