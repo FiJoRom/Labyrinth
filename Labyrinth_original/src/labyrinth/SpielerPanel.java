@@ -22,34 +22,51 @@ public class SpielerPanel extends JPanel{
 	private JLabel spielernummer;
 	private JPanel kartenuebrig;
 	private JLabel spielername;
+	private SpielfigurVornePanel spielfigurAnzeige;
 		
 	public SpielerPanel(int y, String spNummer, String spName) {
 		this.setLayout(new BorderLayout());
-		this.setBounds(40, y, 230, 115);
+		this.setBounds(30, y, 270, 115);
 		this.setOpaque(false);
 		
+		spielfigurAnzeige = new SpielfigurVornePanel();
+		generiereGangbilder(spielfigurAnzeige, "Bilder/leeres_Bild_Spielfigur.png");
+		spielfigurAnzeige.setSize(30,50);
+		spielfigurAnzeige.setOpaque(false);
+		spielfigurAnzeige.setBorder(BorderFactory.createEmptyBorder(22, 0, 0, 0));
+		this.add(spielfigurAnzeige, BorderLayout.WEST);
+		
 		kartenanzahl = new JLabel("6", SwingConstants.CENTER);
-		kartenanzahl.setSize(225, 110);
+		kartenanzahl.setSize(245, 110);
 		kartenanzahl.setFont(kartenanzahl.getFont().deriveFont((float) 27));
 		kartenanzahl.setForeground(Color.white);
-		kartenanzahl.setBorder(BorderFactory.createEmptyBorder(0, 162, 0, 0));	
+		kartenanzahl.setBorder(BorderFactory.createEmptyBorder(0, 200, 0, 0));
 		this.add(kartenanzahl, BorderLayout.EAST);	
 		spielernummer = new JLabel(spNummer);
 		spielernummer.setSize(200, 60);	
-		spielernummer.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));		
+		spielernummer.setBorder(BorderFactory.createEmptyBorder(30, 60, 0, 0));
 		spielernummer.setFont(spielernummer.getFont().deriveFont((float) 22));
-		this.add(spielernummer,BorderLayout.WEST);
+		this.add(spielernummer,BorderLayout.CENTER);
 		kartenuebrig = new JPanel();
 		generiereGangbilder(kartenuebrig, "Bilder/rueckseite_k.png");
+		kartenuebrig.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 		kartenuebrig.setSize(63,110);
 		this.add(kartenuebrig, BorderLayout.EAST);
 		spielername = new JLabel(spName);
-		spielername.setSize(200, 25);
-		spielername.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
+		spielername.setSize(120, 25);
 		spielername.setFont(spielername.getFont().deriveFont((float) 15));
-		this.add(spielername,BorderLayout.WEST);
+		spielername.setBorder(BorderFactory.createEmptyBorder(40, 15, 0 , 0));
+		this.add(spielername,BorderLayout.CENTER);
 	}
 	
+	public SpielfigurVornePanel getSpielfigurAnzeige() {
+		return spielfigurAnzeige;
+	}
+
+	public void setSpielfigurAnzeige(SpielfigurVornePanel spielfigurAnzeige) {
+		this.spielfigurAnzeige = spielfigurAnzeige;
+	}
+
 	public JLabel getKartenanzahl() {
 		return kartenanzahl;
 	}
@@ -76,6 +93,5 @@ public class SpielerPanel extends JPanel{
 			e.printStackTrace();
 		}
 		
-	}
-	
+	}	
 }
