@@ -1531,6 +1531,8 @@ private class Anleitung extends JDialog{			//NEU
 		int spielerNummerKopie = daten.getAktuellerSpieler().getSpielerNummer();
 		
 		daten.setAktuellerSpieler(daten.getSpielerliste().get((spielerNummerKopie + 1) % daten.getSpieleranzahl()));
+		aktualisiereButtons();
+		validate();
 	}
 	
 	private void gesuchterSchatzPruefen() {
@@ -1539,7 +1541,9 @@ private class Anleitung extends JDialog{			//NEU
 		int spielerKoordinateY = daten.getAktuellerSpieler().getPositionY();
 				
 		String gesuchterSchatz = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
+		System.out.println(gesuchterSchatz);
 		String aktuellePositionSchatz = daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX].schatz;
+		System.out.println(aktuellePositionSchatz);
 		
 		if(gesuchterSchatz.equals(aktuellePositionSchatz)) {
 			daten.getAktuellerSpieler().getKartenblatt().remove(0);
@@ -1570,6 +1574,8 @@ private class Anleitung extends JDialog{			//NEU
 			//gewonnen();
 		}
 		validate();
+		System.out.println(daten.getAktuellerSpieler().getKartenblatt().size());
+		System.out.println(daten.getAktuellerSpieler().getKartenblatt());
 	}
 	
 	private void aktualisiereGanguebrig() {
