@@ -1532,6 +1532,7 @@ private class Anleitung extends JDialog{			//NEU
 		
 		daten.setAktuellerSpieler(daten.getSpielerliste().get((spielerNummerKopie + 1) % daten.getSpieleranzahl()));
 		aktualisiereButtons();
+		aktuellerspielername.setText(daten.getAktuellerSpieler().getName());
 		validate();
 	}
 	
