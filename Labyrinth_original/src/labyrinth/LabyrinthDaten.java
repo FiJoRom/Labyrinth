@@ -12,7 +12,25 @@ public class LabyrinthDaten {
 	private List<Karte> kartendeck;
 	private Spielfeld spielfeld = new Spielfeld();
 	private Spieler aktuellerSpieler;
+	private boolean darfSchieben;
+	private int verboten;
 	
+	public boolean isDarfSchieben() {
+		return darfSchieben;
+	}
+
+	public void setDarfSchieben(boolean darfSchieben) {
+		this.darfSchieben = darfSchieben;
+	}
+
+	public int getVerboten() {
+		return verboten;
+	}
+
+	public void setVerboten(int verboten) {
+		this.verboten = verboten;
+	}
+
 	public Spieler getAktuellerSpieler() {
 		return aktuellerSpieler;
 	}
@@ -23,6 +41,7 @@ public class LabyrinthDaten {
 
 	public LabyrinthDaten() {
 		spielfeld.gaengekartenAuslegen();
+		darfSchieben = true;
 	}
 
 	public Spielfeld getSpielfeld() {

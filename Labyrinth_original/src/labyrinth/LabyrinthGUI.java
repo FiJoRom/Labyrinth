@@ -65,6 +65,7 @@ public class LabyrinthGUI extends JFrame{
 	private JButton dreieckLinks1;
 	private JButton dreieckLinks2;
 	private JButton dreieckLinks3;
+	private JButton[] organisationDreiecke;
 	
 	private JPanel spielfeldHintergrund;
 	
@@ -129,69 +130,82 @@ public class LabyrinthGUI extends JFrame{
 		organisationSpielfiguren = new ArrayList<SpielfigurPanel>();
 		
 		//Dreieckbuttons
+		organisationDreiecke = new JButton[12];
 		//Dreiecke Oben
 		ImageIcon DreieckObenIcon = new ImageIcon("Bilder/pfeil_oben.png");
 		ImageIcon DreieckObenIconRollover = new ImageIcon("Bilder/pfeil_oben_mouseover.png");
 		dreieckOben1 = new JButton(DreieckObenIcon);
-		dreieckOben1.addActionListener(e -> schiebenMitSpieler("oben", 1));
+		dreieckOben1.addActionListener(e -> schiebenMitSpieler("oben", 1, 8));
 		dreieckOben1.setRolloverIcon(DreieckObenIconRollover);
 		dreieckButtonEigenschaften(dreieckOben1, 490, 28, 30, 30);
+		organisationDreiecke[0] = dreieckOben1; 
 		dreieckOben2 = new JButton(DreieckObenIcon);
-		dreieckOben2.addActionListener(e -> schiebenMitSpieler("oben", 3));
+		dreieckOben2.addActionListener(e -> schiebenMitSpieler("oben", 3, 7));
 		dreieckButtonEigenschaften(dreieckOben2, 670, 28, 30, 30);
 		dreieckOben2.setRolloverIcon(DreieckObenIconRollover);
+		organisationDreiecke[1] = dreieckOben2; 
 		dreieckOben3 = new JButton(DreieckObenIcon);
-		dreieckOben3.addActionListener(e -> schiebenMitSpieler("oben", 5));
+		dreieckOben3.addActionListener(e -> schiebenMitSpieler("oben", 5, 6));
 		dreieckButtonEigenschaften(dreieckOben3, 850, 28, 30, 30);
 		dreieckOben3.setRolloverIcon(DreieckObenIconRollover);
+		organisationDreiecke[2] = dreieckOben3; 
 		
 		//Dreiecke Rechts
 		ImageIcon DreieckRechtsIcon = new ImageIcon("Bilder/pfeil_rechts.png");
 		ImageIcon DreieckRechtsIconRollover = new ImageIcon("Bilder/pfeil_rechts_mouseover.png");
 		dreieckRechts1 = new JButton(DreieckRechtsIcon);
-		dreieckRechts1.addActionListener(e -> schiebenMitSpieler("rechts", 1));
+		dreieckRechts1.addActionListener(e -> schiebenMitSpieler("rechts", 1, 11));
 		dreieckRechts1.setRolloverIcon(DreieckRechtsIconRollover);
 		dreieckButtonEigenschaften(dreieckRechts1, 998, 176, 30, 30);
+		organisationDreiecke[3] = dreieckRechts1; 
 		dreieckRechts2 = new JButton(DreieckRechtsIcon);
-		dreieckRechts2.addActionListener(e -> schiebenMitSpieler("rechts", 3));
+		dreieckRechts2.addActionListener(e -> schiebenMitSpieler("rechts", 3, 10));
 		dreieckRechts2.setRolloverIcon(DreieckRechtsIconRollover);
 		dreieckButtonEigenschaften(dreieckRechts2, 998, 356, 30, 30);
+		organisationDreiecke[4] = dreieckRechts2; 
 		dreieckRechts3 = new JButton(DreieckRechtsIcon);
-		dreieckRechts3.addActionListener(e -> schiebenMitSpieler("rechts", 5));
+		dreieckRechts3.addActionListener(e -> schiebenMitSpieler("rechts", 5, 9));
 		dreieckButtonEigenschaften(dreieckRechts3, 998, 536, 30, 30);
 		dreieckRechts3.setRolloverIcon(DreieckRechtsIconRollover);
+		organisationDreiecke[5] = dreieckRechts3; 
 		
 		//Dreiecke Unten
 		ImageIcon DreieckUntenIcon = new ImageIcon("Bilder/pfeil_unten.png");
 		ImageIcon DreieckUntenIconRollover = new ImageIcon("Bilder/pfeil_unten_mouseover.png");
 		dreieckUnten1 = new JButton(DreieckUntenIcon);
-		dreieckUnten1.addActionListener(e -> schiebenMitSpieler("unten", 1));
+		dreieckUnten1.addActionListener(e -> schiebenMitSpieler("unten", 1, 0));
 		dreieckUnten1.setRolloverIcon(DreieckUntenIconRollover);
 		dreieckButtonEigenschaften(dreieckUnten1, 490, 688, 30, 30);
+		organisationDreiecke[8] = dreieckUnten1; 
 		dreieckUnten2 = new JButton(DreieckUntenIcon);
-		dreieckUnten2.addActionListener(e -> schiebenMitSpieler("unten", 3));
+		dreieckUnten2.addActionListener(e -> schiebenMitSpieler("unten", 3, 1));
 		dreieckButtonEigenschaften(dreieckUnten2, 670, 688, 30, 30);
 		dreieckUnten2.setRolloverIcon(DreieckUntenIconRollover);
+		organisationDreiecke[7] = dreieckUnten2; 
 		dreieckUnten3 = new JButton(DreieckUntenIcon);
-		dreieckUnten3.addActionListener(e -> schiebenMitSpieler("unten", 5));
+		dreieckUnten3.addActionListener(e -> schiebenMitSpieler("unten", 5, 2));
 		dreieckButtonEigenschaften(dreieckUnten3, 850, 688, 30, 30);
 		dreieckUnten3.setRolloverIcon(DreieckUntenIconRollover);
+		organisationDreiecke[6] = dreieckUnten3; 
 		
 		//Dreiecke Links
 		ImageIcon DreieckLinksIcon = new ImageIcon("Bilder/pfeil_links.png");
 		ImageIcon DreieckLinksIconRollover = new ImageIcon("Bilder/pfeil_links_mouseover.png");
 		dreieckLinks1 = new JButton(DreieckLinksIcon);
-		dreieckLinks1.addActionListener(e -> schiebenMitSpieler("links", 1));
+		dreieckLinks1.addActionListener(e -> schiebenMitSpieler("links", 1, 3));
 		dreieckLinks1.setRolloverIcon(DreieckLinksIconRollover);
 		dreieckButtonEigenschaften(dreieckLinks1, 342, 176, 30, 30);
+		organisationDreiecke[11] = dreieckLinks1; 
 		dreieckLinks2 = new JButton(DreieckLinksIcon);
-		dreieckLinks2.addActionListener(e -> schiebenMitSpieler("links", 3));
+		dreieckLinks2.addActionListener(e -> schiebenMitSpieler("links", 3, 4));
 		dreieckButtonEigenschaften(dreieckLinks2, 342, 356, 30, 30);
 		dreieckLinks2.setRolloverIcon(DreieckLinksIconRollover);
+		organisationDreiecke[10] = dreieckLinks2; 
 		dreieckLinks3 = new JButton(DreieckLinksIcon);
-		dreieckLinks3.addActionListener(e -> schiebenMitSpieler("links", 5));
+		dreieckLinks3.addActionListener(e -> schiebenMitSpieler("links", 5, 5));
 		dreieckButtonEigenschaften(dreieckLinks3, 342, 536, 30, 30);
 		dreieckLinks3.setRolloverIcon(DreieckLinksIconRollover);
+		organisationDreiecke[9] = dreieckLinks3; 
 
 		//Spielfeld
 		//Erste Zeile
@@ -1103,6 +1117,14 @@ private class Anleitung extends JDialog{			//NEU
 		repaint();
 	}
 	
+	public void aktualisiereDreiecke(boolean wechsel) {
+		for(int i = 0; i < organisationDreiecke.length; i++) {
+			if(i != daten.getVerboten()) {
+				organisationDreiecke[i].setEnabled(wechsel);
+			}
+		}
+	}
+	
 	public void aktualisiereButtons() {
 		//vier mal
 		if(daten.schrittMoeglichOben()){
@@ -1182,7 +1204,7 @@ private class Anleitung extends JDialog{			//NEU
 		aktualisiereButtons();
 	}
 	
-	private void schiebenMitSpieler(String richtung, int eingabeStelle) {
+	private void schiebenMitSpieler(String richtung, int eingabeStelle, int dreieck) {
 		switch(richtung) {
 		case "oben":
 			daten.getSpielfeld().schiebenInYRichtungVonOben(eingabeStelle);
@@ -1204,6 +1226,9 @@ private class Anleitung extends JDialog{			//NEU
 		daten.SpielerMitGangVerschieben(richtung, eingabeStelle);
 		spielerGrafischAnpassen();
 		aktualisiereButtons();
+		daten.setVerboten(dreieck);
+		organisationDreiecke[dreieck].setEnabled(false);
+		aktualisiereDreiecke(false);
 		validate();
 	}
 	
@@ -1235,6 +1260,7 @@ private class Anleitung extends JDialog{			//NEU
 		daten.setAktuellerSpieler(daten.getSpielerliste().get((spielerNummerKopie + 1) % daten.getSpieleranzahl()));
 		aktualisiereButtons();
 		aktuellerspielername.setText(daten.getAktuellerSpieler().getName());
+		aktualisiereDreiecke(true);
 		validate();
 	}
 	
