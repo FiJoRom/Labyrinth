@@ -1056,20 +1056,12 @@ private class Anleitung extends JDialog{			//NEU
 		aktualisiereGanguebrig();
 		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
 		aktualisiereButtons();
+		aktualisiereDreiecke(true);
 		
 		aktuelleKarte.addMouseListener(new MouseHandler());
 		
-		System.out.println(daten.getSpielerliste());
-		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].nordausgang);
-		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].ostausgang);
-		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].suedausgang);
-		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].westausgang);
-		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].drehung);
-		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].nordausgang);
-		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].ostausgang);
-		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].suedausgang);
-		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].westausgang);
-		System.out.println("links " + daten.getSpielfeld().getMatrix()[6][5].drehung);
+
+		
 	}
 	
 	/*
@@ -1376,6 +1368,7 @@ private class Anleitung extends JDialog{			//NEU
 		dreieck.setContentAreaFilled(false);
 		dreieck.setFocusPainted(false);
 		dreieck.setOpaque(false);
+		dreieck.setEnabled(false);
 		p1.add(dreieck);
 	}
 

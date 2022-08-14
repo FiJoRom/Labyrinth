@@ -42,6 +42,7 @@ public class LabyrinthDaten {
 	public LabyrinthDaten() {
 		spielfeld.gaengekartenAuslegen();
 		darfSchieben = true;
+		verboten = 42;
 	}
 
 	public Spielfeld getSpielfeld() {
