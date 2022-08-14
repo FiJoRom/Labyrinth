@@ -197,547 +197,227 @@ public class LabyrinthGUI extends JFrame{
 		//Erste Zeile
 		//Festes
 		GangPanel gang00 = new GangPanel(370,55,"Bilder/gruen_g.png");
-		/*
-		gang00 = new JPanel();
-		String imagePath00 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang00, imagePath00);
-		gang00.setBounds(370, 55, 90, 95);
-		gang00.setOpaque(false);
-		*/
 		p1.add(gang00); 
 		organisationGaenge = new GangPanel[7][7];
       	organisationGaenge[0][0] = gang00;
 		
       	GangPanel gang01 = new GangPanel(460,55,"Bilder/rueckeite_g.png");
-      	/*
-		String imagePath10 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang01, imagePath10);
-		gang01.setBounds(460, 55, 90, 95);
-		gang01.setOpaque(false);
-		*/
 		p1.add(gang01); 
 		organisationGaenge[0][1] = gang01;
 		
 		//Festes
 		GangPanel gang02 = new GangPanel(550,55,"Bilder/ring_g.png");
-		/*
-		String imagePath20 = "Bilder/ring_g.png";
-		generiereGangbilder(gang02, imagePath20);
-		gang02.setBounds(550, 55, 90, 95);
-		gang02.setOpaque(false);
-		*/
 		p1.add(gang02); 
 		organisationGaenge[0][2] = gang02;
 		
 		GangPanel gang03 = new GangPanel(640,55,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath30 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang03, imagePath30);
-		gang03.setBounds(640, 55, 90, 95);
-		gang03.setOpaque(false);
-		*/
 		p1.add(gang03); 
 		organisationGaenge[0][3] = gang03;
 		
 		//Festes
 		GangPanel gang04 = new GangPanel(730,55,"Bilder/zaubertrank_g.png");
-		/*
-		String imagePath40 = "Bilder/zaubertrank_g.png";
-		generiereGangbilder(gang04, imagePath40);
-		gang04.setBounds(730, 55, 90, 95);
-		gang04.setOpaque(false);
-		*/
 		p1.add(gang04); 
 		organisationGaenge[0][4] = gang04;
 		
 		GangPanel gang05 = new GangPanel(820,55,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath50 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang05, imagePath50);
-		gang05.setBounds(820, 55, 90, 95);
-		gang05.setOpaque(false);
-		*/
 		p1.add(gang05); 
 		organisationGaenge[0][5] = gang05;
 		
 		//Festes
 		GangPanel gang06 = new GangPanel(910,55,"Bilder/gelb_g.png");
-		/*
-		String imagePath60 = "Bilder/gelb_g.png";
-		generiereGangbilder(gang06, imagePath60);
-		gang06.setBounds(910, 55, 90, 95);
-		gang06.setOpaque(false);
-		*/
 		p1.add(gang06);
 		organisationGaenge[0][6] = gang06;
 		
 		//Zweite Zeile
 		GangPanel gang10 = new GangPanel(370,145,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath01 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang10, imagePath01);
-		gang10.setBounds(370, 145, 90, 95);
-		gang10.setOpaque(false);
-		*/
 		p1.add(gang10); 
 		organisationGaenge[1][0] = gang10;
 		
 		GangPanel gang11 = new GangPanel(460,145,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath11 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang11, imagePath11);
-		gang11.setBounds(460, 145, 90, 95);
-		gang11.setOpaque(false);
-		*/
 		p1.add(gang11); 
 		organisationGaenge[1][1] = gang11;
 		
 		GangPanel gang12 = new GangPanel(550,145,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath21 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang12, imagePath21);
-		gang12.setBounds(550, 145, 90, 95);
-		gang12.setOpaque(false);
-		*/
 		p1.add(gang12); 
 		organisationGaenge[1][2] = gang12;
 		
 		GangPanel gang13 = new GangPanel(640,145,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath31 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang13, imagePath31);
-		gang13.setBounds(640, 145, 90, 95);
-		gang13.setOpaque(false);
-		*/
 		p1.add(gang13); 
 		organisationGaenge[1][3] = gang13;
 		
 		GangPanel gang14 = new GangPanel(730,145,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath41 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang14, imagePath41);
-		gang14.setBounds(730, 145, 90, 95);
-		gang14.setOpaque(false);
-		*/
 		p1.add(gang14); 
 		organisationGaenge[1][4] = gang14;
 		
 		GangPanel gang15 = new GangPanel(820,145,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath51 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang15, imagePath51);
-		gang15.setBounds(820, 145, 90, 95);
-		gang15.setOpaque(false);
-		*/
 		p1.add(gang15); 
 		organisationGaenge[1][5] = gang15;
 		
 		GangPanel gang16 = new GangPanel(910,145,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath61 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang16, imagePath61);
-		gang16.setBounds(910, 145, 90, 95);
-		gang16.setOpaque(false);
-		*/
 		p1.add(gang16);
 		organisationGaenge[1][6] = gang16;
 		
 		//Dritte Zeile
 		//Festes
 		GangPanel gang20 = new GangPanel(370,235,"Bilder/kerzenstaender_g.png");
-		/*
-		String imagePath02 = "Bilder/kerzenstaender_g.png";
-		generiereGangbilder(gang20, imagePath02);
-		gang20.setBounds(370, 235, 90, 95);
-		gang20.setOpaque(false);
-		*/
 		p1.add(gang20); 
 		organisationGaenge[2][0] = gang20;
 		
 		GangPanel gang21 = new GangPanel(460,235,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath12 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang21, imagePath12);
-		gang21.setBounds(460, 235, 90, 95);
-		gang21.setOpaque(false);
-		*/
 		p1.add(gang21); 
 		organisationGaenge[2][1] = gang21;
 		
 		//Festes
 		GangPanel gang22 = new GangPanel(550,235,"Bilder/schatztruhe_g.png");
-		/*
-		String imagePath22 = "Bilder/schatztruhe_g.png";
-		generiereGangbilder(gang22, imagePath22);
-		gang22.setBounds(550, 235, 90, 95);
-		gang22.setOpaque(false);
-		*/
 		p1.add(gang22); 
 		organisationGaenge[2][2] = gang22;
 		
 		GangPanel gang23 = new GangPanel(640,235,"Bilder/rueckeite_g.png");
-		/*
-		String imagePath32 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang23, imagePath32);
-		gang23.setBounds(640, 235, 90, 95);
-		gang23.setOpaque(false);
-		*/
 		p1.add(gang23); 
 		organisationGaenge[2][3] = gang23;
 		
 		//Festes
 		GangPanel gang24 = new GangPanel(730,235,"Bilder/krone_g.png");
-		/*
-		String imagePath42 = "Bilder/krone_g.png";
-		generiereGangbilder(gang24, imagePath42);
-		gang24.setBounds(730, 235, 90, 95);
-		gang24.setOpaque(false);
-		*/
 		p1.add(gang24); 
 		organisationGaenge[2][4] = gang24;
 		
 		GangPanel gang25 = new GangPanel(820,235,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang25 = new JPanel();
-		String imagePath52 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang25, imagePath52);
-		gang25.setBounds(820, 235, 90, 95);
-		gang25.setOpaque(false);
-		*/
 		p1.add(gang25); 
 		organisationGaenge[2][5] = gang25;
 		
 		//Festes
 		GangPanel gang26 = new GangPanel(910,235,"Bilder/buch_g.png");
-		/*
-		JPanel gang26 = new JPanel();
-		String imagePath62 = "Bilder/buch_g.png";
-		generiereGangbilder(gang26, imagePath62);
-		gang26.setBounds(910, 235, 90, 95);
-		gang26.setOpaque(false);
-		*/
 		p1.add(gang26);
 		organisationGaenge[2][6] = gang26;
 		
 		//Vierte Zeile
 		GangPanel gang30 = new GangPanel(370,325,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang30 = new JPanel();
-		String imagePath03 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang30, imagePath03);
-		gang30.setBounds(370, 325, 90, 95);
-		gang30.setOpaque(false);
-		*/
 		p1.add(gang30); 
 		organisationGaenge[3][0] = gang30;
 		
 		GangPanel gang31 = new GangPanel(460,325,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang31 = new JPanel();
-		String imagePath13 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang31, imagePath13);
-		gang31.setBounds(460, 325, 90, 95);
-		gang31.setOpaque(false);
-		*/
 		p1.add(gang31); 
 		organisationGaenge[3][1] = gang31;
 		
 		GangPanel gang32 = new GangPanel(550,325,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang32 = new JPanel();
-		String imagePath23 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang32, imagePath23);
-		gang32.setBounds(550, 325, 90, 95);
-		gang32.setOpaque(false);
-		*/
 		p1.add(gang32); 
 		organisationGaenge[3][2] = gang32;
 		
 		GangPanel gang33 = new GangPanel(640,325,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang33 = new JPanel();
-		String imagePath33 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang33, imagePath33);
-		gang33.setBounds(640, 325, 90, 95);
-		gang33.setOpaque(false);
-		*/
 		p1.add(gang33); 
 		organisationGaenge[3][3] = gang33;
 		
 		GangPanel gang34 = new GangPanel(730,325,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang34 = new JPanel();
-		String imagePath43 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang34, imagePath43);
-		gang34.setBounds(730, 325, 90, 95);
-		gang34.setOpaque(false);
-		*/
 		p1.add(gang34); 
 		organisationGaenge[3][4] = gang34;
 		
 		GangPanel gang35 = new GangPanel(820,325,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang35 = new JPanel();
-		String imagePath53 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang35, imagePath53);
-		gang35.setBounds(820, 325, 90, 95);
-		gang35.setOpaque(false);
-		*/
 		p1.add(gang35); 
 		organisationGaenge[3][5] = gang35;
 		
 		GangPanel gang36 = new GangPanel(910,325,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang36 = new JPanel();
-		String imagePath63 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang36, imagePath63);
-		gang36.setBounds(910, 325, 90, 95);
-		gang36.setOpaque(false);
-		*/
 		p1.add(gang36);
 		organisationGaenge[3][6] = gang36;
 		
 		//Fuenfte Zeile
 		//Festes
 		GangPanel gang40 = new GangPanel(370,415,"Bilder/ritterhelm_g.png");
-		/*
-		JPanel gang40 = new JPanel();
-		String imagePath04 = "Bilder/ritterhelm_g.png";
-		generiereGangbilder(gang40, imagePath04);
-		gang40.setBounds(370, 415, 90, 95);
-		gang40.setOpaque(false);
-		*/
 		p1.add(gang40); 
 		organisationGaenge[4][0] = gang40;
 		
 		GangPanel gang41 = new GangPanel(460,415,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang41 = new JPanel();
-		String imagePath14 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang41, imagePath14);
-		gang41.setBounds(460, 415, 90, 95);
-		gang41.setOpaque(false);
-		*/
 		p1.add(gang41);
 		organisationGaenge[4][1] = gang41;
 		
 		//Festes
 		GangPanel gang42 = new GangPanel(550,415,"Bilder/rubin_g.png");
-		/*
-		JPanel gang42 = new JPanel();
-		String imagePath24 = "Bilder/rubin_g.png";
-		generiereGangbilder(gang42, imagePath24);
-		gang42.setBounds(550, 415, 90, 95);
-		gang42.setOpaque(false);
-		*/
 		p1.add(gang42); 
 		organisationGaenge[4][2] = gang42;
 		
 		GangPanel gang43 = new GangPanel(640,415,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang43 = new JPanel();
-		String imagePath34 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang43, imagePath34);
-		gang43.setBounds(640, 415, 90, 95);
-		gang43.setOpaque(false);
-		*/
 		p1.add(gang43); 
 		organisationGaenge[4][3] = gang43;
 		
 		//Festes
 		GangPanel gang44 = new GangPanel(730,415,"Bilder/schluessel_g.png");
-		/*
-		JPanel gang44 = new JPanel();
-		String imagePath44 = "Bilder/schluessel_g.png";
-		generiereGangbilder(gang44, imagePath44);
-		gang44.setBounds(730, 415, 90, 95);
-		gang44.setOpaque(false);
-		*/
 		p1.add(gang44); 
 		organisationGaenge[4][4] = gang44;
 		
 		GangPanel gang45 = new GangPanel(820,415,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang45 = new JPanel();
-		String imagePath54 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang45, imagePath54);
-		gang45.setBounds(820, 415, 90, 95);
-		gang45.setOpaque(false);
-		*/
 		p1.add(gang45); 
 		organisationGaenge[4][5] = gang45;
 		
 		//Festes
 		GangPanel gang46 = new GangPanel(910,415,"Bilder/muenzbeutel_g.png");
-		/*
-		JPanel gang46 = new JPanel();
-		String imagePath64 = "Bilder/muenzbeutel_g.png";
-		generiereGangbilder(gang46, imagePath64);
-		gang46.setBounds(910, 415, 90, 95);
-		gang46.setOpaque(false);
-		*/
 		p1.add(gang46);
 		organisationGaenge[4][6] = gang46;
 		
 		//Sechste Zeile
 		GangPanel gang50 = new GangPanel(370,505,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang50 = new JPanel();
-		String imagePath05 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang50, imagePath05);
-		gang50.setBounds(370, 505, 90, 95);
-		gang50.setOpaque(false);
-		*/
 		p1.add(gang50); 
 		organisationGaenge[5][0] = gang50;
 		
 		GangPanel gang51 = new GangPanel(460,505,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang51 = new JPanel();
-		String imagePath15 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang51, imagePath15);
-		gang51.setBounds(460, 505, 90, 95);
-		gang51.setOpaque(false);
-		*/
 		p1.add(gang51); 
 		organisationGaenge[5][1] = gang51;
 		
 		GangPanel gang52 = new GangPanel(550,505,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang52 = new JPanel();
-		String imagePath25 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang52, imagePath25);
-		gang52.setBounds(550, 505, 90, 95);
-		gang52.setOpaque(false);
-		*/
 		p1.add(gang52); 
 		organisationGaenge[5][2] = gang52;
 		
 		GangPanel gang53 = new GangPanel(640,505,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang53 = new JPanel();
-		String imagePath35 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang53, imagePath35);
-		gang53.setBounds(640, 505, 90, 95);
-		gang53.setOpaque(false);
-		*/
 		p1.add(gang53);
 		organisationGaenge[5][3] = gang53;
 		
 		GangPanel gang54 = new GangPanel(730,505,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang54 = new JPanel();
-		String imagePath45 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang54, imagePath45);
-		gang54.setBounds(730, 505, 90, 95);
-		gang54.setOpaque(false);
-		*/
 		p1.add(gang54); 
 		organisationGaenge[5][4] = gang54;
 		
 		GangPanel gang55 = new GangPanel(820,505,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang55 = new JPanel();
-		String imagePath55 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang55, imagePath55);
-		gang55.setBounds(820, 505, 90, 95);
-		gang55.setOpaque(false);
-		*/
 		p1.add(gang55); 
 		organisationGaenge[5][5] = gang55;
 		
 		GangPanel gang56 = new GangPanel(910,505,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang56 = new JPanel();
-		String imagePath65 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang56, imagePath65);
-		gang56.setBounds(910, 505, 90, 95);
-		gang56.setOpaque(false);
-		*/
 		p1.add(gang56);
 		organisationGaenge[5][6] = gang56;
 		
 		//Siebte Zeile
 		//Festes
 		GangPanel gang60 = new GangPanel(370,595,"Bilder/blau_g.png");
-		/*
-		JPanel gang60 = new JPanel();
-		String imagePath06 = "Bilder/blau_g.png";
-		generiereGangbilder(gang60, imagePath06);
-		gang60.setBounds(370, 595, 90, 95);
-		gang60.setOpaque(false);
-		*/
 		p1.add(gang60);
 		organisationGaenge[6][0] = gang60;
 		
 		GangPanel gang61 = new GangPanel(460,595,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang61 = new JPanel();
-		String imagePath16 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang61, imagePath16);
-		gang61.setBounds(460, 595, 90, 95);
-		gang61.setOpaque(false);
-		*/
 		p1.add(gang61); 
 		organisationGaenge[6][1] = gang61;
 		
 		//Festes
 		GangPanel gang62 = new GangPanel(550,595,"Bilder/dolch_g.png");
-		/*
-		JPanel gang62 = new JPanel();
-		String imagePath26 = "Bilder/dolch_g.png";
-		generiereGangbilder(gang62, imagePath26);
-		gang62.setBounds(550, 595, 90, 95);
-		gang62.setOpaque(false);
-		*/
 		p1.add(gang62); 
 		organisationGaenge[6][2] = gang62;
 		
 		GangPanel gang63 = new GangPanel(640,595,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang63 = new JPanel();
-		String imagePath36 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang63, imagePath36);
-		gang63.setBounds(640, 595, 90, 95);
-		gang63.setOpaque(false);
-		*/
 		p1.add(gang63); 
 		organisationGaenge[6][3] = gang63;
 		
 		//Festes
 		GangPanel gang64 = new GangPanel(730,595,"Bilder/kelch_g.png");
-		/*
-		JPanel gang64 = new JPanel();
-		String imagePath46 = "Bilder/kelch_g.png";
-		generiereGangbilder(gang64, imagePath46);
-		gang64.setBounds(730, 595, 90, 95);
-		gang64.setOpaque(false);
-		*/
 		p1.add(gang64); 
 		organisationGaenge[6][4] = gang64;
 		
 		GangPanel gang65 = new GangPanel(820,595,"Bilder/rueckeite_g.png");
-		/*
-		JPanel gang65 = new JPanel();
-		String imagePath56 = "Bilder/gruen_g.png";
-		generiereGangbilder(gang65, imagePath56);
-		gang65.setBounds(820, 595, 90, 95);
-		gang65.setOpaque(false);
-		*/
 		p1.add(gang65); 
 		organisationGaenge[6][5] = gang65;
 		
 		//Festes
 		GangPanel gang66 = new GangPanel(910,595,"Bilder/rot_g.png");
-		/*
-		JPanel gang66 = new JPanel();
-		String imagePath66 = "Bilder/rot_g.png";
-		generiereGangbilder(gang66, imagePath66);
-		gang66.setBounds(910, 595, 90, 95);
-		gang66.setOpaque(false);
-		*/
 		p1.add(gang66);
 		organisationGaenge[6][6] = gang66;
+		
+		
+		
+		
+		
 		
 		//EinschiebeGang
 		this.ganguebrigpanel = new GangUebrigPanel();
@@ -766,61 +446,17 @@ public class LabyrinthGUI extends JFrame{
 		p1.add(aktuellerspielername);
 		
 		aktuelleKarte = new AktuelleKarte("Bilder/rueckseite2_k.png");
-		//neu
         p1.add(aktuelleKarte);
-        aktuelleKarte.addMouseListener(new MouseHandler());
+        
         
         
         this.drachenBild = new DekoBild(50, 645, 430, 341, "Bilder/DracheMitSchatz.png");
 		p1.add(drachenBild);
 		
-        
-        /*
-        aktuelleKarte.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-                Spieler aktuellerSpielerAmZug = daten.getSpielerliste().get(0);
-                System.out.println("mouse entered!");
-                String gesuchterSchatzName = aktuellerSpielerAmZug.getKartenblatt().get(0).getSchatz();
-                String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
-
-                System.out.println(URI);
-
-                aktuelleKarte.bildaendern(URI);
-                repaint();
-            } 
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                System.out.println("mouse exited!");
-                //aktuelleSchatzkarte.bildaendern("Bilder/rueckseite2_k.png");
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-            
-        });
-		*/
+       
 		
-		//Joysticks Panel
 		
-	
+		
 		
 		// Menue
 		menueLeiste = new JMenuBar();
@@ -1296,49 +932,7 @@ private class Anleitung extends JDialog{			//NEU
 		this.willkommen.setVisible(false);
 		spielGenerieren();
 	}
-	
-	/*
-	private void spielUebersichtGenerieren() {
-		switch (daten.getSpieleranzahl()) {
-			case 2: 
-				p1.remove(spielerPanel3);
-				p1.remove(spielerPanel4);
-				repaint();
-				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
-				spielerPanel1.getKartenanzahl().setText("12");
-				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
-				spielerPanel2.getKartenanzahl().setText("12");
-				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
-				spielfigurenSetzen();
-				break;
-			
-			case 3:
-				p1.remove(spielerPanel4);
-				repaint();
-				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
-				spielerPanel1.getKartenanzahl().setText("8");
-				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
-				spielerPanel2.getKartenanzahl().setText("8");
-				spielerPanel3.getSpielername().setText(daten.getSpielerliste().get(2).getName());
-				spielerPanel3.getKartenanzahl().setText("8");
-				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
-				spielfigurenSetzen();
-				break;
-				
-			case 4:
-				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
-				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
-				spielerPanel3.getSpielername().setText(daten.getSpielerliste().get(2).getName());
-				spielerPanel4.getSpielername().setText(daten.getSpielerliste().get(3).getName());
-				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
-				spielfigurenSetzen();
-				break;
-			
-			default:
-				break;
-		}
-	}
-	*/
+
 	private void spielUebersichtGenerieren() {
 		switch (daten.getSpieleranzahl()) {
 			case 2: 
@@ -1448,6 +1042,8 @@ private class Anleitung extends JDialog{			//NEU
 		aktualisiereGanguebrig();
 		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
 		aktualisiereButtons();
+		
+		aktuelleKarte.addMouseListener(new MouseHandler());
 		
 		System.out.println(daten.getSpielerliste());
 		System.out.println("oben " + daten.getSpielfeld().getMatrix()[5][6].nordausgang);

@@ -36,7 +36,7 @@ public class GangUebrigPanel extends JPanel {
 		ImageIcon linksdrehungsIconRollover = new ImageIcon("Bilder/iconDrehungLinks_mouseover.png");
 		ImageIcon rechtsdrehungsIconRollover = new ImageIcon("Bilder/iconDrehungRechts_mouseover.png");
 		
-		ganguebrig = new GangPanel("Bilder/blau_g.png");
+		ganguebrig = new GangPanel("Bilder/rueckseite_gang.png");
 		this.add(ganguebrig);
 		
 		linksdrehung = new JButton(linksdrehungIcon);
