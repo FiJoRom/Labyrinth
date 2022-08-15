@@ -470,11 +470,11 @@ public class LabyrinthGUI extends JFrame{
 		aktuelleKarte = new AktuelleKarte("Bilder/rueckseite2_k.png");
         p1.add(aktuelleKarte);
         
-        
-        
-        this.drachenBild = new DekoBild(50, 645, 430, 341, "Bilder/DracheMitSchatz.png");
-		p1.add(drachenBild);
-		
+        //DracheUntenLinks
+        ImageIcon dracheMitSchatz = new ImageIcon("Bilder/DracheMitSchatz.png");
+        DracheButton drachenButton = new DracheButton(dracheMitSchatz ,50, 645, 430, 341);
+        drachenButton.addActionListener(e -> Sound.soundAbspielen("Sounds/drachenRoar.wav"));
+        p1.add(drachenButton);
 		
 		//Anleitung
 		ImageIcon buch = new ImageIcon("Bilder/buchAnleitung.png");
