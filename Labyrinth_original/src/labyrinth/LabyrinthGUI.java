@@ -438,8 +438,6 @@ public class LabyrinthGUI extends JFrame{
 		p1.add(gang66);
 		organisationGaenge[6][6] = gang66;
 		
-		
-		
 		//EinschiebeGang
 		this.ganguebrigpanel = new GangUebrigPanel();
 		p1.add(ganguebrigpanel);	
