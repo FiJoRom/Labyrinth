@@ -636,9 +636,17 @@ public class LabyrinthGUI extends JFrame{
 		public void mouseReleased(MouseEvent e) {}
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			String gesuchterSchatzName = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
-	        System.out.println("mouse entered!");
-	        String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
+			
+			String URI = new String();
+			
+			if(daten.getAktuellerSpieler().getKartenblatt().size() == 0) {
+				URI = "Bilder/rueckseite2_k.png";
+			}
+			else {
+				String gesuchterSchatzName = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
+		        System.out.println("mouse entered!");
+		        URI = "Bilder/" + gesuchterSchatzName + "_k.png";
+			}
 	        aktuelleKarte.bildaendern(URI);
 	        validate();
 		}
@@ -804,42 +812,44 @@ public class LabyrinthGUI extends JFrame{
 	}
 	
 	private void fertigButtonPress() {
-		
+		//Hier irgendwo Fehler
 		gesuchterSchatzPruefen();
 		spielerWeitersetzen();
 	}
 	
-private void gesuchterSchatzPruefen() {
+	private void gesuchterSchatzPruefen() {
 		
 		int spielerKoordinateX = daten.getAktuellerSpieler().getPositionX();
 		int spielerKoordinateY = daten.getAktuellerSpieler().getPositionY();
 				
-		String gesuchterSchatz = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
-		System.out.println(gesuchterSchatz);
+		String gesuchterSchatz = "";
+		if(daten.getAktuellerSpieler().getKartenblatt().size() != 0) {
+			gesuchterSchatz = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
+		}
+		
 		String aktuellePositionSchatz = daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX].schatz;
-		System.out.println(aktuellePositionSchatz);
 		
 		if(gesuchterSchatz.equals(aktuellePositionSchatz)) {
 			daten.getAktuellerSpieler().getKartenblatt().remove(0);
 
 			switch(daten.getAktuellerSpieler().getSpielerNummer()) {
-			case 0: 
-				String neueKartenAnzahl1 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
-				spielerPanel1.getKartenanzahl().setText(neueKartenAnzahl1);
-				break;
-			case 1: 
-				String neueKartenAnzahl2 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
-				spielerPanel2.getKartenanzahl().setText(neueKartenAnzahl2);
-				break;
-			case 2: 
-				String neueKartenAnzahl3 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
-				spielerPanel3.getKartenanzahl().setText(neueKartenAnzahl3);
-				break;
-			case 3: 
-				String neueKartenAnzahl4 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
-				spielerPanel4.getKartenanzahl().setText(neueKartenAnzahl4);
-				break;
-			}
+				case 0: 
+					String neueKartenAnzahl1 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
+					spielerPanel1.getKartenanzahl().setText(neueKartenAnzahl1);
+					break;
+				case 1: 
+					String neueKartenAnzahl2 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
+					spielerPanel2.getKartenanzahl().setText(neueKartenAnzahl2);
+					break;
+				case 2: 
+					String neueKartenAnzahl3 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
+					spielerPanel3.getKartenanzahl().setText(neueKartenAnzahl3);
+					break;
+				case 3: 
+					String neueKartenAnzahl4 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
+					spielerPanel4.getKartenanzahl().setText(neueKartenAnzahl4);
+					break;
+				}
 		}
 		
 		if(daten.getAktuellerSpieler().getKartenblatt().isEmpty() &&
