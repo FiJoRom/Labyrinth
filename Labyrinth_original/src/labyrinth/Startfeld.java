@@ -7,7 +7,7 @@ public class Startfeld extends Ecke {
 	public Startfeld() {
 		schatz = "keinSchatz";
 	}
-	
+
 	public static Startfeld[] erzeugeStartfeldSet() {
 		Startfeld[] neu = new Startfeld[4];
 		neu[0] = StartfeldGruen.getInstance();
@@ -16,5 +16,4 @@ public class Startfeld extends Ecke {
 		neu[3] = StartfeldRot.getInstance();
 		return neu;
 	}
-
 }

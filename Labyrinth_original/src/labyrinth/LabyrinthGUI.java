@@ -485,15 +485,6 @@ public class LabyrinthGUI extends JFrame{
 		spielfeldHintergrund.setBounds(342, 27, 686, 691);
 		p1.add(spielfeldHintergrund);
 		
-		
-		
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		
 		//Willkommens-Fenster
 		willkommen = new Willkommen(this.daten, this);
 		willkommen.setVisible(true);
@@ -505,6 +496,13 @@ public class LabyrinthGUI extends JFrame{
 		hintergrundPanel.setVisible(true);
 		hintergrundPanel.setOpaque(true);
 		p1.add(hintergrundPanel);
+		
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 	}
 	
 	private class MouseHandler implements MouseListener{
@@ -597,7 +595,6 @@ public class LabyrinthGUI extends JFrame{
 		}
 	}
 
-
 	public void spielfigurenSetzen() {
 		
 		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
@@ -645,10 +642,6 @@ public class LabyrinthGUI extends JFrame{
 		aktuelleKarte.addMouseListener(new MouseHandler());
 	}
 
-	public void positionAendern() {
-		
-	}
-	
 	public void linksDrehung() {
 		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachLinks();
 		ganguebrigpanel.getGanguebrig().drehen(this.daten.getSpielfeld().getRest().drehung);
@@ -785,7 +778,6 @@ public class LabyrinthGUI extends JFrame{
 		validate();
 	}
 	
-	
 	private void spielerGrafischAnpassen() {
 		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
 			//verschoben boolean
@@ -802,7 +794,6 @@ public class LabyrinthGUI extends JFrame{
 	private void fertigButtonPress() {
 		
 		gesuchterSchatzPruefen();
-		
 		spielerWeitersetzen();
 	}
 	
@@ -853,13 +844,41 @@ public class LabyrinthGUI extends JFrame{
 			}
 		}
 		
-		if(daten.getAktuellerSpieler().getKartenblatt().isEmpty()) {
+		if(daten.getAktuellerSpieler().getKartenblatt().isEmpty() &&
+				daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+				instanceof Startfeld) {
+			String farbeSpieler = daten.getAktuellerSpieler().getFarbe();
 			
-			//gewonnen();
+			switch(farbeSpieler) {
+			case "Rot":
+				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+				instanceof StartfeldRot) {
+					gewinner();
+				}
+				break;
+			case "Blau":
+				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+						instanceof StartfeldBlau) {
+							gewinner();
+				}
+				break;
+			case "Gelb":	
+				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+						instanceof StartfeldGelb) {
+							gewinner();
+				}
+				break;
+			case "Gruen": 
+				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+						instanceof StartfeldGruen) {
+							gewinner();
+				}
+				break;
+			default:
+				break;
+			}
 		}
 		validate();
-		System.out.println(daten.getAktuellerSpieler().getKartenblatt().size());
-		System.out.println(daten.getAktuellerSpieler().getKartenblatt());
 	}
 	
 	private void aktualisiereGanguebrig() {
@@ -935,7 +954,7 @@ public class LabyrinthGUI extends JFrame{
 	}
 	
 	public void gewinner() {
-        gewonnen = new Gewonnen("Spieler 1", "blau", "Spieler 2", "Spieler 3", "Spieler 4");
+        gewonnen = new Gewonnen(daten.getSpielerliste());
         gewonnen.setVisible(true);
         gewonnen.setAlwaysOnTop(true);
     }

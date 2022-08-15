@@ -7,6 +7,8 @@ import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -33,7 +35,7 @@ public class Gewonnen extends JDialog{
 	private GridBagConstraints gbc;
 	private JPanel platzierungen;
 	
-	public Gewonnen(String erster, String farbeErster, String zweiter, String dritter, String vierter) {
+	public Gewonnen(List<Spieler> spielerListe) {
 				
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.setTitle("SPIEL VORBEI"); 
@@ -44,98 +46,100 @@ public class Gewonnen extends JDialog{
 		layout = new GridBagLayout();
 		gbc = new GridBagConstraints();
 		
-		String imagePathErster = "Bilder/figurspieler_" + farbeErster + "_gewinner.png";		
 		
 		
+		//Bubblesort
+		boolean warSortiert = true;
+		do {
+			warSortiert = true;
+			
+			for(int i = 0; i < spielerListe.size(); i++) {
+				
+				if(spielerListe.get(i).getKartenblatt().size() > spielerListe.get(i+1).getKartenblatt().size()) {
+				
+					//if (i > spielerListe.size()) {
+				Spieler zwischenspeicher = spielerListe.get(i);
+				spielerListe.set(i, spielerListe.get(i+1));
+				spielerListe.set(i + 1, zwischenspeicher);
+		
+				warSortiert = false;
+					//}
+				}
+			}
+		}while(warSortiert);
+		
+		
+		String imagePathErster = "Bilder/figurspieler_" + spielerListe.get(0).getFarbe() + "_gewinner.png";		
 		
 		ergebnissePanel = new JPanel();
 		ergebnissePanel.setLayout(layout);
 		ergebnissePanel.setSize(800,800);
 		ergebnissePanel.setBackground(Color.decode("#ffc04f"));
-		//ergebnissePanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		this.add(ergebnissePanel);		
 		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
+		gbcEigenschaftenSetzen(0, 0, 1, 1);
 		gbc.insets = new Insets(225,5,0,5);
-		ersterPlatz = new JLabel(erster,SwingConstants.CENTER);
+		ersterPlatz = new JLabel(spielerListe.get(1).getName(),SwingConstants.CENTER);
 		ersterPlatz.setSize(120, 30);
-		//ersterPlatz.setBorder(BorderFactory.createEmptyBorder(100, 0, 0, 0));
 		ersterPlatz.setFont(ersterPlatz.getFont().deriveFont((float) 30));
 		layout.setConstraints(ersterPlatz, gbc);
 		ergebnissePanel.add(ersterPlatz);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
+		gbcEigenschaftenSetzen(0, 1, 1, 1);
 		gbc.insets = new Insets(0,5,225,5);
 		hatgewonnen = new JLabel("HAT GEWONNEN",SwingConstants.CENTER);
 		hatgewonnen.setSize(120, 200);
-		//hatgewonnen.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		hatgewonnen.setFont(hatgewonnen.getFont().deriveFont((float) 30));
 		layout.setConstraints(hatgewonnen, gbc);
 		ergebnissePanel.add(hatgewonnen);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
+		gbcEigenschaftenSetzen(0, 1, 1, 1);
 		gbc.insets = new Insets(10,5,5,5);
 		siegerfigur = new DekoBild(36 , 70, imagePathErster);
 		siegerfigur.setOpaque(false);
-		//siegerfigur.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		layout.setConstraints(siegerfigur, gbc);
 		ergebnissePanel.add(siegerfigur);
 			
-		
-		
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
+		gbcEigenschaftenSetzen(0, 2, 1, 1);
 		gbc.insets = new Insets(0,5,50,5);
 		platzierungen = new JPanel();
 		platzierungen.setLayout(new BorderLayout());
 		platzierungen.setOpaque(false);
 		platzierungen.setSize(120, 200);
-		//platzierungen.setBorder(BorderFactory.createEmptyBorder(5, 0, 22, 0));
 		layout.setConstraints(platzierungen, gbc);
 		ergebnissePanel.add(platzierungen);
 		
-		zweiterPlatz = new JLabel("Platz 2: " + zweiter,SwingConstants.CENTER);
+		zweiterPlatz = new JLabel("Platz 2: " + spielerListe.get(1).getName(),SwingConstants.CENTER);
 		zweiterPlatz.setSize(120, 25);	
 		zweiterPlatz.setBorder(BorderFactory.createEmptyBorder(0, 0, 22, 0));
 		zweiterPlatz.setFont(zweiterPlatz.getFont().deriveFont((float) 22));
 		platzierungen.add(zweiterPlatz,BorderLayout.NORTH);
 		
-		dritterPlatz = new JLabel("Platz 3: " + dritter,SwingConstants.CENTER);
+		dritterPlatz = new JLabel("Platz 3: " + spielerListe.get(2).getName(),SwingConstants.CENTER);
 		dritterPlatz.setSize(120, 25);
 		dritterPlatz.setBorder(BorderFactory.createEmptyBorder(0, 0,22, 0));
 		dritterPlatz.setFont(dritterPlatz.getFont().deriveFont((float) 22));
 		platzierungen.add(dritterPlatz,BorderLayout.CENTER);
 		
-		vierterPlatz = new JLabel("Platz 4: " + vierter,SwingConstants.CENTER);
+		vierterPlatz = new JLabel("Platz 4: " + spielerListe.get(3).getName(),SwingConstants.CENTER);
 		vierterPlatz.setSize(120, 25);
 		vierterPlatz.setFont(vierterPlatz.getFont().deriveFont((float) 22));
 		vierterPlatz.setBorder(BorderFactory.createEmptyBorder(0, 0, 22 , 0));
 		platzierungen.add(vierterPlatz,BorderLayout.SOUTH);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 2;
+		gbcEigenschaftenSetzen(0,0,1,2);
 		gbc.insets = new Insets(0,0,100,0);
 		banderole = new DekoBild(750,500,"Bilder/gewinner_banner.png");
-		//generiereGangbilder(banderole, "Bilder/gewinner_banner.png");
-		//banderole.setSize(750,500);
-		//banderole.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
 		banderole.setOpaque(false);
 		layout.setConstraints(banderole, gbc);
 		ergebnissePanel.add(banderole);
-		
+	}
+	
+	private void gbcEigenschaftenSetzen(int x, int y, int width, int height) {
+		this.gbc.gridx = x;
+		this.gbc.gridy = y;
+		this.gbc.gridwidth = width;
+		this.gbc.gridheight = height;
 	}
 	
 	private void generiereGangbilder(JPanel gangpanel, String gangpath) {
@@ -146,6 +150,5 @@ public class Gewonnen extends JDialog{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}	
 }
