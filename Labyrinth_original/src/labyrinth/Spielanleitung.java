@@ -31,6 +31,7 @@ public class Spielanleitung extends JDialog {
 		this.setAlwaysOnTop(true);		
 		this.setSize(700, 500);
 		this.setLocation(600, 250);
+		this.setResizable(false);
 		
 		fenster = new HintergrundPanel("#9cd2ff", "#bce1ff");
 		fenster.setOpaque(true);

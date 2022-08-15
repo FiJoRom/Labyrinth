@@ -51,6 +51,7 @@ public class Willkommen extends JDialog {
 		
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.setTitle("Das Verrueckte LabyrINTh");
+		this.setResizable(false);
 
 		this.setSize(450, 340);
 		this.setLocation(668, 300);

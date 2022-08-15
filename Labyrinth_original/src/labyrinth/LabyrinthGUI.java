@@ -99,6 +99,7 @@ public class LabyrinthGUI extends JFrame{
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.setTitle("Das Verrueckte Labyrinth");
 		this.daten = model;
+		this.setResizable(false);
 		
 		this.setSize(1386, 1050);
 		this.setLocation(200, 20);
@@ -479,7 +480,7 @@ public class LabyrinthGUI extends JFrame{
         ImageIcon spinneEckeBild = new ImageIcon("Bilder/spinneMitNetz.png");
         ImageIcon spinneEckeBildMouseover = new ImageIcon("Bilder/spinneMitNetz_mouseover.png");
         ButtonMitMouseover spinneEckeButton = new ButtonMitMouseover(spinneEckeBild ,1087, 0, 284, 270, spinneEckeBildMouseover);
-        drachenButton.addActionListener(e -> Sound.soundAbspielen("Sounds/drachenRoar.wav"));
+        spinneEckeButton.addActionListener(e -> Sound.soundAbspielen("Sounds/spinne.wav"));
         p1.add(spinneEckeButton);
 		
 		//Anleitung
