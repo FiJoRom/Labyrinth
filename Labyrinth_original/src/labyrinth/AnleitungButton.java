@@ -1,14 +1,13 @@
 package labyrinth;
 
-import java.awt.BorderLayout;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 public class AnleitungButton extends JButton{
 	
+	private static final long serialVersionUID = -8831760154371122500L;
+
 	public AnleitungButton(Icon icon) {
 		super(icon);
 		this.setBounds(1090,740,230,230);
@@ -20,5 +19,4 @@ public class AnleitungButton extends JButton{
 		this.setOpaque(false);
 		this.setRolloverIcon(buchMouseover);
 	}
-
 }

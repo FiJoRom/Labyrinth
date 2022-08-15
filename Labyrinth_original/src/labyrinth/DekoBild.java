@@ -3,13 +3,14 @@ package labyrinth;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class DekoBild extends JPanel{
+	
+	private static final long serialVersionUID = -5160912697431020641L;
 	
 	private JLabel jlabel;
 	private BufferedImage bufferedimage;
@@ -22,7 +23,7 @@ public class DekoBild extends JPanel{
 		this.setBounds(x, y, width, height);
 		this.setOpaque(false);
 		this.bilddateipfad = imagePath;
-		this.bilddatei = new File(imagePath);
+		this.bilddatei = new File(bilddateipfad);
 		try {
 			this.bufferedimage = ImageIO.read(bilddatei);
 		} catch (IOException e) {
@@ -31,7 +32,6 @@ public class DekoBild extends JPanel{
 		this.imageicon = new ImageIcon(bufferedimage);
 		this.jlabel = new JLabel(imageicon);
 		this.add(jlabel);
-	
 	}
 	
 	public DekoBild(int width, int height, String imagePath){
@@ -48,6 +48,5 @@ public class DekoBild extends JPanel{
 		this.imageicon = new ImageIcon(bufferedimage);
 		this.jlabel = new JLabel(imageicon);
 		this.add(jlabel);
-	
 	}
 }
