@@ -40,9 +40,9 @@ public class Gewonnen extends JDialog{
 		this.setResizable(false);
 		this.setSize(800, 800);
 		this.setLocation(530, 200);
+		
 		layout = new GridBagLayout();
 		gbc = new GridBagConstraints();
-		//layout.setVgap(-10);
 		
 		String imagePathErster = "Bilder/figurspieler_" + farbeErster + "_gewinner.png";		
 		
@@ -55,16 +55,6 @@ public class Gewonnen extends JDialog{
 		//ergebnissePanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		this.add(ergebnissePanel);		
 		
-		
-		
-		/*gewinnerPanel = new JPanel();
-		gewinnerPanel.setSize(750,600);
-		gewinnerPanel.setLayout(new BorderLayout());
-		gewinnerPanel.setOpaque(false);
-		gewinnerPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		ergebnissePanel.add(gewinnerPanel,BorderLayout.NORTH);
-		*/
-		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -76,30 +66,6 @@ public class Gewonnen extends JDialog{
 		ersterPlatz.setFont(ersterPlatz.getFont().deriveFont((float) 30));
 		layout.setConstraints(ersterPlatz, gbc);
 		ergebnissePanel.add(ersterPlatz);
-		
-		/*
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 3;
-		banderole = new DekoBild(750,500,"Bilder/gewinner_banner.png");
-		//generiereGangbilder(banderole, "Bilder/gewinner_banner.png");
-		//banderole.setSize(750,500);
-		//banderole.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
-		banderole.setOpaque(false);
-		layout.setConstraints(banderole, gbc);
-		ergebnissePanel.add(banderole);
-		*/
-		
-		
-		/*
-		gewinnerPanelUnten = new JPanel();
-		gewinnerPanelUnten.setSize(200,300);
-		gewinnerPanelUnten.setLayout(new BorderLayout());
-		gewinnerPanelUnten.setOpaque(false);
-		//gewinnerPanelUnten.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		ergebnissePanel.add(gewinnerPanelUnten,BorderLayout.CENTER);
-		*/
 		
 		gbc.gridx = 0;
 		gbc.gridy = 1;
