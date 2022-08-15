@@ -1,57 +1,21 @@
 package labyrinth;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
-
 
 public class LabyrinthGUI extends JFrame{
 
 	private LabyrinthDaten daten;
 
 	//Attribute Hauptfenster
-	private JMenuBar menueLeiste;
-	private JMenu spielMenue;
-	private JMenuItem beenden;
-	private JMenuItem neuesSpiel;
-	private JMenuItem hilfe;
 	private JPanel p1;
 	
 	private GangPanel[][] organisationGaenge;
@@ -72,8 +36,6 @@ public class LabyrinthGUI extends JFrame{
 	private JButton[] organisationDreiecke;
 	
 	private JPanel spielfeldHintergrund;
-	private JPanel drachenBild;
-	private DekoBild spinneBild;
 	private JLabel aktuellerspielername; 
 	
 	private SpielerPanel spielerPanel1;
@@ -85,15 +47,15 @@ public class LabyrinthGUI extends JFrame{
 	private SpielfigurPanel spielfigurBlau;
 	private SpielfigurPanel spielfigurGelb;
 	private SpielfigurPanel spielfigurGruen;
-	private List <SpielfigurPanel> organisationSpielfiguren;
 	
 	private Willkommen willkommen;
-	private Spielanleitung anleitung;	
 	private GangUebrigPanel ganguebrigpanel;
 	private JoystickPanel joystickPanel;
 	private AnleitungButton anleitungButton;
 	private Gewonnen gewonnen;	
 	private HintergrundPanel hintergrundPanel;
+	
+	private static final long serialVersionUID = 5864611138466679238L;
 	
 	public LabyrinthGUI(LabyrinthDaten model) {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -103,19 +65,6 @@ public class LabyrinthGUI extends JFrame{
 		
 		this.setSize(1386, 1050);
 		this.setLocation(200, 20);
-		
-		// Menue
-		menueLeiste = new JMenuBar();
-		spielMenue = new JMenu("Spiel");
-		neuesSpiel = new JMenuItem("Neues Spiel");
-		beenden = new JMenuItem("Beenden");
-		
-		neuesSpiel.addActionListener(e -> gewinner());
-		beenden.addActionListener(e -> System.exit(0));
-		this.setJMenuBar(menueLeiste);
-		menueLeiste.add(spielMenue);
-		spielMenue.add(neuesSpiel);
-		spielMenue.add(beenden);
 		
 		p1 = new JPanel();
 		p1.setLayout(null);
@@ -139,7 +88,6 @@ public class LabyrinthGUI extends JFrame{
 		p1.add(spielfigurGelb);
 		spielfigurBlau = new SpielfigurPanel();
 		p1.add(spielfigurBlau);
-		organisationSpielfiguren = new ArrayList<SpielfigurPanel>();
 		
 		//Dreieckbuttons
 		organisationDreiecke = new JButton[12];
@@ -226,7 +174,7 @@ public class LabyrinthGUI extends JFrame{
 		p1.add(gang00); 
 		organisationGaenge = new GangPanel[7][7];
       	organisationGaenge[0][0] = gang00;
-		
+      	
       	GangPanel gang01 = new GangPanel(460,55,"Bilder/rueckeite_g.png");
 		p1.add(gang01); 
 		organisationGaenge[0][1] = gang01;
@@ -448,7 +396,6 @@ public class LabyrinthGUI extends JFrame{
 		
 		//JoystickPanel
 		this.joystickPanel = new JoystickPanel();
-		
 		joystickPanel.getFertig().addActionListener(e -> fertigButtonPress());
 		joystickPanel.getOben().addActionListener(e -> aktuelleSpielerbewegung("oben"));
 		joystickPanel.getUnten().addActionListener(e -> aktuelleSpielerbewegung("unten"));
@@ -515,33 +462,6 @@ public class LabyrinthGUI extends JFrame{
 		});
 	}
 	
-	private class MouseHandler implements MouseListener{
-		@Override
-		public void mouseClicked(MouseEvent e) {}
-		@Override
-		public void mousePressed(MouseEvent e) {}
-		@Override
-		public void mouseReleased(MouseEvent e) {}
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			String gesuchterSchatzName = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
-	        System.out.println("mouse entered!");
-	        String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
-	        aktuelleKarte.bildaendern(URI);
-	        validate();
-		}
-		@Override
-		public void mouseExited(MouseEvent e) {
-			aktuelleKarte.bildaendern("Bilder/rueckseite2_k.png");
-			validate();
-		}
-	}
-	
-	public void willkommenSchliessen() {
-		this.willkommen.setVisible(false);
-		spielGenerieren();
-	}
-
 	private void spielUebersichtGenerieren() {
 		switch (daten.getSpieleranzahl()) {
 			case 2: 
@@ -579,11 +499,36 @@ public class LabyrinthGUI extends JFrame{
 				break;
 		}
 	}
-
-	public void spielfigurAnzeigenSetzen(int spielerZahl, String farbe) {
+	
+	private void sperrenButtons() {
+		joystickPanel.getOben().setEnabled(false);
+		joystickPanel.getRechts().setEnabled(false);
+		joystickPanel.getUnten().setEnabled(false);
+		joystickPanel.getLinks().setEnabled(false);
+		joystickPanel.getFertig().setEnabled(false);
+	}
+	
+	public void willkommenSchliessen() {
+		this.willkommen.setVisible(false);
+		spielGenerieren();
+	}
+	
+	private void spielGenerieren() {
+		spielUebersichtGenerieren();
+		daten.setKartendeck(Karte.erstelleKartenDeck()); 
+		Karte.shuffleKartenDeck(daten.getKartendeck());
+		daten.schatzkartenAusteilen(daten.getKartendeck());
+		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
+		spielfeldVorbereiten();
+		aktualisiereGanguebrig();
+		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
+		aktualisiereDreiecke(true);	
+		aktuelleKarte.addMouseListener(new MouseHandler());
+	}
+	
+	public void spielfigurAnzeigenSetzen(int spielerZahl, String farbe) {	
 		
 		switch(spielerZahl) {
-		
 		case 0: 
 			String URI0 = "Bilder/spielfigur_" + farbe + "_vorne.png";
 			spielerPanel1.getSpielfigurAnzeige().bildaendern(URI0);
@@ -603,307 +548,6 @@ public class LabyrinthGUI extends JFrame{
 		default:
 			break;
 		}
-	}
-
-	public void spielfigurenSetzen() {
-		
-		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
-			
-			switch(daten.getSpielerliste().get(i).getFarbe()) {
-			
-			case "Rot": 
-				spielfigurRot.setBounds(925, 583, 55, 70);
-				spielfigurRot.bildaendern("Bilder/spielfigur_rot.png");
-				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "rot");
-				break;
-			case "Gruen":
-				spielfigurGruen.setBounds(389, 43, 55, 70);
-				spielfigurGruen.bildaendern("Bilder/spielfigur_gruen.png");
-				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "gruen");
-				break;
-			case "Blau":
-				spielfigurBlau.setBounds(389, 583, 55, 70);
-				spielfigurBlau.bildaendern("Bilder/spielfigur_blau.png");
-				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "blau");
-				break;
-			case "Gelb":
-				spielfigurGelb.setBounds(925, 43, 55, 70);
-				spielfigurGelb.bildaendern("Bilder/spielfigur_gelb.png");
-				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "gelb");
-				break;
-			default: 
-				break;
-			}
-		}	
-	}
-	
-	private void spielGenerieren() {
-		spielUebersichtGenerieren();
-		daten.setKartendeck(Karte.erstelleKartenDeck()); 
-		Karte.shuffleKartenDeck(daten.getKartendeck());
-		daten.schatzkartenAusteilen(daten.getKartendeck());
-		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
-		spielfeldVorbereiten();
-		aktualisiereGanguebrig();
-		daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
-		//aktualisiereButtons();
-		aktualisiereDreiecke(true);
-		
-		aktuelleKarte.addMouseListener(new MouseHandler());
-	}
-
-	public void linksDrehung() {
-		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachLinks();
-		ganguebrigpanel.getGanguebrig().drehen(this.daten.getSpielfeld().getRest().drehung);
-		repaint();
-	}
-	
-	public void rechtsDrehung() {
-		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachRechts();
-		ganguebrigpanel.getGanguebrig().drehen(this.daten.getSpielfeld().getRest().drehung);
-		repaint();
-	}
-	
-	public void aktualisiereDreiecke(boolean wechsel) {
-		for(int i = 0; i < organisationDreiecke.length; i++) {
-			if(i != daten.getVerboten()) {
-				organisationDreiecke[i].setEnabled(wechsel);
-			}
-		}
-	}
-	
-	public void aktualisiereButtons() {
-		if(daten.schrittMoeglichOben()){
-			joystickPanel.getOben().setEnabled(true);
-		} else {
-			joystickPanel.getOben().setEnabled(false);
-		}
-		if(daten.schrittMoeglichRechts()){
-			joystickPanel.getRechts().setEnabled(true);
-		} else {
-			joystickPanel.getRechts().setEnabled(false);
-		}
-		if(daten.schrittMoeglichUnten()){
-			joystickPanel.getUnten().setEnabled(true);
-		} else {
-			joystickPanel.getUnten().setEnabled(false);
-		}
-		if(daten.schrittMoeglichLinks()){
-			joystickPanel.getLinks().setEnabled(true);
-		} else {
-			joystickPanel.getLinks().setEnabled(false);
-		}
-	}
-	
-	private void sperrenButtons() {
-		joystickPanel.getOben().setEnabled(false);
-		joystickPanel.getRechts().setEnabled(false);
-		joystickPanel.getUnten().setEnabled(false);
-		joystickPanel.getLinks().setEnabled(false);
-		joystickPanel.getFertig().setEnabled(false);
-	}
-	
-	public void einschiebenXRichtung(int eingabeStelle) {
-		
-		for(int i = 0; i < 7; i++) {
-			String imagepath = pfadBestimmen(eingabeStelle,i);
-			this.organisationGaenge[eingabeStelle][i].bildaendern(imagepath);
-			repaint();
-			int zustand = daten.getSpielfeld().getMatrix()[eingabeStelle][i].getDrehung();
-			this.organisationGaenge[eingabeStelle][i].drehen(zustand);
-			validate();
-		}
-		aktualisiereGanguebrig();
-		validate();
-	}
-	
-	public void einschiebenYRichtung(int eingabeStelle) {
-		
-		for(int i = 0; i < 7; i++) {
-			String imagepath = pfadBestimmen(i,eingabeStelle);
-			this.organisationGaenge[i][eingabeStelle].bildaendern(imagepath);
-			repaint();
-			int zustand = daten.getSpielfeld().getMatrix()[i][eingabeStelle].getDrehung();
-			this.organisationGaenge[i][eingabeStelle].drehen(zustand);
-			validate();
-		}
-		aktualisiereGanguebrig();
-		validate();
-	}
-	
-	private void aktuelleSpielerbewegung(String richtung) {
-		daten.schrittMachen(richtung);
-		int eingabeX = daten.getAktuellerSpieler().getPositionX();
-		int eingabeY = daten.getAktuellerSpieler().getPositionY();
-		String farbe = daten.getAktuellerSpieler().getFarbe();
-		spielerBewegungGrafisch(eingabeX, eingabeY, farbe);
-	}
-	
-	private void spielerBewegungGrafisch(int eingabeX, int eingabeY, String farbe) {
-		switch(farbe) {
-		case "Rot":
-			spielfigurRot.position(eingabeX,eingabeY,farbe);
-			break;
-		case "Gruen":
-			spielfigurGruen.position(eingabeX,eingabeY,farbe);
-			break;
-		case "Blau":
-			spielfigurBlau.position(eingabeX,eingabeY,farbe);
-			break;
-		case "Gelb":
-			spielfigurGelb.position(eingabeX,eingabeY,farbe);
-			break;
-		}
-		repaint();
-		aktualisiereButtons();
-	}
-	
-	private void schiebenMitSpieler(String richtung, int eingabeStelle, int dreieck) {
-		switch(richtung) {
-		case "oben":
-			daten.getSpielfeld().schiebenInYRichtungVonOben(eingabeStelle);
-			einschiebenYRichtung(eingabeStelle);
-			break;
-		case "rechts":
-			daten.getSpielfeld().schiebenInXRichtungVonRechts(eingabeStelle);
-			einschiebenXRichtung(eingabeStelle);
-			break;
-		case "unten":
-			daten.getSpielfeld().schiebenInYRichtungVonUnten(eingabeStelle);
-			einschiebenYRichtung(eingabeStelle);
-			break;
-		case "links":
-			daten.getSpielfeld().schiebenInXRichtungVonLinks(eingabeStelle);
-			einschiebenXRichtung(eingabeStelle);
-			break;
-		}
-		daten.SpielerMitGangVerschieben(richtung, eingabeStelle);
-		spielerGrafischAnpassen();
-		//aktualisiereButtons();
-		daten.setVerboten(dreieck);
-		organisationDreiecke[dreieck].setEnabled(false);
-		aktualisiereDreiecke(false);
-		aktualisiereButtons();
-		joystickPanel.getFertig().setEnabled(true);
-		validate();
-	}
-	
-	private void spielerGrafischAnpassen() {
-		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
-			//verschoben boolean
-			if(daten.getSpielerliste().get(i).isVerschoben()) {
-				int x = daten.getSpielerliste().get(i).getPositionX();
-				int y = daten.getSpielerliste().get(i).getPositionY();
-				String farbe = daten.getSpielerliste().get(i).getFarbe();
-				spielerBewegungGrafisch(x, y, farbe);
-				daten.getSpielerliste().get(i).setVerschoben(false);
-			}
-		}
-	}
-	
-	private void fertigButtonPress() {
-		
-		gesuchterSchatzPruefen();
-		spielerWeitersetzen();
-	}
-	
-	private void spielerWeitersetzen() {
-		
-		int spielerNummerKopie = daten.getAktuellerSpieler().getSpielerNummer();
-		
-		daten.setAktuellerSpieler(daten.getSpielerliste().get((spielerNummerKopie + 1) % daten.getSpieleranzahl()));
-		aktualisiereButtons();
-		aktuellerspielername.setText(daten.getAktuellerSpieler().getName());
-		aktualisiereDreiecke(true);
-		//joystickPanel.getRechts().setEnabled(false);
-		sperrenButtons();
-		validate();
-	}
-	
-	private void gesuchterSchatzPruefen() {
-		
-		int spielerKoordinateX = daten.getAktuellerSpieler().getPositionX();
-		int spielerKoordinateY = daten.getAktuellerSpieler().getPositionY();
-				
-		String gesuchterSchatz = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
-		System.out.println(gesuchterSchatz);
-		String aktuellePositionSchatz = daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX].schatz;
-		System.out.println(aktuellePositionSchatz);
-		
-		if(gesuchterSchatz.equals(aktuellePositionSchatz)) {
-			daten.getAktuellerSpieler().getKartenblatt().remove(0);
-			
-			switch(daten.getAktuellerSpieler().getSpielerNummer()) {
-			
-			case 0: 
-				String neueKartenAnzahl1 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
-				spielerPanel1.getKartenanzahl().setText(neueKartenAnzahl1);
-				break;
-			case 1: 
-				String neueKartenAnzahl2 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
-				spielerPanel2.getKartenanzahl().setText(neueKartenAnzahl2);
-				break;
-			case 2: 
-				String neueKartenAnzahl3 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
-				spielerPanel3.getKartenanzahl().setText(neueKartenAnzahl3);
-				break;
-			case 3: 
-				String neueKartenAnzahl4 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
-				spielerPanel4.getKartenanzahl().setText(neueKartenAnzahl4);
-				break;
-			}
-		}
-		
-		if(daten.getAktuellerSpieler().getKartenblatt().isEmpty() &&
-				daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
-				instanceof Startfeld) {
-			String farbeSpieler = daten.getAktuellerSpieler().getFarbe();
-			
-			switch(farbeSpieler) {
-			case "Rot":
-				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
-				instanceof StartfeldRot) {
-					gewinner();
-				}
-				break;
-			case "Blau":
-				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
-						instanceof StartfeldBlau) {
-							gewinner();
-				}
-				break;
-			case "Gelb":	
-				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
-						instanceof StartfeldGelb) {
-							gewinner();
-				}
-				break;
-			case "Gruen": 
-				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
-						instanceof StartfeldGruen) {
-							gewinner();
-				}
-				break;
-			default:
-				break;
-			}
-		}
-		validate();
-	}
-	
-	private void aktualisiereGanguebrig() {
-		String pfad = "";
-		if(!(daten.getSpielfeld().getRest().schatz.equals("keinSchatz"))) {
-			pfad = "Bilder/" + daten.getSpielfeld().getRest().schatz + "_g.png";
-		} else {
-			if(daten.getSpielfeld().getRest() instanceof Ecke ) {
-				pfad = "Bilder/ecke_g.png";
-			} else {
-				pfad = "Bilder/gerade_g.png";
-			}
-		}
-		ganguebrigpanel.getGanguebrig().bildaendern(pfad);
-		ganguebrigpanel.getGanguebrig().drehen(daten.getSpielfeld().getRest().drehung);
 	}
 
 	private void spielfeldVorbereiten() {
@@ -941,18 +585,7 @@ public class LabyrinthGUI extends JFrame{
 		return pfad;
 	}
 	
-	//Spielfeld
-	private void generiereGangbilder(JPanel gangpanel, String gangpath) {
-		try {
-			BufferedImage logo = ImageIO.read(new File(gangpath));
-			JLabel picLabel = new JLabel(new ImageIcon(logo));
-			gangpanel.add(picLabel);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
+
 	public void dreieckButtonEigenschaften(JButton dreieck, int x, int y, int breite, int hoehe) {
 		dreieck.setBounds(x, y, breite, hoehe);
 		dreieck.setBorderPainted(false);
@@ -961,6 +594,300 @@ public class LabyrinthGUI extends JFrame{
 		dreieck.setOpaque(false);
 		dreieck.setEnabled(false);
 		p1.add(dreieck);
+	}
+	
+	public void spielfigurenSetzen() {
+		
+		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
+			
+			switch(daten.getSpielerliste().get(i).getFarbe()) {
+			case "Rot": 
+				spielfigurRot.setBounds(925, 583, 55, 70);
+				spielfigurRot.bildaendern("Bilder/spielfigur_rot.png");
+				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "rot");
+				break;
+			case "Gruen":
+				spielfigurGruen.setBounds(389, 43, 55, 70);
+				spielfigurGruen.bildaendern("Bilder/spielfigur_gruen.png");
+				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "gruen");
+				break;
+			case "Blau":
+				spielfigurBlau.setBounds(389, 583, 55, 70);
+				spielfigurBlau.bildaendern("Bilder/spielfigur_blau.png");
+				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "blau");
+				break;
+			case "Gelb":
+				spielfigurGelb.setBounds(925, 43, 55, 70);
+				spielfigurGelb.bildaendern("Bilder/spielfigur_gelb.png");
+				spielfigurAnzeigenSetzen(daten.getSpielerliste().get(i).getSpielerNummer(), "gelb");
+				break;
+			default: 
+				break;
+			}
+		}	
+	}
+	
+	private class MouseHandler implements MouseListener{
+		@Override
+		public void mouseClicked(MouseEvent e) {}
+		@Override
+		public void mousePressed(MouseEvent e) {}
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			String gesuchterSchatzName = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
+	        System.out.println("mouse entered!");
+	        String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
+	        aktuelleKarte.bildaendern(URI);
+	        validate();
+		}
+		@Override
+		public void mouseExited(MouseEvent e) {
+			aktuelleKarte.bildaendern("Bilder/rueckseite2_k.png");
+			validate();
+		}
+	}
+	
+	public void linksDrehung() {
+		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachLinks();
+		ganguebrigpanel.getGanguebrig().drehen(this.daten.getSpielfeld().getRest().drehung);
+		repaint();
+	}
+	
+	public void rechtsDrehung() {
+		this.daten.getSpielfeld().getRest().gangkarte90GradDrehenNachRechts();
+		ganguebrigpanel.getGanguebrig().drehen(this.daten.getSpielfeld().getRest().drehung);
+		repaint();
+	}
+	
+	private void schiebenMitSpieler(String richtung, int eingabeStelle, int dreieck) {
+		switch(richtung) {
+		case "oben":
+			daten.getSpielfeld().schiebenInYRichtungVonOben(eingabeStelle);
+			einschiebenYRichtung(eingabeStelle);
+			break;
+		case "rechts":
+			daten.getSpielfeld().schiebenInXRichtungVonRechts(eingabeStelle);
+			einschiebenXRichtung(eingabeStelle);
+			break;
+		case "unten":
+			daten.getSpielfeld().schiebenInYRichtungVonUnten(eingabeStelle);
+			einschiebenYRichtung(eingabeStelle);
+			break;
+		case "links":
+			daten.getSpielfeld().schiebenInXRichtungVonLinks(eingabeStelle);
+			einschiebenXRichtung(eingabeStelle);
+			break;
+		}
+		daten.SpielerMitGangVerschieben(richtung, eingabeStelle);
+		spielerGrafischAnpassen();
+		daten.setVerboten(dreieck);
+		organisationDreiecke[dreieck].setEnabled(false);
+		aktualisiereDreiecke(false);
+		aktualisiereButtons();
+		joystickPanel.getFertig().setEnabled(true);
+		validate();
+	}
+	
+	public void einschiebenXRichtung(int eingabeStelle) {
+		
+		for(int i = 0; i < 7; i++) {
+			String imagepath = pfadBestimmen(eingabeStelle,i);
+			this.organisationGaenge[eingabeStelle][i].bildaendern(imagepath);
+			repaint();
+			int zustand = daten.getSpielfeld().getMatrix()[eingabeStelle][i].getDrehung();
+			this.organisationGaenge[eingabeStelle][i].drehen(zustand);
+			validate();
+		}
+		aktualisiereGanguebrig();
+		validate();
+	}
+	
+	public void einschiebenYRichtung(int eingabeStelle) {
+		
+		for(int i = 0; i < 7; i++) {
+			String imagepath = pfadBestimmen(i,eingabeStelle);
+			this.organisationGaenge[i][eingabeStelle].bildaendern(imagepath);
+			repaint();
+			int zustand = daten.getSpielfeld().getMatrix()[i][eingabeStelle].getDrehung();
+			this.organisationGaenge[i][eingabeStelle].drehen(zustand);
+			validate();
+		}
+		aktualisiereGanguebrig();
+		validate();
+	}
+	
+	private void spielerGrafischAnpassen() {
+		for(int i = 0; i < daten.getSpielerliste().size(); i++) {
+			if(daten.getSpielerliste().get(i).isVerschoben()) {
+				int x = daten.getSpielerliste().get(i).getPositionX();
+				int y = daten.getSpielerliste().get(i).getPositionY();
+				String farbe = daten.getSpielerliste().get(i).getFarbe();
+				spielerBewegungGrafisch(x, y, farbe);
+				daten.getSpielerliste().get(i).setVerschoben(false);
+			}
+		}
+	}
+	
+	private void aktualisiereGanguebrig() {
+		String pfad = "";
+		if(!(daten.getSpielfeld().getRest().schatz.equals("keinSchatz"))) {
+			pfad = "Bilder/" + daten.getSpielfeld().getRest().schatz + "_g.png";
+		} else {
+			if(daten.getSpielfeld().getRest() instanceof Ecke ) {
+				pfad = "Bilder/ecke_g.png";
+			} else {
+				pfad = "Bilder/gerade_g.png";
+			}
+		}
+		ganguebrigpanel.getGanguebrig().bildaendern(pfad);
+		ganguebrigpanel.getGanguebrig().drehen(daten.getSpielfeld().getRest().drehung);
+	}
+	
+	public void aktualisiereDreiecke(boolean wechsel) {
+		for(int i = 0; i < organisationDreiecke.length; i++) {
+			if(i != daten.getVerboten()) {
+				organisationDreiecke[i].setEnabled(wechsel);
+			}
+		}
+	}
+	
+	public void aktualisiereButtons() {
+		if(daten.schrittMoeglichOben()){
+			joystickPanel.getOben().setEnabled(true);
+		} else {
+			joystickPanel.getOben().setEnabled(false);
+		}
+		if(daten.schrittMoeglichRechts()){
+			joystickPanel.getRechts().setEnabled(true);
+		} else {
+			joystickPanel.getRechts().setEnabled(false);
+		}
+		if(daten.schrittMoeglichUnten()){
+			joystickPanel.getUnten().setEnabled(true);
+		} else {
+			joystickPanel.getUnten().setEnabled(false);
+		}
+		if(daten.schrittMoeglichLinks()){
+			joystickPanel.getLinks().setEnabled(true);
+		} else {
+			joystickPanel.getLinks().setEnabled(false);
+		}
+	}
+	
+	private void aktuelleSpielerbewegung(String richtung) {
+		daten.schrittMachen(richtung);
+		int eingabeX = daten.getAktuellerSpieler().getPositionX();
+		int eingabeY = daten.getAktuellerSpieler().getPositionY();
+		String farbe = daten.getAktuellerSpieler().getFarbe();
+		spielerBewegungGrafisch(eingabeX, eingabeY, farbe);
+	}
+	
+	private void spielerBewegungGrafisch(int eingabeX, int eingabeY, String farbe) {
+		switch(farbe) {
+		case "Rot":
+			spielfigurRot.position(eingabeX,eingabeY,farbe);
+			break;
+		case "Gruen":
+			spielfigurGruen.position(eingabeX,eingabeY,farbe);
+			break;
+		case "Blau":
+			spielfigurBlau.position(eingabeX,eingabeY,farbe);
+			break;
+		case "Gelb":
+			spielfigurGelb.position(eingabeX,eingabeY,farbe);
+			break;
+		}
+		repaint();
+		aktualisiereButtons();
+	}
+	
+	private void fertigButtonPress() {
+		
+		gesuchterSchatzPruefen();
+		spielerWeitersetzen();
+	}
+	
+private void gesuchterSchatzPruefen() {
+		
+		int spielerKoordinateX = daten.getAktuellerSpieler().getPositionX();
+		int spielerKoordinateY = daten.getAktuellerSpieler().getPositionY();
+				
+		String gesuchterSchatz = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
+		System.out.println(gesuchterSchatz);
+		String aktuellePositionSchatz = daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX].schatz;
+		System.out.println(aktuellePositionSchatz);
+		
+		if(gesuchterSchatz.equals(aktuellePositionSchatz)) {
+			daten.getAktuellerSpieler().getKartenblatt().remove(0);
+
+			switch(daten.getAktuellerSpieler().getSpielerNummer()) {
+			case 0: 
+				String neueKartenAnzahl1 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
+				spielerPanel1.getKartenanzahl().setText(neueKartenAnzahl1);
+				break;
+			case 1: 
+				String neueKartenAnzahl2 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
+				spielerPanel2.getKartenanzahl().setText(neueKartenAnzahl2);
+				break;
+			case 2: 
+				String neueKartenAnzahl3 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
+				spielerPanel3.getKartenanzahl().setText(neueKartenAnzahl3);
+				break;
+			case 3: 
+				String neueKartenAnzahl4 = "" + daten.getAktuellerSpieler().getKartenblatt().size();
+				spielerPanel4.getKartenanzahl().setText(neueKartenAnzahl4);
+				break;
+			}
+		}
+		
+		if(daten.getAktuellerSpieler().getKartenblatt().isEmpty() &&
+				daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+				instanceof Startfeld) {
+			String farbeSpieler = daten.getAktuellerSpieler().getFarbe();
+			
+			switch(farbeSpieler) {
+			case "Rot":
+				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+				   instanceof StartfeldRot) {
+					gewinner();
+				}
+				break;
+			case "Blau":
+				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+				   instanceof StartfeldBlau) {
+					gewinner();
+				}
+				break;
+			case "Gelb":	
+				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+				   instanceof StartfeldGelb) {
+					gewinner();
+				}
+				break;
+			case "Gruen": 
+				if(daten.getSpielfeld().getMatrix()[spielerKoordinateY][spielerKoordinateX] 
+				   instanceof StartfeldGruen) {
+					gewinner();
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		validate();
+	}
+	
+	private void spielerWeitersetzen() {
+		
+		int spielerNummerKopie = daten.getAktuellerSpieler().getSpielerNummer();
+		daten.setAktuellerSpieler(daten.getSpielerliste().get((spielerNummerKopie + 1) % daten.getSpieleranzahl()));
+		aktualisiereButtons();
+		aktuellerspielername.setText(daten.getAktuellerSpieler().getName());
+		aktualisiereDreiecke(true);
+		sperrenButtons();
+		validate();
 	}
 	
 	public void gewinner() {

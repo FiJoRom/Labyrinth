@@ -4,36 +4,28 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 public class Gewonnen extends JDialog{
-	
+
 	private JPanel ergebnissePanel;
-	private JPanel gewinnerPanel;
-	private JPanel gewinnerPanelUnten;
 	private DekoBild banderole;
 	private JLabel ersterPlatz;
 	private JLabel zweiterPlatz;
 	private JLabel dritterPlatz;
 	private JLabel vierterPlatz;
 	private JLabel hatgewonnen;
-	private SpielfigurVornePanel siegerfigurPanel;
 	private DekoBild siegerfigur;
 	private GridBagLayout layout;
 	private GridBagConstraints gbc;
 	private JPanel platzierungen;
+	private static final long serialVersionUID = 4934581066663011381L;
 	
 	public Gewonnen(List<Spieler> spielerListe) {
 				
@@ -45,8 +37,6 @@ public class Gewonnen extends JDialog{
 		
 		layout = new GridBagLayout();
 		gbc = new GridBagConstraints();
-		
-		
 		
 		//Bubblesort
 		boolean warSortiert = true;
@@ -65,7 +55,6 @@ public class Gewonnen extends JDialog{
 				}
 			}
 		}while(!warSortiert);
-		
 		
 		String imagePathErster = "Bilder/figurspieler_" + spielerListe.get(0).getFarbe() + "_gewinner.png";		
 		
@@ -113,7 +102,6 @@ public class Gewonnen extends JDialog{
 		zweiterPlatz.setFont(zweiterPlatz.getFont().deriveFont((float) 22));
 		platzierungen.add(zweiterPlatz,BorderLayout.NORTH);
 		
-		//dritterPlatz = new JLabel("Platz 3: " + spielerListe.get(2).getName(),SwingConstants.CENTER);
 		dritterPlatz = new JLabel("Platz 3: ",SwingConstants.CENTER);
 		dritterPlatz.setSize(120, 25);
 		dritterPlatz.setBorder(BorderFactory.createEmptyBorder(0, 0,22, 0));
@@ -152,14 +140,4 @@ public class Gewonnen extends JDialog{
 		this.gbc.gridwidth = width;
 		this.gbc.gridheight = height;
 	}
-	
-	private void generiereGangbilder(JPanel gangpanel, String gangpath) {
-		try {
-			BufferedImage logo = ImageIO.read(new File(gangpath));
-			JLabel picLabel = new JLabel(new ImageIcon(logo));
-			gangpanel.add(picLabel);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}	
 }

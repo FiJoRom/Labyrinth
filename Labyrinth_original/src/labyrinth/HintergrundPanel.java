@@ -9,10 +9,9 @@ import javax.swing.JPanel;
 
 public class HintergrundPanel extends JPanel {
 	
-	private static final long serialVersionUID = 7066337001770813170L;
-	
 	String farbe1;
 	String farbe2;
+	private static final long serialVersionUID = 7066337001770813170L;
 	
 	HintergrundPanel(String eingabeFarbe1, String eingabeFarbe2) {
 		
