@@ -19,11 +19,13 @@ import javax.swing.SwingConstants;
 public class Gewonnen extends JDialog{
 	
 	private JPanel ergebnissePanel;
+	private JPanel gewinnerPanel;
+	private JPanel gewinnerPanelUnten;
+	private DekoBild banderole;
 	private JLabel ersterPlatz;
 	private JLabel zweiterPlatz;
 	private JLabel dritterPlatz;
 	private JLabel vierterPlatz;
-	private JLabel banderole;
 	private JLabel hatgewonnen;
 	private SpielfigurVornePanel siegerfigurPanel;
 	private DekoBild siegerfigur;
@@ -42,33 +44,65 @@ public class Gewonnen extends JDialog{
 		
 		String imagePathErster = "Bilder/spielfigur_" + farbeErster + "_vorne.png";		
 		
+		
+		
+		
 		ergebnissePanel = new JPanel();
 		ergebnissePanel.setLayout(layout);
-		ergebnissePanel.setSize(400,400);
+		ergebnissePanel.setSize(800,600);
 		ergebnissePanel.setBackground(Color.decode("#ffc04f"));
 		ergebnissePanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		this.add(ergebnissePanel);
+		this.add(ergebnissePanel);		
 		
-		banderole = new JLabel();
+		
+		
+		gewinnerPanel = new JPanel();
+		gewinnerPanel.setSize(750,600);
+		gewinnerPanel.setLayout(new BorderLayout());
+		gewinnerPanel.setOpaque(false);
+		gewinnerPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		ergebnissePanel.add(gewinnerPanel,BorderLayout.NORTH);
 		
 		ersterPlatz = new JLabel(erster,SwingConstants.CENTER);
 		ersterPlatz.setSize(120, 30);
-		ersterPlatz.setBorder(BorderFactory.createEmptyBorder(22, 0, 0, 0));
+		ersterPlatz.setBorder(BorderFactory.createEmptyBorder(100, 0, 0, 0));
 		ersterPlatz.setFont(ersterPlatz.getFont().deriveFont((float) 30));
-		ergebnissePanel.add(ersterPlatz,BorderLayout.NORTH);	
+		gewinnerPanel.add(ersterPlatz,BorderLayout.NORTH);
+		
+		banderole = new DekoBild(750,500,"Bilder/gewinner_banner.png");
+		//generiereGangbilder(banderole, "Bilder/gewinner_banner.png");
+		//banderole.setSize(750,500);
+		banderole.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+		banderole.setOpaque(false);
+		gewinnerPanel.add(banderole,BorderLayout.NORTH);
+		
+		
+		
+		
+		gewinnerPanelUnten = new JPanel();
+		gewinnerPanelUnten.setSize(200,300);
+		gewinnerPanelUnten.setLayout(new BorderLayout());
+		gewinnerPanelUnten.setOpaque(false);
+		gewinnerPanelUnten.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		ergebnissePanel.add(gewinnerPanelUnten,BorderLayout.CENTER);
 		
 		hatgewonnen = new JLabel("HAT GEWONNEN",SwingConstants.CENTER);
-		hatgewonnen.setSize(120, 30);
-		hatgewonnen.setBorder(BorderFactory.createEmptyBorder(22, 0, 0, 0));
-		hatgewonnen.setFont(hatgewonnen.getFont().deriveFont((float) 30));
+		hatgewonnen.setSize(120, 200);
 		hatgewonnen.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		ergebnissePanel.add(hatgewonnen,BorderLayout.CENTER);	
+		hatgewonnen.setFont(hatgewonnen.getFont().deriveFont((float) 30));
+		gewinnerPanelUnten.add(hatgewonnen,BorderLayout.NORTH);	
 		
 		siegerfigurPanel = new SpielfigurVornePanel();
 		siegerfigur = new DekoBild(36 , 70, imagePathErster);
-		siegerfigur.setBorder(BorderFactory.createEmptyBorder(22, 0, 0, 0));
+		siegerfigur.setOpaque(false);
+		siegerfigur.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		siegerfigurPanel.add(siegerfigur);
+		gewinnerPanelUnten.add(siegerfigurPanel,BorderLayout.CENTER);
+			
 		
-
+		
+		
+		
 		platzierungen = new JPanel();
 		platzierungen.setLayout(new BorderLayout());
 		platzierungen.setOpaque(false);
@@ -94,5 +128,18 @@ public class Gewonnen extends JDialog{
 		vierterPlatz.setBorder(BorderFactory.createEmptyBorder(0, 0, 22 , 0));
 		platzierungen.add(vierterPlatz,BorderLayout.SOUTH);
 		
+			
+		
 	}
+	
+	private void generiereGangbilder(JPanel gangpanel, String gangpath) {
+		try {
+			BufferedImage logo = ImageIO.read(new File(gangpath));
+			JLabel picLabel = new JLabel(new ImageIcon(logo));
+			gangpanel.add(picLabel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}	
 }
