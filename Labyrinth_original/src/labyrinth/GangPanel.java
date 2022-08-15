@@ -3,10 +3,8 @@ package labyrinth;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import labyrinth.RotatedLabel.Direction;
@@ -19,14 +17,7 @@ public class GangPanel extends JPanel{
 	private ImageIcon imageicon;
 	private String bilddateipfad;
 	
-	
-	public RotatedLabel getJlabel() {
-		return jlabel;
-	}
-
-	public void setJlabel(RotatedLabel jlabel) {
-		this.jlabel = jlabel;
-	}
+	private static final long serialVersionUID = -898283908807293605L;
 
 	public GangPanel(int x, int y, String imagepath) {
 		this.setBounds(x, y, 90, 95);
@@ -42,14 +33,6 @@ public class GangPanel extends JPanel{
 		this.jlabel = new RotatedLabel(imageicon);
 		this.add(jlabel);
 	}
-	
-	public String getBilddateipfad() {
-		return bilddateipfad;
-	}
-
-	public void setBilddateipfad(String bilddateipfad) {
-		this.bilddateipfad = bilddateipfad;
-	}
 
 	public GangPanel(String imagepath) {
 		this.setSize(90, 95);
@@ -63,9 +46,7 @@ public class GangPanel extends JPanel{
 		}
 		this.imageicon = new ImageIcon(bufferedimage);
 		this.jlabel = new RotatedLabel(imageicon);
-
-		this.add(jlabel);
-		
+		this.add(jlabel);	
 	}
 	
 	public void bildaendern(String neu) {
@@ -97,5 +78,21 @@ public class GangPanel extends JPanel{
 			this.jlabel.setDirection(Direction.VERTICAL_UP);
 			break;
 		}
+	}
+	
+	public RotatedLabel getJlabel() {
+		return jlabel;
+	}
+
+	public void setJlabel(RotatedLabel jlabel) {
+		this.jlabel = jlabel;
+	}
+	
+	public String getBilddateipfad() {
+		return bilddateipfad;
+	}
+
+	public void setBilddateipfad(String bilddateipfad) {
+		this.bilddateipfad = bilddateipfad;
 	}
 }
