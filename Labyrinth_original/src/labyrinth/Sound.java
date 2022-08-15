@@ -19,13 +19,9 @@ public class Sound {
 			Clip audioClip = AudioSystem.getClip();
 			audioClip.open(AudioSystem.getAudioInputStream(Sound));
 			audioClip.start();
-			
-			Thread.sleep(audioClip.getMicrosecondLength()/1000);
-			
+			Thread.sleep(audioClip.getMicrosecondLength()/1000);	
 		}catch(Exception e)
 		{
-			
 		}
-		
 	}
 }

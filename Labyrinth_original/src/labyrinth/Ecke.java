@@ -28,6 +28,21 @@ public class Ecke extends Gangkarte {
 	@Override
 	public void gangkarte90GradDrehenNachRechts() {
 		this.drehung = (this.drehung + 1)%4;
+		zustandAktualisieren();		
+	}
+
+	@Override
+	public void gangkarte90GradDrehenNachLinks() {
+		if(this.drehung == 0) {
+			this.drehung = 3;
+		} else {
+			this.drehung -= 1;
+		}
+		zustandAktualisieren();		
+	}
+
+	@Override
+	public void zustandAktualisieren() {
 		switch(this.drehung) {
 		case 0:
 			this.nordausgang = true;
@@ -53,51 +68,7 @@ public class Ecke extends Gangkarte {
 			this.suedausgang = false;
 			this.westausgang = true;
 			break;
-		}
-	}
-
-	@Override
-	public void gangkarte90GradDrehenNachLinks() {
-		if(this.drehung == 0) {
-			this.drehung = 3;
-		} else {
-			this.drehung -= 1;
-		}
-		switch(this.drehung) {
-		case 0:
-			this.suedausgang = false;
-			this.nordausgang = true;
-			break;
-		case 1:
-			this.westausgang = false;
-			this.ostausgang = true;
-			break;
-		case 2:
-			this.nordausgang = false;
-			this.suedausgang = true;
-			break;
-		case 3:
-			this.ostausgang = false;
-			this.westausgang = true;
-			break;
-		}
-		
-	}
-
-	@Override
-	public void zustandAktualisieren() {
-		// TODO Auto-generated method stub
-		
+		}	
 	}
 	
-	//oder extra Funktion schatzZuordnen()
-	/*
-	 * public void schatzZuordnen(){
-	 * 		this.schatz = schatznamen[i];
-	 * 		if(i < 4){
-	 * 			i++;
-	 * 		}
-	 * }
-	 */
-
 }

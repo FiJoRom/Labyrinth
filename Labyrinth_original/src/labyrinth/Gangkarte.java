@@ -3,8 +3,6 @@ package labyrinth;
 import java.util.Random;
 
 public abstract class Gangkarte {
-
-	public static Random zufall = new Random();
 	
 	protected boolean nordausgang;
 	protected boolean ostausgang;
@@ -12,6 +10,8 @@ public abstract class Gangkarte {
 	protected boolean westausgang;	
 	protected String schatz;
 	protected int drehung;
+	
+	public static Random zufall = new Random();
 
 	public Gangkarte() {
 		drehung = 0;

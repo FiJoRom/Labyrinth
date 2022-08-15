@@ -13,21 +13,7 @@ public class Gerade extends Gangkarte {
 	@Override
 	public void gangkarte90GradDrehenNachRechts() {
 		this.drehung = (this.drehung + 1)%4;
-		switch(this.drehung%2) {
-		case 0:
-			this.nordausgang = true;
-			this.ostausgang = false;
-			this.suedausgang = true;
-			this.westausgang = false;
-			break;
-		case 1:
-			this.nordausgang = false;
-			this.ostausgang = true;
-			this.suedausgang = false;
-			this.westausgang = true;
-			break;
-		}
-		
+		zustandAktualisieren();
 	}
 
 	@Override
@@ -37,6 +23,11 @@ public class Gerade extends Gangkarte {
 		} else {
 			this.drehung -= 1;
 		}
+		zustandAktualisieren();
+	}
+
+	@Override
+	public void zustandAktualisieren() {
 		switch(this.drehung%2) {
 		case 0:
 			this.nordausgang = true;
@@ -50,13 +41,7 @@ public class Gerade extends Gangkarte {
 			this.suedausgang = false;
 			this.westausgang = true;
 			break;
-		}
-	}
-
-	@Override
-	public void zustandAktualisieren() {
-		// TODO Auto-generated method stub
-		
+		}	
 	}
 
 }

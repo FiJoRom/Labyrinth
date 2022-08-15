@@ -1,8 +1,6 @@
 package labyrinth;
 
 import java.awt.BorderLayout;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -14,89 +12,54 @@ public class JoystickPanel extends JPanel{
 	private JButton links;
 	private JButton rechts;
 	private JButton fertig;
-	//neu
 	private BorderLayout layout;
+	
+	private static final long serialVersionUID = -5468751874669759931L;
 
 	public JoystickPanel(){
-		
-		layout = new BorderLayout();
-		
+		layout = new BorderLayout();	
 		this.setLayout(layout);
 		layout.setHgap(-10);
 		this.setBounds(1100, 460, 200, 180);
-		this.setOpaque(false);
-		
-		//Icons
+		this.setOpaque(false);	
+			
 		ImageIcon fertigIcon = new ImageIcon("Bilder/iconfertig.png");
-		ImageIcon obenIcon = new ImageIcon("Bilder/iconoben.png");
-		ImageIcon untenIcon = new ImageIcon("Bilder/iconunten.png");
-		ImageIcon linksIcon = new ImageIcon("Bilder/iconlinks.png");
-		ImageIcon rechtsIcon = new ImageIcon("Bilder/iconrechts.png");
-		
-		ImageIcon fertigIconMouseover = new ImageIcon("Bilder/iconfertig_mouseover.png");
-		ImageIcon obenIconMouseover = new ImageIcon("Bilder/iconoben_mouseover.png");
-		ImageIcon untenIconMouseover = new ImageIcon("Bilder/iconunten_mouseover.png");
-		ImageIcon linksIconMouseover = new ImageIcon("Bilder/iconlinks_mouseover.png");
-		ImageIcon rechtsIconMouseover = new ImageIcon("Bilder/iconrechts_mouseover.png");
-		
-		ImageIcon fertigIconLocked = new ImageIcon("Bilder/iconfertig_locked.png");
-		ImageIcon obenIconLocked = new ImageIcon("Bilder/iconoben_locked.png");
-		ImageIcon untenIconLocked = new ImageIcon("Bilder/iconunten_locked.png");
-		ImageIcon linksIconLocked = new ImageIcon("Bilder/iconlinks_locked.png");
-		ImageIcon rechtsIconLocked = new ImageIcon("Bilder/iconrechts_locked.png");
-		
 		fertig = new JButton(fertigIcon);
-		oben = new JButton(obenIcon);
-		unten = new JButton(untenIcon);
-		rechts = new JButton(rechtsIcon);
-		links = new JButton(linksIcon);
-		
-		
-		//Joystick
-		fertig.setSize(52,52);
-		fertig.setBorderPainted(false);
-		fertig.setContentAreaFilled(false);
-		fertig.setFocusPainted(false);
-		fertig.setOpaque(false);
-		fertig.setRolloverIcon(fertigIconMouseover);
-		fertig.setDisabledIcon(fertigIconLocked);
+		eigenschaftenButton(fertig, "Bilder/iconfertig_mouseover.png", "Bilder/iconfertig_locked.png");
 		this.add(fertig, BorderLayout.CENTER);
 		
-		oben.setSize(52,52);
-		oben.setBorderPainted(false);
-		oben.setContentAreaFilled(false);
-		oben.setFocusPainted(false);
-		oben.setOpaque(false);
-		oben.setRolloverIcon(obenIconMouseover);
-		oben.setDisabledIcon(obenIconLocked);
+		ImageIcon obenIcon = new ImageIcon("Bilder/iconoben.png");
+		oben = new JButton(obenIcon);
+		eigenschaftenButton(oben, "Bilder/iconoben_mouseover.png", "Bilder/iconoben_locked.png");
 		this.add(oben, BorderLayout.NORTH);
 		
-		unten.setSize(52,52);
-		unten.setBorderPainted(false);
-		unten.setContentAreaFilled(false);
-		unten.setFocusPainted(false);
-		unten.setOpaque(false);
-		unten.setRolloverIcon(untenIconMouseover);
-		unten.setDisabledIcon(untenIconLocked);
+		ImageIcon untenIcon = new ImageIcon("Bilder/iconunten.png");
+		unten = new JButton(untenIcon);
+		eigenschaftenButton(unten, "Bilder/iconunten_mouseover.png", "Bilder/iconunten_locked.png");
 		this.add(unten, BorderLayout.SOUTH);
 		
-		rechts.setSize(52,52);
-		rechts.setBorderPainted(false);
-		rechts.setContentAreaFilled(false);
-		rechts.setFocusPainted(false);
-		rechts.setOpaque(false);
-		rechts.setRolloverIcon(rechtsIconMouseover);
-		rechts.setDisabledIcon(rechtsIconLocked);
+		ImageIcon rechtsIcon = new ImageIcon("Bilder/iconrechts.png");
+		rechts = new JButton(rechtsIcon);
+		eigenschaftenButton(rechts, "Bilder/iconrechts_mouseover.png", "Bilder/iconrechts_locked.png");
 		this.add(rechts, BorderLayout.EAST);
 		
-		links.setSize(52,52);
-		links.setBorderPainted(false);
-		links.setContentAreaFilled(false);
-		links.setFocusPainted(false);
-		links.setOpaque(false);
-		links.setRolloverIcon(linksIconMouseover);
-		links.setDisabledIcon(linksIconLocked);
+		ImageIcon linksIcon = new ImageIcon("Bilder/iconlinks.png");
+		links = new JButton(linksIcon);
+		eigenschaftenButton(links, "Bilder/iconlinks_mouseover.png", "Bilder/iconlinks_locked.png");
 		this.add(links, BorderLayout.WEST);
+	}
+	
+	private void eigenschaftenButton(JButton button, String mouseover, String locked) {
+		button.setSize(52,52);
+		button.setBorderPainted(false);
+		button.setContentAreaFilled(false);
+		button.setFocusPainted(false);
+		button.setOpaque(false);
+		
+		ImageIcon iconMouseover = new ImageIcon(mouseover);
+		button.setRolloverIcon(iconMouseover);
+		ImageIcon iconLocked = new ImageIcon(locked);
+		button.setDisabledIcon(iconLocked);
 	}
 
 	public JButton getOben() {
@@ -139,5 +102,3 @@ public class JoystickPanel extends JPanel{
 		this.fertig = fertig;
 	}
 }
-	
-
