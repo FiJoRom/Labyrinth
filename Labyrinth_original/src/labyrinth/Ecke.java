@@ -83,6 +83,12 @@ public class Ecke extends Gangkarte {
 		}
 		
 	}
+
+	@Override
+	public void zustandAktualisieren() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	//oder extra Funktion schatzZuordnen()
 	/*

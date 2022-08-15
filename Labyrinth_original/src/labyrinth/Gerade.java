@@ -53,4 +53,10 @@ public class Gerade extends Gangkarte {
 		}
 	}
 
+	@Override
+	public void zustandAktualisieren() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

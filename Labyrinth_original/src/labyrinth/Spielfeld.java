@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class Spielfeld {
 	
-	private static Gangkarte[] tKreuzungFest = TKreuzung.erzeugeTFestSet();
-	private static Gangkarte[] startfelderFest = Startfeld.erzeugeStartfeldSet();
-	
 	private Gangkarte[] gaengeLose;
 	private Gangkarte[][] matrix;
 	private Gangkarte rest;
+	
+	private static Gangkarte[] tKreuzungFest = TKreuzung.erzeugeTFestSet();
+	private static Gangkarte[] startfelderFest = Startfeld.erzeugeStartfeldSet();
 	
 	public Spielfeld() {
 		matrix = new Gangkarte[7][7];
@@ -47,16 +47,12 @@ public class Spielfeld {
 
 	public void gaengekartenMischen() {
 		Random zufall = new Random();
-		for(int i = 0; i <30; i++) {
+		for(int i = 0; i < 30; i++) {
 			int tauschA = zufall.nextInt(34);
 			int tauschB = zufall.nextInt(34);
-			//System.out.println("Tauschpartner A: " + tauschA + gaengeLose[tauschA].getClass().getName());
-			//System.out.println("Tauschpartner B: " + tauschB + gaengeLose[tauschB].getClass().getName());
 			Gangkarte ablage = this.gaengeLose[tauschA];
 			this.gaengeLose[tauschA] = this.gaengeLose[tauschB];
 			this.gaengeLose[tauschB] = ablage;
-			//System.out.println("Tauschpartner A: " + tauschA + gaengeLose[tauschA].getClass().getName());
-			//System.out.println("Tauschpartner B: " + tauschB + gaengeLose[tauschB].getClass().getName());
 		}
 		for(int j = 0; j < this.gaengeLose.length; j++) {
 			this.gaengeLose[j].gangkarteWirbeln();
@@ -126,4 +122,5 @@ public class Spielfeld {
 	public void setMatrix(Gangkarte[][] matrix) {
 		this.matrix = matrix;
 	}
+	
 }

@@ -20,13 +20,13 @@ public class SpielfigurPanel extends JPanel {
 	private static int xPositionenRotGelb[]= {385, 475, 565, 655, 745, 835, 925};
 	private static int xPositionenGruenBlau[] = {389, 479, 569, 659, 749, 839, 929};
 	private static int yPositionen[]= {43, 133, 223, 313, 403, 493, 583};
+	private static final long serialVersionUID = 1295144144458828723L;
 
-	SpielfigurPanel(int x, int y, int width, int height, String imagePath){
-		
+	SpielfigurPanel(int x, int y, int width, int height, String imagePath){	
 		this.setBounds(x, y, width, height);
 		this.setOpaque(false);
 		this.bilddateipfad = imagePath;
-		this.bilddatei = new File(imagePath);
+		this.bilddatei = new File(bilddateipfad);
 		try {
 			this.bufferedimage = ImageIO.read(bilddatei);
 		} catch (IOException e) {
@@ -34,8 +34,7 @@ public class SpielfigurPanel extends JPanel {
 		}
 		this.imageicon = new ImageIcon(bufferedimage);
 		this.jlabel = new JLabel(imageicon);
-		this.add(jlabel);
-		
+		this.add(jlabel);	
 	}
 	
 	SpielfigurPanel(){
@@ -56,18 +55,13 @@ public class SpielfigurPanel extends JPanel {
 		this.add(jlabel);
 	}
 	
-	public void position(int eingabeX, int eingabeY, String farbe) {
-		
+	public void position(int eingabeX, int eingabeY, String farbe) {	
 		if(farbe.equals("Rot") || farbe.equals("Gelb")) {
-			//this.setAlignmentX(xPositionenRotGelb[eingabeX]);
 			this.setLocation(xPositionenRotGelb[eingabeX], yPositionen[eingabeY]);
-		}else {
+		} else {
 			this.setLocation(xPositionenGruenBlau[eingabeX],yPositionen[eingabeY]);
 		}
-		
-		//this.setAlignmentY(yPositionen[eingabeY]);
 		validate();
 	}
-	
-	
+		
 }

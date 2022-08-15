@@ -7,11 +7,71 @@ public class Spieler {
 	
 	private String name = new String();
 	private String farbe = new String();
+	private int spielerNummer;
 	private int positionX;
 	private int positionY;
-	private List<Karte> kartenblatt = new ArrayList<Karte>();
+	private List<Karte> kartenblatt;
 	private boolean verschoben;
-	private int spielerNummer;
+	
+	public Spieler(String NameEingabe, String FarbeEingabe, int spielerNummerEingabe) {		
+		this.name = NameEingabe;
+		this.farbe = FarbeEingabe;
+		this.spielerNummer = spielerNummerEingabe - 1;
+		this.kartenblatt = new ArrayList<Karte>();
+		
+		if(this.farbe == "Gruen"){
+			this.positionX = 0; 
+			this.positionY = 0;
+		}
+		
+		if(this.farbe == "Gelb"){
+			this.positionX = 6; 
+			this.positionY = 0;
+		}
+		
+		if(this.farbe == "Blau"){
+			this.positionX = 0; 
+			this.positionY = 6;
+		}
+		
+		if(this.farbe == "Rot"){
+			this.positionX = 6; 
+			this.positionY = 6;
+		}
+	}
+
+	public void schrittNachOben() {
+		if(positionY == 0)
+		{
+			this.positionY = 6;
+		}else {
+		this.positionY = (this.positionY - 1);
+		}
+	}
+	
+	public void schrittNachUnten() {
+		this.positionY = (this.positionY + 1)%7;
+	}
+	
+	public void schrittNachLinks() {
+		if(positionX == 0)
+		{
+			this.positionX = 6;
+		}else {
+		this.positionX = (this.positionX - 1);
+		}
+	}
+	
+	public void schrittNachRechts() {
+		this.positionX = (this.positionX + 1)%7;
+	}
+	
+	@Override
+	public String toString() {
+		String Ausgabe = new String();
+		Ausgabe = this.name + " " + this.farbe + " " + positionX + " " + positionY + " " + this.kartenblatt; 
+		return Ausgabe;
+	}
 	
 	public boolean isVerschoben() {
 		return verschoben;
@@ -67,67 +127,6 @@ public class Spieler {
 
 	public void setSpielerNummer(int spielerNummer) {
 		this.spielerNummer = spielerNummer;
-	}
-
-	public Spieler(String NameEingabe, String FarbeEingabe, int spielerNummerEingabe) {
-		
-		this.name = NameEingabe;
-		this.farbe = FarbeEingabe;
-		this.spielerNummer = spielerNummerEingabe - 1;
-		
-		if(this.farbe == "Gruen"){
-			this.positionX = 0; 
-			this.positionY = 0;
-		}
-		
-		if(this.farbe == "Gelb"){
-			this.positionX = 6; 
-			this.positionY = 0;
-		}
-		
-		if(this.farbe == "Blau"){
-			this.positionX = 0; 
-			this.positionY = 6;
-		}
-		
-		if(this.farbe == "Rot"){
-			this.positionX = 6; 
-			this.positionY = 6;
-		}
-	}
-
-	public void schrittNachOben() {
-		if(positionY == 0)
-		{
-			this.positionY = 6;
-		}else {
-		this.positionY = (this.positionY - 1);
-		}
-	}
-	
-	public void schrittNachUnten() {
-		this.positionY = (this.positionY + 1)%7;
-	}
-	
-	public void schrittNachLinks() {
-		if(positionX == 0)
-		{
-			this.positionX = 6;
-		}else {
-		this.positionX = (this.positionX - 1);
-		}
-	}
-	
-	public void schrittNachRechts() {
-		this.positionX = (this.positionX + 1)%7;
-	}
-	
-	
-	@Override
-	public String toString() {
-		String Ausgabe = new String();
-		Ausgabe = this.name + " " + this.farbe + " " + positionX + " " + positionY + " " + this.kartenblatt; 
-		return Ausgabe;
 	}
 
 }

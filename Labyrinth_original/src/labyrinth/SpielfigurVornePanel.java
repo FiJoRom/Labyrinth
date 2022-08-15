@@ -17,12 +17,13 @@ public class SpielfigurVornePanel extends JPanel {
 	private ImageIcon imageicon;
 	private String bilddateipfad;
 	
+	private static final long serialVersionUID = 3126452588110585123L;
+	
 	public SpielfigurVornePanel() {
-		
-		//this.setBounds(30, y, 270, 115);
 		this.setOpaque(false);
+		this.setSize(30,50);
 		this.bilddateipfad = "Bilder/leeres_Bild_Spielfigur.png";
-		this.bilddatei = new File("Bilder/leeres_Bild_Spielfigur.png");
+		this.bilddatei = new File(bilddateipfad);
 		try {
 			this.bufferedimage = ImageIO.read(bilddatei);
 		} catch (IOException e) {
@@ -30,8 +31,7 @@ public class SpielfigurVornePanel extends JPanel {
 		}
 		this.imageicon = new ImageIcon(bufferedimage);
 		this.jlabel = new RotatedLabel(imageicon);
-		this.add(jlabel);
-		
+		this.add(jlabel);	
 	}
 	
 	public void bildaendern(String neu) {
@@ -48,4 +48,5 @@ public class SpielfigurVornePanel extends JPanel {
 		this.jlabel.setVisible(true);
 		this.add(jlabel);
 	}
+	
 }

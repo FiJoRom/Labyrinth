@@ -4,22 +4,14 @@ import java.util.Random;
 
 public abstract class Gangkarte {
 
+	public static Random zufall = new Random();
+	
 	protected boolean nordausgang;
 	protected boolean ostausgang;
 	protected boolean suedausgang;
-	protected boolean westausgang;
-	public static Random zufall = new Random();
-	
+	protected boolean westausgang;	
 	protected String schatz;
 	protected int drehung;
-	
-	public int getDrehung() {
-		return drehung;
-	}
-
-	public void setDrehung(int drehung) {
-		this.drehung = drehung;
-	}
 
 	public Gangkarte() {
 		drehung = 0;
@@ -27,6 +19,7 @@ public abstract class Gangkarte {
 
 	abstract public void gangkarte90GradDrehenNachRechts();
 	abstract public void gangkarte90GradDrehenNachLinks();
+	abstract public void zustandAktualisieren();
 	
 	public void gangkarteWirbeln() {
 		int drehen = zufall.nextInt(4);
@@ -50,4 +43,13 @@ public abstract class Gangkarte {
 		}
 		return neu;
 	}
+	
+	public int getDrehung() {
+		return drehung;
+	}
+
+	public void setDrehung(int drehung) {
+		this.drehung = drehung;
+	}
+	
 }

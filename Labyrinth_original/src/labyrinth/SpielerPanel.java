@@ -2,7 +2,6 @@ package labyrinth;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.LayoutManager;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 public class SpielerPanel extends JPanel{
 
@@ -23,6 +20,8 @@ public class SpielerPanel extends JPanel{
 	private JPanel kartenuebrig;
 	private JLabel spielername;
 	private SpielfigurVornePanel spielfigurAnzeige;
+	
+	private static final long serialVersionUID = 3746050267166831795L;
 		
 	public SpielerPanel(int y, String spNummer, String spName) {
 		this.setLayout(new BorderLayout());
@@ -30,9 +29,7 @@ public class SpielerPanel extends JPanel{
 		this.setOpaque(false);
 		
 		spielfigurAnzeige = new SpielfigurVornePanel();
-		generiereGangbilderSpielfigur(spielfigurAnzeige, "Bilder/leeres_Bild_Spielfigur.png");
-		spielfigurAnzeige.setSize(30,50);
-		spielfigurAnzeige.setOpaque(false);
+		generiereSpielfigur(spielfigurAnzeige, "Bilder/leeres_Bild_Spielfigur.png");
 		spielfigurAnzeige.setBorder(BorderFactory.createEmptyBorder(22, 0, 0, 0));
 		this.add(spielfigurAnzeige, BorderLayout.WEST);
 		
@@ -42,23 +39,47 @@ public class SpielerPanel extends JPanel{
 		kartenanzahl.setForeground(Color.white);
 		kartenanzahl.setBorder(BorderFactory.createEmptyBorder(0, 200, 0, 0));
 		this.add(kartenanzahl, BorderLayout.EAST);	
+		
 		spielernummer = new JLabel(spNummer);
 		spielernummer.setSize(200, 60);	
 		spielernummer.setBorder(BorderFactory.createEmptyBorder(30, 60, 0, 0));
 		spielernummer.setFont(spielernummer.getFont().deriveFont((float) 22));
 		this.add(spielernummer,BorderLayout.CENTER);
+		
 		kartenuebrig = new JPanel();
 		generiereGangbilder(kartenuebrig, "Bilder/rueckseite_k.png");
 		kartenuebrig.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 		kartenuebrig.setSize(63,110);
 		kartenuebrig.setOpaque(false);
 		this.add(kartenuebrig, BorderLayout.EAST);
-		spielername = new JLabel(spName);
+		
+		spielername = new JLabel(spName);		
 		spielername.setSize(120, 25);
 		spielername.setFont(spielername.getFont().deriveFont((float) 15));
 		spielername.setBorder(BorderFactory.createEmptyBorder(40, 15, 0 , 0));
 		this.add(spielername,BorderLayout.CENTER);
 	}
+
+	private void generiereGangbilder(JPanel gangpanel, String gangpath) {
+		try {
+			BufferedImage logo = ImageIO.read(new File(gangpath));
+			JLabel picLabel = new JLabel(new ImageIcon(logo));
+			gangpanel.add(picLabel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}	
+	
+	private void generiereSpielfigur(JPanel gangpanel, String gangpath) {
+		try {
+			BufferedImage logo = ImageIO.read(new File(gangpath));
+			JLabel picLabel = new JLabel(new ImageIcon(logo));
+			picLabel.setVisible(false);
+			gangpanel.add(picLabel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}	
 	
 	public SpielfigurVornePanel getSpielfigurAnzeige() {
 		return spielfigurAnzeige;
@@ -84,26 +105,5 @@ public class SpielerPanel extends JPanel{
 	public void setSpielername(JLabel spielername) {
 		this.spielername = spielername;
 	}
-
-	private void generiereGangbilder(JPanel gangpanel, String gangpath) {
-		try {
-			BufferedImage logo = ImageIO.read(new File(gangpath));
-			JLabel picLabel = new JLabel(new ImageIcon(logo));
-			gangpanel.add(picLabel);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}	
-	private void generiereGangbilderSpielfigur(JPanel gangpanel, String gangpath) {
-		try {
-			BufferedImage logo = ImageIO.read(new File(gangpath));
-			JLabel picLabel = new JLabel(new ImageIcon(logo));
-			picLabel.setVisible(false);
-			gangpanel.add(picLabel);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}	
+	
 }

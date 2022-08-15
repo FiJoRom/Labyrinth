@@ -51,33 +51,7 @@ public class TKreuzung extends Gangkarte {
 	@Override
 	public void gangkarte90GradDrehenNachRechts() {
 		this.drehung = (this.drehung + 1)%4;
-		switch(this.drehung) {
-		case 0:
-			this.nordausgang = true;
-			this.ostausgang = true;
-			this.suedausgang = false;
-			this.westausgang = true;
-			
-			break;
-		case 1:
-			this.nordausgang = true;
-			this.ostausgang = true;
-			this.suedausgang = true;
-			this.westausgang = false;
-			break;
-		case 2:
-			this.nordausgang = false;
-			this.ostausgang = true;
-			this.suedausgang = true;
-			this.westausgang = true;
-			break;
-		case 3:
-			this.nordausgang = true;
-			this.ostausgang = false;
-			this.suedausgang = true;
-			this.westausgang = true;
-			break;
-		}
+		zustandAktualisieren();
 	}
 
 	@Override
@@ -87,25 +61,37 @@ public class TKreuzung extends Gangkarte {
 		} else {
 			this.drehung -= 1;
 		}
+		zustandAktualisieren();
+	}
+
+	@Override
+	public void zustandAktualisieren() {
 		switch(this.drehung) {
 		case 0:
+			this.nordausgang = true;
+			this.ostausgang = true;
 			this.suedausgang = false;
-			this.westausgang = true;
+			this.westausgang = true;	
 			break;
 		case 1:
-			this.westausgang = false;
 			this.nordausgang = true;
+			this.ostausgang = true;
+			this.suedausgang = true;
+			this.westausgang = false;
 			break;
 		case 2:
 			this.nordausgang = false;
 			this.ostausgang = true;
+			this.suedausgang = true;
+			this.westausgang = true;
 			break;
 		case 3:
+			this.nordausgang = true;
 			this.ostausgang = false;
 			this.suedausgang = true;
+			this.westausgang = true;
 			break;
-		}
+		}	
 	}
-
 	
 }
