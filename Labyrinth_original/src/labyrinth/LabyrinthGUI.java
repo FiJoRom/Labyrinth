@@ -73,6 +73,7 @@ public class LabyrinthGUI extends JFrame{
 	
 	private JPanel spielfeldHintergrund;
 	private JPanel drachenBild;
+	private DekoBild spinneBild;
 	private JLabel aktuellerspielername; 
 	
 	private SpielerPanel spielerPanel1;
@@ -469,9 +470,17 @@ public class LabyrinthGUI extends JFrame{
         
         //DracheUntenLinks
         ImageIcon dracheMitSchatz = new ImageIcon("Bilder/DracheMitSchatz.png");
-        DracheButton drachenButton = new DracheButton(dracheMitSchatz ,50, 645, 430, 341);
+        ImageIcon dracheMitSchatzMouseover = new ImageIcon("Bilder/DracheMitSchatz_mouseover.png");
+        ButtonMitMouseover drachenButton = new ButtonMitMouseover(dracheMitSchatz ,50, 645, 430, 341, dracheMitSchatzMouseover);
         drachenButton.addActionListener(e -> Sound.soundAbspielen("Sounds/drachenRoar.wav"));
         p1.add(drachenButton);
+        
+        //SpinneObenRechts
+        ImageIcon spinneEckeBild = new ImageIcon("Bilder/spinneMitNetz.png");
+        ImageIcon spinneEckeBildMouseover = new ImageIcon("Bilder/spinneMitNetz_mouseover.png");
+        ButtonMitMouseover spinneEckeButton = new ButtonMitMouseover(spinneEckeBild ,1087, 0, 284, 270, spinneEckeBildMouseover);
+        drachenButton.addActionListener(e -> Sound.soundAbspielen("Sounds/drachenRoar.wav"));
+        p1.add(spinneEckeButton);
 		
 		//Anleitung
 		ImageIcon buch = new ImageIcon("Bilder/buchAnleitung.png");
