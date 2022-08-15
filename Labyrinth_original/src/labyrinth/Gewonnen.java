@@ -52,21 +52,17 @@ public class Gewonnen extends JDialog{
 		boolean warSortiert = true;
 		do {
 			warSortiert = true;
-			
-			for(int i = 0; i < spielerListe.size(); i++) {
+			for(int i = 0; i < spielerListe.size() - 1; i++) {
 				
 				if(spielerListe.get(i).getKartenblatt().size() > spielerListe.get(i+1).getKartenblatt().size()) {
-				
-					//if (i > spielerListe.size()) {
-				Spieler zwischenspeicher = spielerListe.get(i);
-				spielerListe.set(i, spielerListe.get(i+1));
-				spielerListe.set(i + 1, zwischenspeicher);
-		
-				warSortiert = false;
-					//}
+					
+					Spieler zwischenspeicher = spielerListe.get(i);
+					spielerListe.set(i, spielerListe.get(i+1));
+					spielerListe.set(i + 1, zwischenspeicher);
+					warSortiert = false;
 				}
 			}
-		}while(warSortiert);
+		}while(!warSortiert);
 		
 		
 		String imagePathErster = "Bilder/figurspieler_" + spielerListe.get(0).getFarbe() + "_gewinner.png";		
@@ -115,17 +111,29 @@ public class Gewonnen extends JDialog{
 		zweiterPlatz.setFont(zweiterPlatz.getFont().deriveFont((float) 22));
 		platzierungen.add(zweiterPlatz,BorderLayout.NORTH);
 		
-		dritterPlatz = new JLabel("Platz 3: " + spielerListe.get(2).getName(),SwingConstants.CENTER);
+		dritterPlatz = new JLabel("Platz 3:",SwingConstants.CENTER);
+		dritterPlatz.setVisible(false);
 		dritterPlatz.setSize(120, 25);
 		dritterPlatz.setBorder(BorderFactory.createEmptyBorder(0, 0,22, 0));
 		dritterPlatz.setFont(dritterPlatz.getFont().deriveFont((float) 22));
 		platzierungen.add(dritterPlatz,BorderLayout.CENTER);
+		if(spielerListe.size() >= 3)
+		{
+			dritterPlatz.setText("Platz 3: " + spielerListe.get(2).getName());
+			dritterPlatz.setVisible(true);
+		}
 		
-		vierterPlatz = new JLabel("Platz 4: " + spielerListe.get(3).getName(),SwingConstants.CENTER);
+		vierterPlatz = new JLabel("Platz 4:",SwingConstants.CENTER);
+		vierterPlatz.setVisible(false);
 		vierterPlatz.setSize(120, 25);
 		vierterPlatz.setFont(vierterPlatz.getFont().deriveFont((float) 22));
 		vierterPlatz.setBorder(BorderFactory.createEmptyBorder(0, 0, 22 , 0));
 		platzierungen.add(vierterPlatz,BorderLayout.SOUTH);
+		if(spielerListe.size() >= 4)
+		{
+			vierterPlatz.setText("Platz 4: " + spielerListe.get(3).getName());
+			vierterPlatz.setVisible(true);
+		}
 		
 		gbcEigenschaftenSetzen(0,0,1,2);
 		gbc.insets = new Insets(0,0,100,0);
