@@ -8,7 +8,8 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 
 	/**
-	 * Quelle: 
+	 * Quelle: 	https://stackoverflow.com/questions/620929/rotate-a-swing-jlabel
+	 * 			http://hypftier.de/dump/RotatedLabel.java
 	 * 
 	 * A label, that can be rotated by 90 degrees either left or right. Thus the
 	 * reading direction is either horizontal (the default), up or down.
