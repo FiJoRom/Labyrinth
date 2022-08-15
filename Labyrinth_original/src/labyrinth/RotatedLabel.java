@@ -3,29 +3,27 @@ package labyrinth;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
-	import java.awt.Color;
-	import java.awt.Dimension;
-	import java.awt.FlowLayout;
-	import java.awt.Graphics;
-	import java.awt.Graphics2D;
-	import java.awt.geom.AffineTransform;
-
-	import javax.swing.Icon;
-	import javax.swing.JFrame;
-	import javax.swing.JLabel;
+import java.awt.geom.AffineTransform;
+import javax.swing.Icon;
+import javax.swing.JLabel;
 
 	/**
+	 * Quelle: 
+	 * 
 	 * A label, that can be rotated by 90 degrees either left or right. Thus the
 	 * reading direction is either horizontal (the default), up or down.
 	 * 
 	 * @author Johannes RÃ¶ssel
 	 */
+	
+	/** 
+	 * Erweitert fuer public enum Direction BACKWARDS
+	 */
 	public class RotatedLabel extends JLabel {
 
 	
 	  /** Serialisation ID. */
-	  //private static final long serialVersionUID = -5589305224172247331L;
+	  private static final long serialVersionUID = -5589305224172247331L;
 	 
 	  
 	  /** Represents the direction of a rotated label. */
@@ -237,28 +235,5 @@ import java.awt.Graphics2D;
 	    needsRotate = true;
 	    super.paintComponent(gr);
 	    needsRotate = false;
-	  }
-
-	  /**
-	   * Test method.
-	   * 
-	   * @param args
-	   *          command line arguments.
-	   */
-	  
-	  /*
-	  public static void main(String[] args) {
-	    JFrame f = new JFrame("Test");
-	    f.setLayout(new FlowLayout());
-	    RotatedLabel rl = new RotatedLabel("BLAHBLAH");
-	    rl.setBackground(Color.ORANGE);
-	    rl.setOpaque(true);
-	    rl.setDirection(Direction.VERTICAL_DOWN);
-	    f.add(rl);
-	    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    f.pack();
-	    f.setVisible(true);
-	  }
-	*/
-	  
+	  }  
 	}

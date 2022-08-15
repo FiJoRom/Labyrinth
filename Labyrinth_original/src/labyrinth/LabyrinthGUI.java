@@ -72,7 +72,7 @@ public class LabyrinthGUI extends JFrame{
 	private JButton[] organisationDreiecke;
 	
 	private JPanel spielfeldHintergrund;
-	
+	private JPanel drachenBild;
 	private JLabel aktuellerspielername; 
 	
 	private SpielerPanel spielerPanel1;
@@ -86,14 +86,13 @@ public class LabyrinthGUI extends JFrame{
 	private SpielfigurPanel spielfigurGruen;
 	private List <SpielfigurPanel> organisationSpielfiguren;
 	
-	private JPanel drachenBild;
-	
 	private Willkommen willkommen;
 	private Spielanleitung anleitung;	
 	private GangUebrigPanel ganguebrigpanel;
 	private JoystickPanel joystickPanel;
 	private AnleitungButton anleitungButton;
 	private Gewonnen gewonnen;	
+	private HintergrundPanel hintergrundPanel;
 	
 	public LabyrinthGUI(LabyrinthDaten model) {
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -498,311 +497,41 @@ public class LabyrinthGUI extends JFrame{
 		});
 		
 		//Willkommens-Fenster
-		willkommen = new Willkommen();
+		willkommen = new Willkommen(this.daten, this);
 		willkommen.setVisible(true);
 		willkommen.setAlwaysOnTop(true);
-		
-		
-		HintergrundPanel hintergrundPanel = new HintergrundPanel("#ff9137", "#ffcc40");
-		
-		//HintergrundPanel hintergrundPanel = new HintergrundPanel("#ffaa66", "#ffcc40");
-		//hintergrundPanel.setSize(p1.getWidth(), p1.getHeight());
+	
+		//Hintergrund
+		this.hintergrundPanel = new HintergrundPanel("#ff9137", "#ffcc40");
 		hintergrundPanel.setSize(1400, 1050);
 		hintergrundPanel.setVisible(true);
 		hintergrundPanel.setOpaque(true);
 		p1.add(hintergrundPanel);
-		
-	}
-	
-	private class Willkommen extends JDialog{
-		
-		private JPanel bildpanel;
-		private JPanel abfragepanel;		
-		
-		//Abfrage 1
-		private JLabel spielerAnzahl;
-		private JButton zweiSpieler;
-		private JButton dreiSpieler;
-		private JButton vierSpieler;
-		
-		//Abfrage 2
-		private JLabel spielerNamelabel;
-		private JLabel spielerFarbe;
-		private JTextArea spielerNametext;
-		private JComboBox<String> spielerFarbeAuswahl;
-		private String[] farben = {"Rot","Blau","Gruen","Gelb"};
-		private JButton fertig;
-		private GridBagLayout gbl;
-		private HintergrundPanel hintergrundPanel;
-		
-		private GridBagConstraints gbc;
-		private GridBagConstraints gbcZwei;
-		
-		Willkommen(){
-			this.setDefaultCloseOperation(HIDE_ON_CLOSE);
-			this.setTitle("Das Verrueckte LabyrINTh");
-
-			this.setSize(450, 340);
-			this.setLocation(668, 300);
-			gbl = new GridBagLayout();
-			this.setLayout(gbl);
-			Font font = new Font("Arial", Font.BOLD,15);
-			
-			gbc = new GridBagConstraints();
-			gbc.fill = GridBagConstraints.HORIZONTAL;
-			gbc.insets = new Insets(5,5,5,5);
-			
-			gbcEigenschaftenSetzen(0,0,3,1);
-			String imagePath = "Bilder/Labyrinth_Logo.png";
-			try {
-				BufferedImage logo = ImageIO.read(new File(imagePath));
-				JLabel picLabel = new JLabel(new ImageIcon(logo));
-				bildpanel = new JPanel();
-				bildpanel.setOpaque(false);
-				gbl.setConstraints(bildpanel, gbc);
-				this.add(bildpanel);
-				bildpanel.add(picLabel);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-						
-			gbc.gridx = 0;
-			gbc.gridy = 1;
-			gbc.gridwidth = 3;
-			gbc.gridheight = 1;
-			gbc.insets = new Insets(5,30,5,5);
-			spielerAnzahl = new JLabel ("Wie viele Spieler seid ihr?");
-			spielerAnzahl.setFont(font);
-			spielerAnzahl.setSize(300, 30);
-			gbl.setConstraints(spielerAnzahl, gbc);
-			this.add(spielerAnzahl);
-						
-			gbc.gridx = 0;
-			gbc.gridy = 2;
-			gbc.gridwidth = 1;
-			gbc.gridheight = 1;
-			gbc.insets = new Insets(15,30,30,15);
-			zweiSpieler = new JButton("Zwei Spieler");
-			zweiSpieler.setSize(200, 20);
-			zweiSpieler.addActionListener(e -> spielerAnzahlSetzen(2));
-			gbl.setConstraints(zweiSpieler, gbc);
-			this.add(zweiSpieler);
-					
-			gbc.gridx = 1;
-			gbc.gridy = 2;
-			gbc.gridwidth = 1;
-			gbc.gridheight = 1;
-			gbc.insets = new Insets(15,15,30,15);
-			dreiSpieler = new JButton("Drei Spieler");
-			dreiSpieler.setSize(200, 20);
-			dreiSpieler.addActionListener(e -> spielerAnzahlSetzen(3));
-			gbl.setConstraints(dreiSpieler, gbc);
-			this.add(dreiSpieler);
-			
-			gbc.gridx = 2;
-			gbc.gridy = 2;
-			gbc.gridwidth = 1;
-			gbc.gridheight = 1;
-			gbc.insets = new Insets(15,15,30,30);
-			vierSpieler = new JButton("Vier Spieler");
-			vierSpieler.setSize(200, 20);
-			vierSpieler.addActionListener(e -> spielerAnzahlSetzen(4));
-			gbl.setConstraints(vierSpieler, gbc);
-			this.add(vierSpieler);
-			
-			this.getContentPane().setBackground(Color.decode("#6aaadd"));
-
-		}
-		
-		private void spielerAnzahlSetzen(int spAnzahl){
-			daten.setSpieleranzahl(spAnzahl);
-			
-			gbl.removeLayoutComponent(bildpanel);
-			this.remove(bildpanel);
-			gbl.removeLayoutComponent(spielerAnzahl);
-			this.remove(spielerAnzahl);
-			gbl.removeLayoutComponent(zweiSpieler);
-			this.remove(zweiSpieler);
-			gbl.removeLayoutComponent(dreiSpieler);
-			this.remove(dreiSpieler);
-			gbl.removeLayoutComponent(vierSpieler);
-			this.remove(vierSpieler);
-			
-			spielerEigenschaftenSetzen(1);
-		}
-		
-		private void spielerEigenschaftenSetzen(int spielerNummer) {
-			
-			gbcZwei = new GridBagConstraints();
-			gbcZwei.fill = GridBagConstraints.HORIZONTAL;
-			gbcZwei.insets = new Insets(5,5,5,5);
-			Font font = new Font("Arial", Font.BOLD,15);
-			
-			gbcZwei.gridx = 0;
-			gbcZwei.gridy = 0;
-			gbcZwei.gridwidth = 4;
-			gbcZwei.gridheight = 1;
-			gbl.setConstraints(bildpanel, gbcZwei);
-			this.add(bildpanel);
-			
-			gbcZwei.gridx = 0;
-			gbcZwei.gridy = 1;
-			gbcZwei.gridwidth = 2;
-			gbcZwei.gridheight = 1;
-			gbcZwei.insets = new Insets(0,29,5,5);
-			spielerNamelabel = new JLabel ("Wie heisst Spieler " + spielerNummer + "?");
-			spielerNamelabel.setFont(font);
-			gbl.setConstraints(spielerNamelabel, gbcZwei);
-			this.add(spielerNamelabel);
-			
-			gbcZwei.gridx = 2;
-			gbcZwei.gridy = 1;
-			gbcZwei.gridwidth = 2;
-			gbcZwei.gridheight = 1;
-			gbcZwei.insets = new Insets(0,100,5,14);
-			spielerFarbe = new JLabel ("Farbe:");
-			spielerFarbe.setFont(font);
-			gbl.setConstraints(spielerFarbe, gbcZwei);
-			this.add(spielerFarbe);
-			
-			gbcZwei.gridx = 0;
-			gbcZwei.gridy = 2;
-			gbcZwei.gridwidth = 2;
-			gbcZwei.gridheight = 1;
-			gbcZwei.ipady= 3;
-			gbcZwei.insets = new Insets(5,29,15,5);
-			spielerNametext = new JTextArea();
-			spielerNametext.setCaretPosition(0);
-			spielerNametext.getCaret().setVisible(true);
-			spielerNametext.setFont(spielerNametext.getFont().deriveFont((float) 15));
-			gbl.setConstraints(spielerNametext, gbcZwei);
-			this.add(spielerNametext);
-			
-			gbcZwei.gridx = 2;
-			gbcZwei.gridy = 2;
-			gbcZwei.gridwidth = 2;
-			gbcZwei.gridheight = 1;
-			gbcZwei.ipady= 0;
-			gbcZwei.insets = new Insets(5,100,15,29);
-			spielerFarbeAuswahl = new JComboBox<String>(farben);
-			gbl.setConstraints(spielerFarbeAuswahl, gbcZwei);
-			this.add(spielerFarbeAuswahl);
-			
-			gbcZwei.gridx = 3;
-			gbcZwei.gridy = 3;
-			gbcZwei.gridwidth = 1;
-			gbcZwei.gridheight = 1;
-			gbcZwei.ipady= -1;
-			gbcZwei.insets = new Insets(0,130,15,29);
-			fertig = new JButton("Fertig");
-			fertig.addActionListener(e -> spielerEigenschaftenSpeichern(spielerNummer));
-			gbl.setConstraints(fertig, gbcZwei);
-			this.add(fertig);	
-			
-			pack();
-		
-			this.setSize(450, 350);
-			this.setLocation(668, 300);
-		}
-		
-		private void spielerEigenschaftenSpeichern(int spielerNummer) {
-			
-			String name = spielerNametext.getText();
-			int indexFarbe = spielerFarbeAuswahl.getSelectedIndex();
-			String farbe = spielerFarbeAuswahl.getItemAt(indexFarbe);
-			daten.getSpielerliste().add(new Spieler(name, farbe, spielerNummer));
-
-			if(daten.getSpielerliste().size() < daten.getSpieleranzahl()) {
-				String[] neueFarbauswahl = new String[farben.length - 1];
-				int j = 0;
-				for(int i = 0; i < farben.length; i++) {
-					if (!farbe.equals(farben[i])) {
-						neueFarbauswahl[j] = farben[i];
-						j++;
-					}
-				}
-				farben = neueFarbauswahl;
-				spielerNametext.setText("");
-				gbl.removeLayoutComponent(bildpanel);
-				this.remove(bildpanel);
-				gbl.removeLayoutComponent(spielerNamelabel);
-				this.remove(spielerNamelabel);
-				gbl.removeLayoutComponent(spielerFarbe);
-				this.remove(spielerFarbe);
-				gbl.removeLayoutComponent(spielerNametext);
-				this.remove(spielerNametext);
-				gbl.removeLayoutComponent(spielerFarbeAuswahl);
-				this.remove(spielerFarbeAuswahl);
-				gbl.removeLayoutComponent(fertig);
-				this.remove(fertig);
-				
-				spielerEigenschaftenSetzen(spielerNummer + 1);
-			} else {
-				willkommenSchliessen();
-				System.out.println(daten.getSpielerliste());
-			}
-		}
-		
-		private void gbcEigenschaftenSetzen(int x, int y, int width, int height) {
-			this.gbc.gridx = x;
-			this.gbc.gridy = y;
-			this.gbc.gridwidth = width;
-			this.gbc.gridheight = height;
-		}
-		
-		private void gbcZweiEigenschaftenSetzen(int x, int y, int width, int height) {
-			this.gbcZwei.gridx = x;
-			this.gbcZwei.gridy = y;
-			this.gbcZwei.gridwidth = width;
-			this.gbcZwei.gridheight = height;
-		}
-		
-		
 	}
 	
 	private class MouseHandler implements MouseListener{
-
 		@Override
-		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
+		public void mouseClicked(MouseEvent e) {}
 		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
+		public void mousePressed(MouseEvent e) {}
 		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
+		public void mouseReleased(MouseEvent e) {}
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			String gesuchterSchatzName = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
-			//Spieler aktuellerSpielerAmZug = daten.getSpielerliste().get(0);
-            System.out.println("mouse entered!");
-            //String gesuchterSchatzName = aktuellerSpielerAmZug.getKartenblatt().get(0).getSchatz();
-            String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
-
-            System.out.println(URI);
-
-            aktuelleKarte.bildaendern(URI);
-            validate();
+	        System.out.println("mouse entered!");
+	        String URI = "Bilder/" + gesuchterSchatzName + "_k.png";
+	        aktuelleKarte.bildaendern(URI);
+	        validate();
 		}
-
 		@Override
 		public void mouseExited(MouseEvent e) {
 			aktuelleKarte.bildaendern("Bilder/rueckseite2_k.png");
 			validate();
 		}
-		
 	}
 	
-	private void willkommenSchliessen() {
+	public void willkommenSchliessen() {
 		this.willkommen.setVisible(false);
 		spielGenerieren();
 	}
@@ -820,7 +549,6 @@ public class LabyrinthGUI extends JFrame{
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
 				spielfigurenSetzen();
 				break;
-			
 			case 3:
 				p1.remove(spielerPanel4);
 				repaint();
@@ -833,7 +561,6 @@ public class LabyrinthGUI extends JFrame{
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
 				spielfigurenSetzen();
 				break;
-				
 			case 4:
 				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
 				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
@@ -842,7 +569,6 @@ public class LabyrinthGUI extends JFrame{
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
 				spielfigurenSetzen();
 				break;
-			
 			default:
 				break;
 		}
