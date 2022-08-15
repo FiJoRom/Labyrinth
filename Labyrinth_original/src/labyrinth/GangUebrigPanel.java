@@ -1,31 +1,16 @@
 package labyrinth;
 
 import java.awt.BorderLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class GangUebrigPanel extends JPanel {
+	
 	private JButton linksdrehung;
 	private JButton rechtsdrehung;
 	private GangPanel ganguebrig;
-	
-	public GangPanel getGanguebrig() {
-		return ganguebrig;
-	}
-
-	public void setGanguebrig(GangPanel ganguebrig) {
-		this.ganguebrig = ganguebrig;
-	}
+	private static final long serialVersionUID = 2318139398359010609L;
 
 	public GangUebrigPanel() {
 		this.setLayout(new BorderLayout());
@@ -56,7 +41,14 @@ public class GangUebrigPanel extends JPanel {
 		rechtsdrehung.setOpaque(false);
 		rechtsdrehung.setRolloverIcon(rechtsdrehungsIconRollover);
 		this.add(rechtsdrehung, BorderLayout.WEST);
-		
+	}
+	
+	public GangPanel getGanguebrig() {
+		return ganguebrig;
+	}
+
+	public void setGanguebrig(GangPanel ganguebrig) {
+		this.ganguebrig = ganguebrig;
 	}
 	
 	public JButton getLinksdrehung() {
