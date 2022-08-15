@@ -3,6 +3,7 @@ package labyrinth;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -53,9 +54,6 @@ public class LabyrinthGUI extends JFrame{
 	private JMenuItem hilfe;
 	private JPanel p1;
 	
-	//private GangPanel gang00;
-	
-	//neu
 	private GangPanel[][] organisationGaenge;
 	private AktuelleKarte aktuelleKarte;
 	
@@ -102,25 +100,32 @@ public class LabyrinthGUI extends JFrame{
 		this.setTitle("Das Verrueckte Labyrinth");
 		this.daten = model;
 		
-		// JFrame-Konfiguration
 		this.setSize(1386, 1050);
 		this.setLocation(200, 20);
 		
-		//BackgroundPanel
+		// Menue
+		menueLeiste = new JMenuBar();
+		spielMenue = new JMenu("Spiel");
+		neuesSpiel = new JMenuItem("Neues Spiel");
+		beenden = new JMenuItem("Beenden");
+		
+		neuesSpiel.addActionListener(e -> gewinner());
+		beenden.addActionListener(e -> System.exit(0));
+		this.setJMenuBar(menueLeiste);
+		menueLeiste.add(spielMenue);
+		spielMenue.add(neuesSpiel);
+		spielMenue.add(beenden);
+		
 		p1 = new JPanel();
 		p1.setLayout(null);
 		this.add(p1);
-		//p1.setBackground(Color.lightGray);
 		
 		spielerPanel1 = new SpielerPanel(77,"Spieler 1", "Spielername");
 		p1.add(spielerPanel1);
-		
 		spielerPanel2 = new SpielerPanel(238,"Spieler 2", "Spielername");
 		p1.add(spielerPanel2);
-
 		spielerPanel3 = new SpielerPanel(399,"Spieler 3", "Spielername");
 		p1.add(spielerPanel3);
-		
 		spielerPanel4 = new SpielerPanel(561,"Spieler 4", "Spielername");
 		p1.add(spielerPanel4);
 		
@@ -436,9 +441,6 @@ public class LabyrinthGUI extends JFrame{
 		
 		
 		
-		
-		
-		
 		//EinschiebeGang
 		this.ganguebrigpanel = new GangUebrigPanel();
 		p1.add(ganguebrigpanel);	
@@ -465,7 +467,6 @@ public class LabyrinthGUI extends JFrame{
 		aktuellerspielername.setFont(aktuellerspielername.getFont().deriveFont((float) 18));
 		p1.add(aktuellerSpieler);
 		p1.add(aktuellerspielername);
-		
 		aktuelleKarte = new AktuelleKarte("Bilder/rueckseite2_k.png");
         p1.add(aktuelleKarte);
         
@@ -474,20 +475,6 @@ public class LabyrinthGUI extends JFrame{
         this.drachenBild = new DekoBild(50, 645, 430, 341, "Bilder/DracheMitSchatz.png");
 		p1.add(drachenBild);
 		
-       
-		
-		
-		
-		
-		// Menue
-		menueLeiste = new JMenuBar();
-		spielMenue = new JMenu("Spiel");
-		neuesSpiel = new JMenuItem("Neues Spiel");
-		beenden = new JMenuItem("Beenden");
-		
-		//ActionListener
-		neuesSpiel.addActionListener(e -> gewinner());
-		beenden.addActionListener(e -> System.exit(0));
 		
 		//Anleitung
 		ImageIcon buch = new ImageIcon("Bilder/buchAnleitung.png");
@@ -495,21 +482,14 @@ public class LabyrinthGUI extends JFrame{
 		anleitungButton.addActionListener(e -> new Spielanleitung());
 		p1.add(anleitungButton);
 		
-		//Menueleiste Zuordnung
-		menueLeiste.add(spielMenue);
-		spielMenue.add(neuesSpiel);
-		spielMenue.add(beenden);
-		
 		//Hintergrund Spielfeld Blau
 		spielfeldHintergrund = new JPanel();
 		spielfeldHintergrund.setBackground(Color.decode("#2a4071"));
-		//spielfeldHintergrund.setBounds(450, 10, 600, 605);
 		spielfeldHintergrund.setBounds(342, 27, 686, 691);
 		p1.add(spielfeldHintergrund);
 		
-		// zum Fenster hinzufuegen
-		this.setJMenuBar(menueLeiste);
-
+		
+		
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -566,6 +546,7 @@ public class LabyrinthGUI extends JFrame{
 			this.setLocation(668, 300);
 			gbl = new GridBagLayout();
 			this.setLayout(gbl);
+			Font font = new Font("Arial", Font.BOLD,15);
 			
 			gbc = new GridBagConstraints();
 			gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -591,6 +572,7 @@ public class LabyrinthGUI extends JFrame{
 			gbc.gridheight = 1;
 			gbc.insets = new Insets(5,30,5,5);
 			spielerAnzahl = new JLabel ("Wie viele Spieler seid ihr?");
+			spielerAnzahl.setFont(font);
 			spielerAnzahl.setSize(300, 30);
 			gbl.setConstraints(spielerAnzahl, gbc);
 			this.add(spielerAnzahl);
@@ -646,15 +628,15 @@ public class LabyrinthGUI extends JFrame{
 			gbl.removeLayoutComponent(vierSpieler);
 			this.remove(vierSpieler);
 			
-			//repaint();
 			spielerEigenschaftenSetzen(1);
 		}
 		
 		private void spielerEigenschaftenSetzen(int spielerNummer) {
-	
+			
 			gbcZwei = new GridBagConstraints();
 			gbcZwei.fill = GridBagConstraints.HORIZONTAL;
 			gbcZwei.insets = new Insets(5,5,5,5);
+			Font font = new Font("Arial", Font.BOLD,15);
 			
 			gbcZwei.gridx = 0;
 			gbcZwei.gridy = 0;
@@ -667,7 +649,9 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridy = 1;
 			gbcZwei.gridwidth = 2;
 			gbcZwei.gridheight = 1;
+			gbcZwei.insets = new Insets(0,29,5,5);
 			spielerNamelabel = new JLabel ("Wie heisst Spieler " + spielerNummer + "?");
+			spielerNamelabel.setFont(font);
 			gbl.setConstraints(spielerNamelabel, gbcZwei);
 			this.add(spielerNamelabel);
 			
@@ -675,7 +659,9 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridy = 1;
 			gbcZwei.gridwidth = 2;
 			gbcZwei.gridheight = 1;
+			gbcZwei.insets = new Insets(0,100,5,14);
 			spielerFarbe = new JLabel ("Farbe:");
+			spielerFarbe.setFont(font);
 			gbl.setConstraints(spielerFarbe, gbcZwei);
 			this.add(spielerFarbe);
 			
@@ -683,8 +669,12 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridy = 2;
 			gbcZwei.gridwidth = 2;
 			gbcZwei.gridheight = 1;
-			//gbcZwei.insets = new Insets(5,150,15,5);
+			gbcZwei.ipady= 3;
+			gbcZwei.insets = new Insets(5,29,15,5);
 			spielerNametext = new JTextArea();
+			spielerNametext.setCaretPosition(0);
+			spielerNametext.getCaret().setVisible(true);
+			spielerNametext.setFont(spielerNametext.getFont().deriveFont((float) 15));
 			gbl.setConstraints(spielerNametext, gbcZwei);
 			this.add(spielerNametext);
 			
@@ -692,6 +682,8 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridy = 2;
 			gbcZwei.gridwidth = 2;
 			gbcZwei.gridheight = 1;
+			gbcZwei.ipady= 0;
+			gbcZwei.insets = new Insets(5,100,15,29);
 			spielerFarbeAuswahl = new JComboBox<String>(farben);
 			gbl.setConstraints(spielerFarbeAuswahl, gbcZwei);
 			this.add(spielerFarbeAuswahl);
@@ -700,7 +692,8 @@ public class LabyrinthGUI extends JFrame{
 			gbcZwei.gridy = 3;
 			gbcZwei.gridwidth = 1;
 			gbcZwei.gridheight = 1;
-			gbcZwei.insets = new Insets(5,130,15,30);
+			gbcZwei.ipady= -1;
+			gbcZwei.insets = new Insets(0,130,15,29);
 			fertig = new JButton("Fertig");
 			fertig.addActionListener(e -> spielerEigenschaftenSpeichern(spielerNummer));
 			gbl.setConstraints(fertig, gbcZwei);
@@ -743,7 +736,6 @@ public class LabyrinthGUI extends JFrame{
 				gbl.removeLayoutComponent(fertig);
 				this.remove(fertig);
 				
-				//repaint();
 				spielerEigenschaftenSetzen(spielerNummer + 1);
 			} else {
 				willkommenSchliessen();
@@ -927,9 +919,6 @@ public class LabyrinthGUI extends JFrame{
 		aktualisiereDreiecke(true);
 		
 		aktuelleKarte.addMouseListener(new MouseHandler());
-		
-
-		
 	}
 
 	public void positionAendern() {
@@ -1204,7 +1193,6 @@ public class LabyrinthGUI extends JFrame{
 		try {
 			BufferedImage logo = ImageIO.read(new File(gangpath));
 			JLabel picLabel = new JLabel(new ImageIcon(logo));
-			//p1.add(gangpanel);
 			gangpanel.add(picLabel);
 		} catch (IOException e) {
 			e.printStackTrace();
