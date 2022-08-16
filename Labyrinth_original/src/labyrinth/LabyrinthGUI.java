@@ -842,7 +842,10 @@ public class LabyrinthGUI extends JFrame{
 	private void fertigButtonPress() {
 		
 		gesuchterSchatzPruefen();
-		spielerWeitersetzen();
+		if(!daten.isWurdeGewonnen()) {
+			spielerWeitersetzen();
+		}
+
 	}
 	
 	private void gesuchterSchatzPruefen() {
@@ -932,6 +935,10 @@ public class LabyrinthGUI extends JFrame{
         gewonnen = new Gewonnen(daten.getSpielerliste());
         gewonnen.setVisible(true);
         gewonnen.setAlwaysOnTop(true);
+        daten.setWurdeGewonnen(true);
+        aktualisiereDreiecke(false);
+        sperrenButtons();
+        validate();
     }
 	
 	private void neuesSpiel() {

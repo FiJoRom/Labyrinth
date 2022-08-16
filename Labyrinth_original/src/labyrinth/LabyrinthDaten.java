@@ -12,13 +12,15 @@ public class LabyrinthDaten {
 	private Spieler aktuellerSpieler;
 	private boolean darfSchieben;
 	private int verboten;
+	private boolean wurdeGewonnen;
 	
 	public LabyrinthDaten() {
 		spielfeld.gaengekartenAuslegen();
 		darfSchieben = true;
+		wurdeGewonnen = false;
 		verboten = 42;
 	}
-	
+
 	public void schatzkartenAusteilen(List<Karte> kartendeck) {
 		int j = 0;
 		do
@@ -229,5 +231,13 @@ public class LabyrinthDaten {
 
 	public void setKartendeck(List<Karte> kartendeckEingabe) {
 		kartendeck = kartendeckEingabe;
+	}
+	
+	public boolean isWurdeGewonnen() {
+		return wurdeGewonnen;
+	}
+
+	public void setWurdeGewonnen(boolean wurdeGewonnen) {
+		this.wurdeGewonnen = wurdeGewonnen;
 	}
 }
