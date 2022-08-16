@@ -231,7 +231,6 @@ public class Willkommen extends JDialog {
 			spielerEigenschaftenSetzen(spielerNummer + 1);
 		} else {
 			gui.willkommenSchliessen();
-			System.out.println(daten.getSpielerliste());
 		}
 	}
 

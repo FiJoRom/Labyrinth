@@ -3,8 +3,6 @@ package labyrinth;
 import java.util.ArrayList;
 import java.util.List;
 
-//import labyrinth.Karte;
-
 public class LabyrinthDaten {
 
 	private int spieleranzahl; 
@@ -15,67 +13,10 @@ public class LabyrinthDaten {
 	private boolean darfSchieben;
 	private int verboten;
 	
-	public boolean isDarfSchieben() {
-		return darfSchieben;
-	}
-
-	public void setDarfSchieben(boolean darfSchieben) {
-		this.darfSchieben = darfSchieben;
-	}
-
-	public int getVerboten() {
-		return verboten;
-	}
-
-	public void setVerboten(int verboten) {
-		this.verboten = verboten;
-	}
-
-	public Spieler getAktuellerSpieler() {
-		return aktuellerSpieler;
-	}
-
-	public void setAktuellerSpieler(Spieler aktuellerSpieler) {
-		this.aktuellerSpieler = aktuellerSpieler;
-	}
-
 	public LabyrinthDaten() {
 		spielfeld.gaengekartenAuslegen();
 		darfSchieben = true;
 		verboten = 42;
-	}
-
-	public Spielfeld getSpielfeld() {
-		return spielfeld;
-	}
-
-	public void setSpielfeld(Spielfeld spielfeld) {
-		this.spielfeld = spielfeld;
-	}
-
-	public int getSpieleranzahl() {
-		return spieleranzahl;
-	}
-
-	public void setSpieleranzahl(int spAnzahl) {
-		spieleranzahl = spAnzahl;
-		System.out.println("Spieleranzahl: " + spieleranzahl);
-	}
-
-	public List<Spieler> getSpielerliste() {
-		return spielerliste;
-	}
-
-	public void setSpielerliste(List<Spieler> spielerlisteEingabe) {
-		spielerliste = spielerlisteEingabe;
-	}
-
-	public List<Karte> getKartendeck() {
-		return kartendeck;
-	}
-
-	public void setKartendeck(List<Karte> kartendeckEingabe) {
-		kartendeck = kartendeckEingabe;
 	}
 	
 	public void schatzkartenAusteilen(List<Karte> kartendeck) {
@@ -233,4 +174,60 @@ public class LabyrinthDaten {
             this.spielerliste.get(i).kartenblattLeeren();
         }
     }
+	
+	public boolean isDarfSchieben() {
+		return darfSchieben;
+	}
+
+	public void setDarfSchieben(boolean darfSchieben) {
+		this.darfSchieben = darfSchieben;
+	}
+
+	public int getVerboten() {
+		return verboten;
+	}
+
+	public void setVerboten(int verboten) {
+		this.verboten = verboten;
+	}
+
+	public Spieler getAktuellerSpieler() {
+		return aktuellerSpieler;
+	}
+
+	public void setAktuellerSpieler(Spieler aktuellerSpieler) {
+		this.aktuellerSpieler = aktuellerSpieler;
+	}
+
+	public Spielfeld getSpielfeld() {
+		return spielfeld;
+	}
+
+	public void setSpielfeld(Spielfeld spielfeld) {
+		this.spielfeld = spielfeld;
+	}
+
+	public int getSpieleranzahl() {
+		return spieleranzahl;
+	}
+
+	public void setSpieleranzahl(int spAnzahl) {
+		spieleranzahl = spAnzahl;
+	}
+
+	public List<Spieler> getSpielerliste() {
+		return spielerliste;
+	}
+
+	public void setSpielerliste(List<Spieler> spielerlisteEingabe) {
+		spielerliste = spielerlisteEingabe;
+	}
+
+	public List<Karte> getKartendeck() {
+		return kartendeck;
+	}
+
+	public void setKartendeck(List<Karte> kartendeckEingabe) {
+		kartendeck = kartendeckEingabe;
+	}
 }
