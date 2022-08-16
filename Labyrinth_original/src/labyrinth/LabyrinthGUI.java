@@ -9,6 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class LabyrinthGUI extends JFrame{
@@ -34,6 +37,11 @@ public class LabyrinthGUI extends JFrame{
 	private JButton dreieckLinks2;
 	private JButton dreieckLinks3;
 	private JButton[] organisationDreiecke;
+	
+	private JMenuBar menueLeiste;
+    private JMenu spielMenue;
+    private JMenuItem beenden;
+    private JMenuItem neuesSpiel;
 	
 	private JPanel spielfeldHintergrund;
 	private JLabel aktuellerspielername; 
@@ -69,6 +77,18 @@ public class LabyrinthGUI extends JFrame{
 		p1 = new JPanel();
 		p1.setLayout(null);
 		this.add(p1);
+		
+		menueLeiste = new JMenuBar();
+        spielMenue = new JMenu("Spiel");
+        neuesSpiel = new JMenuItem("Neues Spiel");
+        beenden = new JMenuItem("Beenden");
+		
+		neuesSpiel.addActionListener(e -> neuesSpiel());
+        beenden.addActionListener(e -> System.exit(0));
+        this.setJMenuBar(menueLeiste);
+        menueLeiste.add(spielMenue);
+        spielMenue.add(neuesSpiel);
+        spielMenue.add(beenden);
 		
 		spielerPanel1 = new SpielerPanel(77,"Spieler 1", "Spielername");
 		p1.add(spielerPanel1);
@@ -489,9 +509,13 @@ public class LabyrinthGUI extends JFrame{
 				break;
 			case 4:
 				spielerPanel1.getSpielername().setText(daten.getSpielerliste().get(0).getName());
+				spielerPanel1.getKartenanzahl().setText("6");
 				spielerPanel2.getSpielername().setText(daten.getSpielerliste().get(1).getName());
+				spielerPanel2.getKartenanzahl().setText("6");
 				spielerPanel3.getSpielername().setText(daten.getSpielerliste().get(2).getName());
+				spielerPanel3.getKartenanzahl().setText("6");
 				spielerPanel4.getSpielername().setText(daten.getSpielerliste().get(3).getName());
+				spielerPanel4.getKartenanzahl().setText("6");
 				aktuellerspielername.setText(daten.getSpielerliste().get(0).getName());
 				spielfigurenSetzen();
 				break;
@@ -644,7 +668,6 @@ public class LabyrinthGUI extends JFrame{
 			}
 			else {
 				String gesuchterSchatzName = daten.getAktuellerSpieler().getKartenblatt().get(0).getSchatz();
-		        System.out.println("mouse entered!");
 		        URI = "Bilder/" + gesuchterSchatzName + "_k.png";
 			}
 	        aktuelleKarte.bildaendern(URI);
@@ -782,6 +805,11 @@ public class LabyrinthGUI extends JFrame{
 		} else {
 			joystickPanel.getLinks().setEnabled(false);
 		}
+		if(daten.fertigMoeglich()){
+			joystickPanel.getFertig().setEnabled(true);
+		} else {
+			joystickPanel.getFertig().setEnabled(false);
+		}
 	}
 	
 	private void aktuelleSpielerbewegung(String richtung) {
@@ -812,7 +840,7 @@ public class LabyrinthGUI extends JFrame{
 	}
 	
 	private void fertigButtonPress() {
-		//Hier irgendwo Fehler
+		
 		gesuchterSchatzPruefen();
 		spielerWeitersetzen();
 	}
@@ -905,4 +933,22 @@ public class LabyrinthGUI extends JFrame{
         gewonnen.setVisible(true);
         gewonnen.setAlwaysOnTop(true);
     }
+	
+	private void neuesSpiel() {
+        daten.setSpielfeld(new Spielfeld());
+        daten.getSpielfeld().gaengekartenAuslegen();
+        daten.spielerReset();
+        spielUebersichtGenerieren();
+        daten.setKartendeck(Karte.erstelleKartenDeck()); 
+        Karte.shuffleKartenDeck(daten.getKartendeck());
+        daten.schatzkartenAusteilen(daten.getKartendeck());
+        daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
+        spielfeldVorbereiten();
+        aktualisiereGanguebrig();
+        daten.setAktuellerSpieler(daten.getSpielerliste().get(0));
+        aktualisiereDreiecke(true);
+        //aktuelleKarte.addMouseListener(new MouseHandler());
+        validate();
+    }
+
 }

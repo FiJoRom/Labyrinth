@@ -66,6 +66,13 @@ public class Spieler {
 		this.positionX = (this.positionX + 1)%7;
 	}
 	
+	public void kartenblattLeeren() {
+        int n = this.kartenblatt.size();
+        for(int i = 0; i < n; i++) {
+            this.kartenblatt.remove(0);
+        }
+    }
+	
 	@Override
 	public String toString() {
 		String Ausgabe = new String();

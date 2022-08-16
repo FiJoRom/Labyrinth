@@ -158,6 +158,24 @@ public class LabyrinthDaten {
 		return rueckgabe;
 	}
 	
+	public boolean fertigMoeglich() {
+        boolean rueckgabe = true;
+        int x = aktuellerSpieler.getPositionX();
+        int y = aktuellerSpieler.getPositionY();
+        int anzahlSpielerDiesePosition = 0;
+        for(int i = 0; i < spielerliste.size(); i++) {
+            int xVergleich = spielerliste.get(i).getPositionX();
+            int yVergleich = spielerliste.get(i).getPositionY();
+            if((x == xVergleich) && (y == yVergleich)) {
+                anzahlSpielerDiesePosition++;
+            }
+        }
+        if(anzahlSpielerDiesePosition > 1) {
+            rueckgabe = false;
+        }
+        return rueckgabe;
+    }
+	
 	public void SpielerMitGangVerschieben(String richtung, int eingabeStelle) {
 		for(int i = 0; i < this.spielerliste.size(); i++) {
 			switch(richtung) {
@@ -210,11 +228,9 @@ public class LabyrinthDaten {
 		}
 	}
 	
-	
-	public void spielerVerschieben(int x, int y) {
-		
-		
-	}
-
-	
+	public void spielerReset() {
+        for(int i = 0; i < this.spielerliste.size(); i++) {
+            this.spielerliste.get(i).kartenblattLeeren();
+        }
+    }
 }

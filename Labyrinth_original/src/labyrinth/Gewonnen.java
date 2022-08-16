@@ -66,7 +66,7 @@ public class Gewonnen extends JDialog{
 		
 		gbcEigenschaftenSetzen(0, 0, 1, 1);
 		gbc.insets = new Insets(225,5,0,5);
-		ersterPlatz = new JLabel(spielerListe.get(1).getName(),SwingConstants.CENTER);
+		ersterPlatz = new JLabel(spielerListe.get(0).getName(),SwingConstants.CENTER);
 		ersterPlatz.setSize(120, 30);
 		ersterPlatz.setFont(ersterPlatz.getFont().deriveFont((float) 30));
 		layout.setConstraints(ersterPlatz, gbc);
