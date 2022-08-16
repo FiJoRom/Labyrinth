@@ -82,6 +82,7 @@ public class LabyrinthGUI extends JFrame{
         spielMenue = new JMenu("Spiel");
         neuesSpiel = new JMenuItem("Neues Spiel");
         beenden = new JMenuItem("Beenden");
+        spielMenue.setEnabled(false);
 		
 		neuesSpiel.addActionListener(e -> neuesSpiel());
         beenden.addActionListener(e -> System.exit(0));
@@ -538,6 +539,7 @@ public class LabyrinthGUI extends JFrame{
 	}
 	
 	private void spielGenerieren() {
+		spielMenue.setEnabled(true);
 		spielUebersichtGenerieren();
 		daten.setKartendeck(Karte.erstelleKartenDeck()); 
 		Karte.shuffleKartenDeck(daten.getKartendeck());
